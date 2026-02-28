@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  postgres_db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: your_user
+      POSTGRES_PASSWORD: your_password
+      POSTGRES_DB: weibo_mcn
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  weibo-spider:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - DB_HOST=postgres_db
+      - DB_USER=your_user
+      - DB_PASS=your_password
+      - DB_NAME=weibo_mcn
+    depends_on:
+      - postgres_db
+
+volumes:
+  pgdata:

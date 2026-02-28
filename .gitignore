@@ -1,0 +1,17 @@
+# 隐私通行证与环境凭证 (绝对不可上传，防止账号被盗)
+*.json
+!package.json
+.env
+
+# 浏览器缓存与临时隔离沙盒
+temp_browser_profile/
+__pycache__/
+*.pyc
+*.log
+
+# 数据库挂载卷
+pgdata/
+
+# 操作系统生成的隐藏文件
+.DS_Store
+Thumbs.db

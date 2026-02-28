@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>微博 MCN 商业数据抓取雷达</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f3f4f6;
+            color: #333;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 600px;
+            width: 90%;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+            backdrop-filter: blur(10px);
+        }
+        h1 {
+            font-size: 26px;
+            color: #0f172a;
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+        .input-group {
+            display: flex;
+            gap: 12px;
+        }
+        input {
+            flex: 1;
+            padding: 14px 20px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 16px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        input:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        }
+        button {
+            background-color: #3b82f6;
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 12px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+        button:hover { background-color: #2563eb; }
+        button:disabled { background-color: #94a3b8; cursor: not-allowed; }
+        
+        .loading { text-align: center; margin-top: 25px; color: #64748b; font-size: 15px; display: none; }
+        .error { color: #ef4444; margin-top: 20px; text-align: center; display: none; font-size: 15px; font-weight: 500;}
+        
+        .result-card {
+            margin-top: 35px;
+            display: none;
+            background: #f8fafc;
+            border-radius: 16px;
+            padding: 25px;
+            border: 1px solid #e2e8f0;
+            animation: fadeIn 0.5s ease;
+        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 25px;
+        }
+        .stat-box {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            text-align: center;
+            border: 1px solid #f1f5f9;
+        }
+        .stat-title { font-size: 13px; color: #64748b; font-weight: 600; margin-bottom: 8px; }
+        .stat-value { font-size: 24px; font-weight: 800; color: #0f172a; }
+        .cpm-value { color: #ef4444; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📊 微博 MCN 数据雷达</h1>
+        <div class="input-group">
+            <input type="text" id="targetInput" placeholder="在此粘贴主页链接、UID 或 昵称..." autocomplete="off">
+            <button id="searchBtn" onclick="fetchData()">开始解析</button>
+        </div>
+        
+        <div class="loading" id="loadingTip">⏳ 正在调度浏览器与节点跨平台抓取，请稍候...</div>
+        <div class="error" id="errorTip"></div>
+
+        <div class="result-card" id="resultCard">
+            <h2 id="r-nickname" style="margin-top:0; color: #1e293b; text-align: center; font-size: 22px;">-</h2>
+            <p style="text-align: center; color: #64748b; font-size: 14px; margin-top: -10px;">账号 UID: <span id="r-uid">-</span></p>
+            
+            <div class="stat-grid">
+                <div class="stat-box">
+                    <div class="stat-title">粉丝总数</div>
+                    <div class="stat-value" id="r-followers">0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-title">历史发文量</div>
+                    <div class="stat-value" id="r-posts">0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-title">WEIQ 预估 CPM</div>
+                    <div class="stat-value cpm-value">¥<span id="r-cpm">0.0</span></div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-title">图文原创报价</div>
+                    <div class="stat-value">¥<span id="r-orig">0</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        async function fetchData() {
+            const target = document.getElementById('targetInput').value.trim();
+            if (!target) return alert('请先输入需要抓取的博主信息！');
+
+            const btn = document.getElementById('searchBtn');
+            const loading = document.getElementById('loadingTip');
+            const errorTip = document.getElementById('errorTip');
+            const resultCard = document.getElementById('resultCard');
+
+            btn.disabled = true;
+            btn.innerText = "抓取中...";
+            loading.style.display = 'block';
+            errorTip.style.display = 'none';
+            resultCard.style.display = 'none';
+
+            try {
+                const response = await fetch('/api/v1/collect', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ target: target })
+                });
+                
+                const res = await response.json();
+                
+                if (!response.ok) {
+                    throw new Error(res.detail || '抓取失败，请检查网络或该账号是否被风控屏蔽。');
+                }
+
+                const data = res.data;
+                document.getElementById('r-nickname').innerText = data.nickname;
+                document.getElementById('r-uid').innerText = data.uid;
+                document.getElementById('r-followers').innerText = data.followers.toLocaleString();
+                document.getElementById('r-posts').innerText = data.posts.toLocaleString();
+                document.getElementById('r-cpm').innerText = data.commercial.cpm.toFixed(2);
+                document.getElementById('r-orig').innerText = data.commercial.original_price.toLocaleString();
+
+                resultCard.style.display = 'block';
+            } catch (error) {
+                errorTip.innerText = '❌ ' + error.message;
+                errorTip.style.display = 'block';
+            } finally {
+                btn.disabled = false;
+                btn.innerText = "开始解析";
+                loading.style.display = 'none';
+            }
+        }
+
+        // 支持回车键直接搜索
+        document.getElementById('targetInput').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') fetchData();
+        });
+    </script>
+</body>
+</html>
