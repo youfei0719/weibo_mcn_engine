@@ -1,18 +1,25 @@
-import sys, os, re, asyncio, random, json
+import sys, os, re, asyncio, json
 import urllib.parse
 import httpx
 from playwright.async_api import async_playwright
 
 class MasterSpiderEngine:
     def __init__(self):
-        self.playwright = self.browser = self.context_weiq = None
+        self.playwright = None
+        self.browser = None
+        self.context_weiq = None
         self.lock = asyncio.Semaphore(1) 
 
     def _get_auth_path(self, filename):
         return os.path.join(os.path.dirname(sys.executable) if getattr(sys, 'frozen', False) else os.path.abspath("."), filename)
 
     async def start(self):
-        self.playwright = await async_playwright().start()
+        if not self.playwright:
+            self.playwright = await async_playwright().start()
+        if self.browser:
+            try: await self.browser.close()
+            except: pass
+
         self.browser = await self.playwright.chromium.launch(
             channel="msedge", headless=True, 
             args=["--disable-blink-features=AutomationControlled"]
@@ -22,25 +29,23 @@ class MasterSpiderEngine:
         self.context_weiq = await self.browser.new_context(user_agent=pc_ua, storage_state=s2 if os.path.exists(s2) else None)
 
     async def close(self):
+        if self.context_weiq: await self.context_weiq.close()
         if self.browser: await self.browser.close()
         if self.playwright: await self.playwright.stop()
 
     async def trigger_manual_login(self):
-        await self.close()
-        p = await async_playwright().start()
-        b = await p.chromium.launch(channel="msedge", headless=False)
+        if self.context_weiq: await self.context_weiq.close()
+        if self.browser: await self.browser.close()
         
+        b = await self.playwright.chromium.launch(channel="msedge", headless=False)
         s2 = self._get_auth_path("weiq_auth_state.json")
         ctx = await b.new_context(storage_state=s2 if os.path.exists(s2) else None)
-        
         page = await ctx.new_page()
         await page.goto("https://weiq.com/")
-        
         while len(ctx.pages) > 0:
             await asyncio.sleep(2)
             with open(self._get_auth_path("weiq_auth_state.json"), "w") as j: 
                 json.dump(await ctx.storage_state(), j)
-        await p.stop()
         await self.start()
 
     async def resolve_uid(self, target: str) -> str:
@@ -53,7 +58,7 @@ class MasterSpiderEngine:
         
         keyword = clean_target.split('/')[-1]
         try:
-            headers = {"User-Agent": "Mozilla/5.0 (compatible; Baiduspider/2.0; +http://www.baidu.com/search/spider.html)"}
+            headers = {"User-Agent": "Mozilla/5.0"}
             async with httpx.AsyncClient(verify=False, timeout=8.0) as client:
                 resp = await client.get(f"https://s.weibo.com/weibo?q={urllib.parse.quote(keyword)}", headers=headers)
                 m_search = re.search(r'weibo\.com/(?:u/|n/|profile/)?(\d{8,14})', resp.text) or re.search(r'uid=(\d{8,14})', resp.text)
@@ -61,18 +66,21 @@ class MasterSpiderEngine:
         except: pass
         return ""
 
-    # 【专业格式化算法】将所有凌乱的数字统一换算为清爽的“万”
     def format_to_wan(self, val_str):
-        if not val_str: return "0"
+        if not val_str or val_str == "N/A": return "N/A"
         val_str = str(val_str).replace(',', '').replace('w', '万').replace('W', '万').strip()
         if '万' in val_str: return val_str
         try:
             num = float(val_str)
-            if num >= 10000:
-                return f"{num/10000:.1f}万".replace('.0万', '万')
-            return str(int(num))
-        except:
-            return val_str
+            if num >= 10000: return f"{num/10000:.1f}万".replace('.0万', '万')
+            return f"{num:.1f}".replace('.0', '')
+        except: return val_str
+
+    def get_num(self, val_str):
+        if not val_str or val_str == "N/A": return 0
+        v = str(val_str).replace(',', '').replace('万', '0000')
+        try: return float(v)
+        except: return 0
 
     async def collect_all(self, target: str):
         async with self.lock:
@@ -82,76 +90,95 @@ class MasterSpiderEngine:
             max_retries = 2
             for attempt in range(max_retries):
                 page = await self.context_weiq.new_page()
+                
+                intercepted_data = {"trend_20": [], "fan_growth": []}
+                async def handle_response(response):
+                    if "application/json" in response.headers.get("content-type", ""):
+                        try:
+                            json_data = await response.json()
+                            s_data = json.dumps(json_data)
+                            m_read = re.search(r'"(?:read_count_trend|readTrend|trend|read_num)":\s*\[([\d,\.\s]+)\]', s_data)
+                            if m_read: intercepted_data["trend_20"] = [float(x) for x in m_read.group(1).split(',') if x.strip()]
+                            m_fans = re.search(r'"(?:fans_trend|followerTrend|fans)":\s*\[([\d,\.\s]+)\]', s_data)
+                            if m_fans: intercepted_data["fan_growth"] = [float(x) for x in m_fans.group(1).split(',') if x.strip()]
+                        except: pass
+                
+                page.on("response", handle_response)
+
                 try:
                     await page.goto(f"https://weiq.com/client/product/weibo/detail?account_uid={uid}", timeout=45000)
-                    await page.wait_for_timeout(2500)
+                    
+                    for _ in range(4):
+                        await page.mouse.wheel(0, 1000)
+                        await asyncio.sleep(0.8)
                     
                     title = await page.title()
                     if "登录" in title: raise Exception("AUTH_EXPIRED")
                     
                     text = await page.evaluate("document.body.innerText")
-                    
                     if "安全验证" in text or "滑块" in text or "验证码" in text or "向右滑动" in text:
                         raise Exception("WEIQ_VERIFY_BLOCKED")
 
+                    nickname = await page.evaluate("() => { let el = document.querySelector('.account-name, .name, .user-name, h1'); return el ? el.innerText.trim() : ''; }")
+                    nickname = re.sub(r'(?i)\s*UID[:：]?\s*\d+', '', nickname).strip()
+                    
+                    if not nickname or nickname.isdigit(): 
+                        t_name = title.split("的微博报价")[0].strip()
+                        t_name = re.sub(r'(?i)\s*UID[:：]?\s*\d+', '', t_name).strip()
+                        # 【核心防污染】：如果是这些默认占位符，说明没抓到名字，直接赋空值！
+                        if "weibo账号详情" in t_name or "WEIQ" in t_name or not t_name:
+                            nickname = "" 
+                        else:
+                            nickname = t_name
+                    
+                    category = await page.evaluate("() => { let el = document.querySelector('.tags, .type, .account-tags, .domain'); return el ? el.innerText.trim().split(/[\\n\\s]+/)[0] : ''; }")
+
                     if "原创图文" not in text and "直发CPM" not in text:
-                        raise Exception("WEIQ_NO_DATA")
+                        raise Exception(f"WEIQ_NO_DATA||{nickname}||{category}")
 
-                    def get_val(reg, t): 
+                    def get_metric(reg, t, fallback="N/A"): 
                         m = re.search(reg, t)
-                        return m.group(1).replace(',', '') if m else None
-
-                    # 核心报价
-                    price_str = get_val(r'原创图文[^\d]*?([\d,]+)', text)
-                    if not price_str: raise Exception("WEIQ_NO_DATA")
+                        return m.group(1).replace(',', '').strip() if m else fallback
+                        
+                    price_str = get_metric(r'原创图文[^\d]*?([\d,]+)', text)
+                    if price_str == "N/A": raise Exception(f"WEIQ_NO_DATA||{nickname}||{category}")
+                    
                     price = int(price_str)
-                    cpm = float(get_val(r'直发CPM[^\d]*?([\d.]+)', text) or 0)
+                    cpm = float(get_metric(r'直发CPM[^\d]*?([\d.]+)', text, "0"))
+                    followers_raw = get_metric(r'粉丝数[^\d]*?([\d.]+万?)', text)
 
-                    # 【多维度数据扩充】提取粉丝、平均阅读、平均互动
-                    followers_raw = get_val(r'粉丝数[^\d]*?([\d.]+万?)', text)
-                    avg_read_raw = get_val(r'(?:平均|预期)阅读[数量]?[^\d]*?([\d.]+万?)', text)
-                    avg_interact_raw = get_val(r'(?:平均)?互动[数量]?[^\d]*?([\d.]+万?)', text)
+                    deep_data = {
+                        "read_median": self.format_to_wan(get_metric(r'阅读[数量]?中位数[^\d]*?([\d.]+万?)', text)),
+                        "direct_read_median": self.format_to_wan(get_metric(r'直发阅读[数量]?中位数[^\d]*?([\d.]+万?)', text)),
+                        "forward_read_median": self.format_to_wan(get_metric(r'转发阅读[数量]?中位数[^\d]*?([\d.]+万?)', text)),
+                        "interact_median": self.format_to_wan(get_metric(r'互动[数量]?中位数[^\d]*?([\d.]+万?)', text)),
+                        "direct_interact_median": self.format_to_wan(get_metric(r'直发互动中位数[^\d]*?([\d.]+万?)', text)),
+                        "forward_interact_median": self.format_to_wan(get_metric(r'转发互动中位数[^\d]*?([\d.]+万?)', text)),
+                        "like_median": self.format_to_wan(get_metric(r'点赞[数量]?中位数[^\d]*?([\d.]+万?)', text)),
+                        "comment_median": self.format_to_wan(get_metric(r'评论[数量]?中位数[^\d]*?([\d.]+万?)', text)),
+                        "post_count": get_metric(r'发布博文数[^\d]*?([\d]+)', text),
+                    }
 
-                    # 【获取绝对真实的昵称，拒绝 UID】
-                    nickname = ""
-                    try:
-                        nickname = await page.evaluate("() => { let el = document.querySelector('.account-name, .name, .user-name, h1'); return el ? el.innerText.trim() : ''; }")
-                    except: pass
-                    
-                    if not nickname: nickname = title.split("的微博报价")[0].strip() if "的微博报价" in title else ""
-                    
-                    # 【双重兜底】如果依然是数字(说明WEIQ没抓到)，利用搜索引擎级爬虫强抓微博源站的真实名字
-                    if not nickname or nickname.isdigit() or nickname == uid:
-                        try:
-                            headers = {"User-Agent": "Mozilla/5.0 (compatible; Baiduspider/2.0; +http://www.baidu.com/search/spider.html)"}
-                            async with httpx.AsyncClient(verify=False, timeout=5.0) as client:
-                                resp = await client.get(f"https://m.weibo.cn/u/{uid}", headers=headers)
-                                m_title = re.search(r'<title>(.*?)的微博.*?</title>', resp.text)
-                                if m_title: nickname = m_title.group(1).strip()
-                        except: pass
-                    
-                    # 最后极度兜底，实在查不到才给 未知
-                    if nickname.isdigit() or not nickname: nickname = "未知昵称"
+                    t_20 = intercepted_data["trend_20"][-20:] if intercepted_data["trend_20"] else []
+                    f_20 = intercepted_data["fan_growth"][-20:] if intercepted_data["fan_growth"] else []
 
                     return {
                         "uid": uid,
                         "nickname": nickname,
+                        "category": category,
                         "followers": self.format_to_wan(followers_raw),
-                        "avg_read": self.format_to_wan(avg_read_raw),
-                        "avg_interact": self.format_to_wan(avg_interact_raw),
-                        "commercial": {
-                            "cpm": cpm,
-                            "original_price": price
-                        }
+                        "followers_num": self.get_num(followers_raw),
+                        "commercial": {"cpm": cpm, "original_price": price},
+                        "deep_data": deep_data,
+                        "charts": {"trend_20": t_20, "fan_growth": f_20}
                     }
                 except Exception as e:
                     err_str = str(e)
-                    if "AUTH_EXPIRED" in err_str or "WEIQ_VERIFY_BLOCKED" in err_str or "WEIQ_NO_DATA" in err_str:
-                        raise e
+                    if "AUTH_EXPIRED" in err_str or "WEIQ_VERIFY_BLOCKED" in err_str or "WEIQ_NO_DATA" in err_str: raise e
                     if attempt == max_retries - 1:
-                        if "Execution context was destroyed" in err_str or "Target closed" in err_str:
-                            raise Exception("NETWORK_ERROR")
+                        if "Execution context was destroyed" in err_str or "Target closed" in err_str: raise Exception("NETWORK_ERROR")
                         raise e
                     await asyncio.sleep(2)
                 finally:
+                    page.remove_listener("response", handle_response)
                     await page.close()

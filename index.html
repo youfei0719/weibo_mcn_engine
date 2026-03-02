@@ -1,69 +1,304 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8"><title>微博 MCN 商业探测中枢 - Pro</title>
+    <meta charset="UTF-8">
+    <title>MCN 商业决策中枢</title>
     <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
     <style>
-        :root { --primary: #3b82f6; --bg: #f8fafc; --border: #e2e8f0; }
-        body { font-family: -apple-system, system-ui; background: var(--bg); padding: 40px 0; display: flex; flex-direction: column; align-items: center; }
-        .container { max-width: 1100px; width: 95%; background: #fff; padding: 40px; border-radius: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
-        .canvas-area { border: 2px dashed var(--border); border-radius: 20px; padding: 20px; margin-bottom: 20px; }
-        textarea { width: 100%; height: 120px; border: none; outline: none; font-size: 15px; resize: none; }
-        .btn { padding: 12px 24px; border-radius: 12px; border: none; cursor: pointer; font-weight: 600; transition: 0.3s; display: flex; align-items: center; justify-content: center;}
-        .btn-main { background: var(--primary); color: #fff; }
-        .btn-pause { background: #ef4444; color: #fff; display: none; }
-        .progress-box { margin: 20px 0; display: none; }
-        .track { width: 100%; height: 8px; background: #eee; border-radius: 10px; overflow: hidden; }
-        .bar { width: 0%; height: 100%; background: var(--primary); transition: 0.4s; }
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 13px; text-align: left; }
-        th { padding: 12px; border-bottom: 2px solid #eee; color: #64748b; font-weight: 600; }
-        td { padding: 12px; border-bottom: 1px solid #f9f9f9; }
-        #authOverlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(10px); z-index: 1000; flex-direction: column; align-items: center; justify-content: center; color: white; }
+        :root { 
+            --primary: #09090b; --primary-hover: #27272a; 
+            --accent: #2563eb; --accent-hover: #1d4ed8;
+            --bg: #f4f4f5; --surface: #ffffff;
+            --text-main: #09090b; --text-sub: #71717a; --text-light: #a1a1aa;
+            --border: #e4e4e7; 
+            --shadow-sm: 0 1px 2px 0 rgba(0,0,0,0.04);
+            --shadow-md: 0 8px 16px -4px rgba(0,0,0,0.04), 0 4px 8px -4px rgba(0,0,0,0.03);
+            --shadow-modal: 0 24px 48px -12px rgba(0,0,0,0.18), 0 0 0 1px rgba(0,0,0,0.05);
+            --radius-md: 12px; --radius-lg: 16px; --radius-xl: 24px;
+            --bezier: cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        body { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "PingFang SC", sans-serif; background-color: var(--bg); color: var(--text-main); margin: 0; padding: 40px 20px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; -webkit-font-smoothing: antialiased; }
+        body.modal-open { overflow: hidden; height: 100vh; }
+
+        .layout-wrapper { width: 100%; max-width: 1200px; display: flex; flex-direction: column; gap: 32px; }
+
+        .header-area { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 8px; }
+        .header-title { font-size: 32px; font-weight: 800; letter-spacing: -0.8px; margin: 0 0 6px 0; }
+        .header-desc { font-size: 15px; color: var(--text-sub); margin: 0; }
+
+        .dashboard-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .kpi-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 28px 32px; box-shadow: var(--shadow-sm); transition: all 0.3s var(--bezier); }
+        .kpi-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+        .kpi-title { font-size: 13px; font-weight: 600; color: var(--text-sub); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; }
+        .kpi-val { font-size: 36px; font-weight: 800; color: var(--text-main); font-variant-numeric: tabular-nums; letter-spacing: -1px; display: flex; align-items: baseline; }
+        .val-unit { font-size: 16px; font-weight: 600; color: var(--text-light); margin-left: 4px; margin-bottom: 4px;}
+
+        .control-panel { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-xl); padding: 32px; box-shadow: var(--shadow-sm); }
+        .input-wrapper { position: relative; margin-bottom: 24px; }
+        textarea { width: 100%; height: 110px; background: #fafafa; border: 1px solid var(--border); border-radius: var(--radius-md); padding: 16px; font-size: 15px; line-height: 1.6; color: var(--text-main); resize: none; transition: all 0.2s; box-sizing: border-box; }
+        textarea:focus { outline: none; border-color: var(--accent); background: var(--surface); box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1); }
+        
+        .progress-pill { display: flex; align-items: center; background: #fafafa; border: 1px solid var(--border); border-radius: 20px; padding: 0 20px; margin-bottom: 24px; font-size: 13px; font-weight: 600; color: var(--text-sub); opacity: 0; height: 0; overflow: hidden; transition: all 0.4s var(--bezier); transform: translateY(-10px); }
+        .progress-pill.active { opacity: 1; height: 44px; transform: translateY(0); }
+        .prog-track-mini { flex: 1; height: 4px; background: #e4e4e7; border-radius: 2px; margin: 0 24px; overflow: hidden; position: relative; }
+        .prog-bar-mini { position: absolute; left: 0; top: 0; height: 100%; width: 100%; background: var(--text-main); transform-origin: left; transform: scaleX(0); transition: transform 0.3s ease-out; }
+        .prog-stats { display: flex; gap: 16px; font-variant-numeric: tabular-nums;}
+
+        .btn-group { display: flex; gap: 16px; align-items: center;}
+        .btn { padding: 0 24px; height: 44px; border-radius: 12px; font-size: 14px; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 8px; transition: all 0.2s; border: none; outline: none; }
+        .btn-black { background: var(--primary); color: #fff; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .btn-black:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(0,0,0,0.15); }
+        .btn-outline { background: var(--surface); border: 1px solid var(--border); color: var(--text-main); }
+        .btn-outline:hover { background: #fafafa; border-color: #d4d4d8; }
+        .btn-global { background: var(--surface); border: 1px solid var(--border); color: var(--text-main); margin-left: auto; box-shadow: var(--shadow-sm); }
+        .btn-global:hover { background: #fafafa; border-color: var(--accent); color: var(--accent); }
+
+        .table-container { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-xl); box-shadow: var(--shadow-sm); overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; text-align: left; }
+        th { padding: 16px 24px; font-size: 12px; font-weight: 600; color: var(--text-sub); border-bottom: 1px solid var(--border); background: #fafafa; }
+        td { padding: 16px 24px; font-size: 14px; border-bottom: 1px solid #f4f4f5; vertical-align: middle; }
+        tbody tr { transition: background 0.2s; cursor: pointer; }
+        tbody tr:hover { background: #fafafa; }
+        
+        .row-loading { background: #f8fafc; pointer-events: none;}
+        .spinner { width: 18px; height: 18px; border: 2px solid #e4e4e7; border-top-color: #09090b; border-radius: 50%; animation: spin 0.8s linear infinite; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .user-name { font-weight: 600; color: var(--text-main); font-size: 15px;}
+        .domain-tag { font-size: 11px; padding: 2px 8px; background: #f1f5f9; color: var(--text-sub); border-radius: 6px; margin-left: 8px; font-weight: 500;}
+        
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(9, 9, 11, 0.4); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); z-index: 2000; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.4s var(--bezier); overscroll-behavior: contain;}
+        .modal-overlay.show { opacity: 1; }
+        
+        .bento-wrapper { background: var(--surface); width: 1050px; max-width: 95%; max-height: 90vh; border-radius: 32px; box-shadow: var(--shadow-modal); display: flex; flex-direction: column; transform: scale(0.96) translateY(20px); transition: transform 0.5s var(--bezier); overflow: hidden;}
+        .modal-overlay.show .bento-wrapper { transform: scale(1) translateY(0); }
+        
+        .bento-header { padding: 28px 40px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; background: var(--surface); flex-shrink: 0;}
+        .bento-header-title { margin:0 0 4px 0; font-size:26px; font-weight:800; letter-spacing:-0.5px;}
+        .bento-header-sub { margin:0; font-size:14px; color:var(--text-sub);}
+        .close-btn { background: #f4f4f5; border: none; width: 36px; height: 36px; border-radius: 18px; cursor: pointer; color: var(--text-main); display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+        .close-btn:hover { background: #e4e4e7; transform: rotate(90deg);}
+
+        .bento-body { padding: 40px; overflow-y: auto; background: #fafafa; display: grid; gap: 24px; overscroll-behavior: contain;}
+        
+        .bento-card { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 28px; box-shadow: var(--shadow-sm); display: flex; flex-direction: column;}
+        .bento-title { font-size: 15px; font-weight: 700; color: var(--text-main); margin: 0 0 24px 0; display: flex; align-items: center; gap: 8px; }
+        
+        .data-list { display: flex; flex-direction: column; gap: 16px; }
+        .data-row { display: flex; justify-content: space-between; align-items: center; padding-bottom: 16px; border-bottom: 1px solid #f4f4f5; }
+        .data-row:last-child { padding-bottom: 0; border-bottom: none; }
+        .data-label { font-size: 13px; color: var(--text-sub); }
+        .data-value { font-size: 16px; font-weight: 600; color: var(--text-main); }
+        .val-red { color: #ef4444; } .val-blue { color: #3b82f6; } .val-purple { color: #8b5cf6; }
+
+        .chart-tabs { display: flex; gap: 8px; background: #f4f4f5; padding: 4px; border-radius: 12px; width: fit-content; margin-bottom: 20px;}
+        .tab-btn { padding: 6px 16px; font-size: 13px; font-weight: 600; border-radius: 8px; border: none; background: transparent; color: var(--text-sub); cursor: pointer; transition: all 0.2s;}
+        .tab-btn.active { background: var(--surface); color: var(--text-main); box-shadow: var(--shadow-sm);}
+
+        .insight-text { font-size: 15px; line-height: 1.8; color: var(--text-main); margin-bottom: 24px; padding: 20px; background: #f8fafc; border-radius: 12px; border-left: 4px solid var(--accent);}
+        .insight-highlight { font-weight: 700; color: #ef4444; }
+
+        #authOverlay .bento-wrapper { width: 440px; text-align: center; padding: 48px 32px; background: var(--surface); }
+        
+        .link-btn { display: inline-flex; align-items: center; gap: 6px; color: var(--accent); font-size: 13px; font-weight: 600; text-decoration: none; transition: 0.2s; margin-top: 4px;}
+        .link-btn:hover { text-decoration: underline; }
+
+        /* 溯源降级链接样式 */
+        .trace-link { color: var(--text-light); font-family: monospace; font-size: 12px; max-width: 250px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: inline-block; }
     </style>
 </head>
 <body>
-    <div id="authOverlay">
-        <h2 id="overlayTitle" style="color:#ef4444; margin-bottom: 10px;">🚨 需要人工介入</h2>
-        <p id="overlayDesc" style="margin-bottom: 30px; font-size: 15px; text-align: center;">系统已安全挂起队列。</p>
-        <button class="btn btn-main" style="background:#ef4444; font-size: 16px;" onclick="invokeLogin()">立即唤醒浏览器处理</button>
+
+    <div id="authOverlay" class="modal-overlay" style="z-index: 3000;">
+        <div class="bento-wrapper" style="align-items: center;">
+            <div style="width: 64px; height: 64px; border-radius: 32px; background: #fee2e2; color: #ef4444; display: flex; align-items: center; justify-content: center; margin-bottom: 24px;">
+                <svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <h2 id="overlayTitle" style="margin: 0 0 12px 0; font-size: 24px; font-weight: 800;">平台安全拦截</h2>
+            <p id="overlayDesc" style="margin: 0 0 32px 0; font-size: 15px; color: var(--text-sub); line-height: 1.6;">引擎已被风控机制挂起。<br>请唤醒浏览器完成人工验证。</p>
+            <button class="btn btn-black" style="width: 100%; height: 48px;" id="authBtn" onclick="invokeLogin()">唤醒沙盒验证</button>
+        </div>
     </div>
 
-    <div class="container">
-        <h1 style="text-align:center; margin-bottom: 30px; color: #1e293b;">🚀 MCN 商业探测中枢</h1>
-        <div class="canvas-area">
-            <textarea id="targetInput" placeholder="在此粘贴博主主页链接、昵称或拖入Excel文件..."></textarea>
-            <div id="parseNote" style="font-size:12px; color:var(--primary); margin-top:5px"></div>
+    <div id="bentoModal" class="modal-overlay">
+        <div class="bento-wrapper">
+            <div class="bento-header">
+                <div>
+                    <div style="display:flex; align-items:center; gap:12px;">
+                        <h2 id="b_name" class="bento-header-title">博主</h2>
+                        <span id="b_domain" class="domain-tag" style="margin:0;">综合</span>
+                    </div>
+                    <a id="b_link" href="#" target="_blank" class="link-btn">前往微博主页 ↗</a>
+                </div>
+                <button class="close-btn" onclick="closeModal('bentoModal')">✕</button>
+            </div>
+            <div class="bento-body" style="grid-template-columns: 340px 1fr;">
+                <div style="display: flex; flex-direction: column; gap: 24px;">
+                    <div class="bento-card">
+                        <h3 class="bento-title">💰 核心商业指标</h3>
+                        <div class="data-list">
+                            <div class="data-row"><span class="data-label">粉丝体量</span><span class="data-value" id="b_fans">N/A</span></div>
+                            <div class="data-row"><span class="data-label">直发报价</span><span class="data-value val-red" id="b_price">N/A</span></div>
+                            <div class="data-row"><span class="data-label">预估 CPM</span><span class="data-value val-red" id="b_cpm">N/A</span></div>
+                        </div>
+                    </div>
+                    <div class="bento-card" style="flex:1;">
+                        <h3 class="bento-title">🕸️ 交互效能图谱</h3>
+                        <div id="singleRadarChart" style="width: 100%; height: 220px; margin-top: -10px;"></div>
+                    </div>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 24px;">
+                    <div class="bento-card" style="flex: 1;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                            <h3 class="bento-title" style="margin:0;">📈 核心趋势引擎</h3>
+                            <div class="chart-tabs" style="margin:0;">
+                                <button class="tab-btn active" onclick="switchChart('trend')">20篇阅读量</button>
+                                <button class="tab-btn" onclick="switchChart('fans')">粉丝波动</button>
+                            </div>
+                        </div>
+                        <div id="trendChart" style="width: 100%; height: 300px;"></div>
+                    </div>
+                    <div class="bento-card">
+                        <div class="data-list" style="flex-direction: row; justify-content: space-around;">
+                            <div style="text-align: center;"><div class="data-label">近期发文</div><div class="data-value" style="font-size: 26px; margin-top: 8px;" id="b_posts">N/A</div></div>
+                            <div style="text-align: center;"><div class="data-label">点赞中位数</div><div class="data-value" style="font-size: 26px; margin-top: 8px;" id="b_like">N/A</div></div>
+                            <div style="text-align: center;"><div class="data-label">评论中位数</div><div class="data-value" style="font-size: 26px; margin-top: 8px;" id="b_comment">N/A</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div style="display:flex; gap:10px; justify-content:center">
-            <button class="btn btn-main" id="startBtn" onclick="startBatch()">⚡ 开始专业探测</button>
-            <button class="btn btn-pause" id="pauseBtn" onclick="togglePause()">⏸ 暂停任务</button>
-            <button class="btn" style="background:#eee; color:#333;" onclick="document.getElementById('fileInput').click()">📎 上传文件</button>
-            <button class="btn" id="exportBtn" style="background:#10b981; color:#fff; display:none" onclick="exportExcel()">📥 导出分析报表</button>
-        </div>
-        <div class="progress-box" id="progressBox">
-            <div id="progText" style="font-size:12px; margin-bottom:5px; color:#666">准备就绪...</div>
-            <div class="track"><div class="bar" id="progressBar"></div></div>
-        </div>
-        <table>
-            <thead><tr>
-                <th>状态</th>
-                <th>原始目标链接</th>
-                <th>博主真实昵称</th>
-                <th>粉丝体量</th>
-                <th>平均阅读</th>
-                <th>平均互动</th>
-                <th>图文报价</th>
-                <th>CPM</th>
-            </tr></thead>
-            <tbody id="resultBody"></tbody>
-        </table>
     </div>
 
-    <input type="file" id="fileInput" style="display:none" onchange="importExcel(this.files[0])">
+    <div id="globalModal" class="modal-overlay">
+        <div class="bento-wrapper" style="width: 100vw; max-width: 100vw; height: 100vh; max-height: 100vh; border-radius: 0;">
+            <div class="bento-header">
+                <div>
+                    <h2 class="bento-header-title">🌍 矩阵多模态全景洞察</h2>
+                    <p class="bento-header-sub">自动聚合本次扫描的所有成功账号，生成宏观商业分析简报与价值矩阵图谱。</p>
+                </div>
+                <button class="close-btn" style="width: 44px; height: 44px; font-size: 20px;" onclick="closeModal('globalModal')">✕</button>
+            </div>
+            <div class="bento-body" style="grid-template-columns: 400px 1fr; height: calc(100vh - 120px);">
+                <div class="bento-card">
+                    <h3 class="bento-title">🤖 AI 商业策略简报</h3>
+                    <div class="insight-text" id="ai_insight">生成中...</div>
+                    <div class="data-list" style="margin-top: 24px;">
+                        <div class="data-row"><span class="data-label">矩阵总粉丝 (万)</span><span class="data-value" style="font-size:24px;" id="g_fans">0</span></div>
+                        <div class="data-row"><span class="data-label">大盘加权 CPM</span><span class="data-value val-red" style="font-size:24px;" id="g_cpm">0.0</span></div>
+                        <div class="data-row"><span class="data-label">直发阅读中位数 (万)</span><span class="data-value val-blue" id="g_d_read">0</span></div>
+                        <div class="data-row"><span class="data-label">转发阅读中位数 (万)</span><span class="data-value val-purple" id="g_f_read">0</span></div>
+                    </div>
+                </div>
+                <div class="bento-card">
+                    <h3 class="bento-title">📊 矩阵预算与流量散点图 (寻找高优价值洼地)</h3>
+                    <div id="globalChart" style="flex: 1; width: 100%; height: 100%; min-height: 500px;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="layout-wrapper">
+        <div class="header-area">
+            <div>
+                <h1 class="header-title">MCN 商业决策中枢</h1>
+                <p class="header-desc">底层直连穿透，纯净剔除杂音，获取最真实的商业转化底牌。</p>
+            </div>
+            <button class="btn btn-global" id="globalBtn" style="display:none;" onclick="openGlobalModal()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 6px;"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+                生成全景多模态报告
+            </button>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="kpi-card">
+                <div class="kpi-title">扫描有效账号</div>
+                <div class="kpi-val"><span id="dash_count">0</span></div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-title">矩阵覆盖总粉丝</div>
+                <div class="kpi-val"><span id="dash_fans">0.0</span><span class="val-unit">万</span></div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-title">大盘均价 CPM</div>
+                <div class="kpi-val"><span id="dash_cpm" style="color:#ef4444;">0.0</span></div>
+            </div>
+        </div>
+
+        <div class="control-panel">
+            <textarea id="targetInput" spellcheck="false" placeholder="在此粘贴微博主页链接或纯文本昵称 (支持换行批量输入)..."></textarea>
+            
+            <div class="progress-pill" id="progPill">
+                <span id="progText">准备就绪</span>
+                <div class="prog-track-mini"><div class="prog-bar-mini" id="progressBar"></div></div>
+                <div class="prog-stats">
+                    <span style="color:#10b981;">完成: <b id="prog_succ">0</b></span>
+                    <span style="color:#ef4444;">拦截: <b id="prog_err">0</b></span>
+                </div>
+            </div>
+
+            <div class="btn-group">
+                <button class="btn btn-black" id="startBtn" onclick="startBatch()">启动引擎</button>
+                <button class="btn btn-outline" id="pauseBtn" style="display:none; color:#ef4444;" onclick="togglePause()">暂停</button>
+                <button class="btn btn-outline" onclick="document.getElementById('fileInput').click()">导入 Excel</button>
+                <button class="btn btn-outline" id="exportBtn" style="display:none; color:#10b981; border-color:#10b981;" onclick="exportExcel()">导出报表</button>
+            </div>
+        </div>
+
+        <div class="table-container">
+            <table id="dataTable">
+                <thead>
+                    <tr>
+                        <th style="width: 50px;">状态</th>
+                        <th>博主溯源目标</th>
+                        <th>粉丝体量</th>
+                        <th>综合均阅</th>
+                        <th>图文报价</th>
+                        <th>CPM</th>
+                    </tr>
+                </thead>
+                <tbody id="resultBody"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <input type="file" id="fileInput" style="display:none" accept=".xlsx, .xls" onchange="importExcel(this.files[0])">
     
     <script>
-        let queue = [], isPaused = false, isRunning = false, stats = {total:0, done:0}, history = [];
-        let consecutiveErrors = 0;
+        let queue = [], isPaused = false, isRunning = false, stats = {total:0, succ:0, err:0}, historyData = [];
+        let consecutiveErrors = 0, trendInstance = null, singleRadarInstance = null, globalInstance = null, currentBentoData = null;
+        let g_count = 0, g_fans = 0, g_cpm_total = 0;
+
+        const iconSuccess = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
+        const iconError = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>`;
+
+        function animateValue(obj, start, end, duration, isFloat=false) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const easeOut = progress * (2 - progress);
+                let current = start + (end - start) * easeOut;
+                obj.innerText = isFloat ? current.toFixed(1) : Math.floor(current);
+                if (progress < 1) window.requestAnimationFrame(step);
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        function updateDashboard(d) {
+            let old_count = g_count, old_fans = g_fans/10000, old_cpm = g_count>0?(g_cpm_total/g_count):0;
+            g_count++; g_fans += d.followers_num;
+            if(d.commercial.cpm > 0) g_cpm_total += d.commercial.cpm;
+            let new_cpm = g_count>0?(g_cpm_total/g_count):0;
+            
+            animateValue(document.getElementById('dash_count'), old_count, g_count, 800, false);
+            animateValue(document.getElementById('dash_fans'), old_fans, g_fans/10000, 800, true);
+            animateValue(document.getElementById('dash_cpm'), old_cpm, new_cpm, 800, true);
+            
+            if(g_count > 0) document.getElementById('globalBtn').style.display = 'inline-flex';
+        }
 
         function importExcel(file) {
             const reader = new FileReader();
@@ -71,171 +306,341 @@
                 const wb = XLSX.read(new Uint8Array(e.target.result), {type: 'array'});
                 const rows = XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]], {header: 1});
                 let scores = (rows[0]||[]).map(() => 0);
-                const blacklist = ["Id", "ID", "编号", "部门", "系统", "日期", "金额", "序号", "链接", "状态", "目标", "昵称", "博主", "粉丝", "报价", "阅读", "互动", "CPM"];
+                const blacklist = ["Id", "编号", "链接", "状态", "目标", "昵称", "粉丝", "报价"];
                 rows.slice(0, 20).forEach(row => {
                     row.forEach((v, i) => {
                         let s = String(v||"").trim();
                         if(blacklist.some(b => s.includes(b)) || s === "链接") scores[i] -= 100;
                         if(/weibo\.com/.test(s)) scores[i] += 100;
                         if(/^\d{8,14}$/.test(s)) scores[i] += 50;
-                        if(s.length > 2 && s.length < 15 && !/[\d.]/.test(s)) scores[i] += 10;
                     });
                 });
                 let best = scores.indexOf(Math.max(...scores));
                 if(best === -1 || scores[best] < 0) return alert("未识别到有效账号列！");
-                
                 let targets = [...new Set(rows.map(r => String(r[best]||"").trim()).filter(v => v && !blacklist.some(b => v.includes(b)) && v !== "链接"))];
                 document.getElementById('targetInput').value = targets.join('\n');
-                document.getElementById('parseNote').innerText = `已智能提取 ${targets.length} 条有效待测目标`;
             };
             reader.readAsArrayBuffer(file);
+            document.getElementById('fileInput').value = '';
         }
 
         function togglePause() {
             isPaused = !isPaused;
-            document.getElementById('pauseBtn').innerText = isPaused ? "⚡ 继续任务" : "⏸ 暂停任务";
-            if (!isPaused && isRunning) {
-                consecutiveErrors = 0;
-                runQueueMaster();
-            }
+            document.getElementById('pauseBtn').innerText = isPaused ? "继续" : "暂停";
+            if (!isPaused && isRunning) { consecutiveErrors = 0; runQueueMaster(); }
+        }
+
+        function createLoadingRow(id) {
+            const tr = document.createElement('tr');
+            tr.id = id;
+            tr.className = 'row-loading';
+            tr.innerHTML = `<td><div class="spinner"></div></td><td colspan="5" style="color:var(--text-sub); font-weight:500;">正在提取深层商业数据...</td>`;
+            document.getElementById('resultBody').insertBefore(tr, document.getElementById('resultBody').firstChild);
         }
 
         async function startBatch() {
             const val = document.getElementById('targetInput').value.trim();
             if(!val) return;
             queue = val.split('\n').filter(s => s.trim());
-            stats = {total: queue.length, done: 0}; history = []; isRunning = true; isPaused = false; consecutiveErrors = 0;
+            stats = {total: queue.length, succ: 0, err: 0}; historyData = []; 
+            isRunning = true; isPaused = false; consecutiveErrors = 0;
+            
+            g_count = 0; g_fans = 0; g_cpm_total = 0;
+            document.getElementById('dash_count').innerText = "0";
+            document.getElementById('dash_fans').innerText = "0.0";
+            document.getElementById('dash_cpm').innerText = "0.0";
+            document.getElementById('globalBtn').style.display = 'none';
+
             document.getElementById('startBtn').disabled = true;
-            document.getElementById('pauseBtn').innerText = "⏸ 暂停任务";
-            document.getElementById('pauseBtn').style.display = 'block';
-            document.getElementById('progressBox').style.display = 'block';
+            document.getElementById('pauseBtn').style.display = 'inline-flex';
             document.getElementById('resultBody').innerHTML = '';
+            
+            document.getElementById('progPill').classList.add('active');
+            updateProgress();
             runQueueMaster();
+        }
+
+        function updateProgress() {
+            let done = stats.succ + stats.err;
+            let p = done / stats.total;
+            document.getElementById('progressBar').style.transform = `scaleX(${p})`;
+            document.getElementById('progText').innerText = `解析中: ${Math.round(p*100)}%`;
+            document.getElementById('prog_succ').innerText = stats.succ;
+            document.getElementById('prog_err').innerText = stats.err;
         }
 
         async function runQueueMaster() {
             while (queue.length > 0 && isRunning && !isPaused) {
                 let target = queue.shift();
-                let keepRunning = await processSingleTask(target);
+                let rowId = 'row_' + Date.now();
+                createLoadingRow(rowId);
                 
+                let keepRunning = await processSingleTask(target, rowId);
                 if (!keepRunning) break;
-                await new Promise(r => setTimeout(r, 1500)); 
+                await new Promise(r => setTimeout(r, 1200)); 
             }
-            if (queue.length === 0 && stats.done === stats.total && stats.total > 0) {
-                finalize();
-            }
+            if (queue.length === 0 && (stats.succ + stats.err) === stats.total && stats.total > 0) finalize();
         }
 
-        async function processSingleTask(target) {
+        async function processSingleTask(target, rowId) {
+            let row = document.getElementById(rowId);
             try {
                 const r = await fetch('/api/v1/collect', {
                     method: 'POST', headers: {'Content-Type': 'application/json'},
                     body: JSON.stringify({target})
                 });
-                
                 consecutiveErrors = 0;
 
                 if (r.status === 401 || r.status === 403) {
-                    queue.unshift(target); 
-                    isRunning = false; 
-                    document.getElementById('overlayTitle').innerText = r.status === 401 ? "🚨 授权已失效" : "🚨 触发防爬验证";
-                    document.getElementById('overlayDesc').innerHTML = r.status === 401 
-                        ? "系统已安全挂起队列。<br><br>👉 WEIQ 平台登录已掉线，请点击下方按钮唤醒浏览器，<b>重新登录</b>后关掉即可恢复。"
-                        : "系统已安全挂起队列。<br><br>👉 WEIQ 平台弹出了防爬滑块，请点击下方按钮唤醒浏览器，<b>手动滑动验证</b>后关掉即可恢复。";
-                    document.getElementById('authOverlay').style.display = 'flex';
+                    queue.unshift(target); isRunning = false; if(row) row.remove();
+                    openModal('authOverlay');
                     return false; 
                 }
 
                 if (r.status === 429 || r.status === 500) {
-                    const errJson = await r.json().catch(()=>({detail: "系统级网络或环境错误"}));
-                    queue.unshift(target); 
-                    isPaused = true;       
-                    document.getElementById('pauseBtn').innerText = "⚡ 继续任务";
-                    alert(`🚨 引擎已物理刹车，绝不盲跑！\n\n卡住目标：${target}\n致命原因：${errJson.detail}\n\n请检查黑窗口报错或网络后，点击"继续任务"恢复。`);
-                    return false; 
+                    queue.unshift(target); isPaused = true; if(row) row.remove();
+                    document.getElementById('pauseBtn').innerText = "继续"; alert(`环境异常，已暂停。`); return false; 
                 }
 
-                const json = await r.json().catch(()=>({detail: "未知响应"}));
-
-                if (json.status === "failed") {
-                    render('❌', target, null, json.detail);
+                const json = await r.json().catch(()=>({detail: "格式异常"}));
+                if (json.status === "failed") { 
+                    // 核心修改：把原始的 target 传过去，用于溯源显示
+                    renderErrorRow(row, target, json.detail); 
+                    stats.err++;
                 } else if (json.status === "success") {
-                    render('✅', target, json.data);
-                    history.push(json.data);
+                    renderSuccessRow(row, json.data); historyData.push(json.data); updateDashboard(json.data); stats.succ++;
                 }
-                stats.done++;
-                updateProgress();
-                return true; 
+                updateProgress(); return true; 
 
             } catch(e) {
                 consecutiveErrors++;
                 if (consecutiveErrors >= 3) {
-                    queue.unshift(target);
-                    isPaused = true;
-                    document.getElementById('pauseBtn').innerText = "⚡ 继续任务";
-                    alert(`🚨 强行物理熔断！\n连续 3 次网络彻底断连。已为您强行刹车，绝不盲跑！\n检查网络后点击"继续"恢复。`);
-                    return false; 
+                    queue.unshift(target); isPaused = true; if(row) row.remove(); alert(`网络熔断！`); return false; 
                 }
-                render('❌', target, null, "系统网络断开，跳过");
-                stats.done++;
-                updateProgress();
-                return true;
+                renderErrorRow(row, target, "网络断开"); stats.err++; updateProgress(); return true;
             }
         }
 
-        // 全新渲染布局，突出展现核心维度
-        function render(icon, target, d, errMsg = "查询受限或无效数据") {
-            const tr = document.createElement('tr');
-            tr.innerHTML = d ? `<td>${icon}</td>
-                <td style="color:#94a3b8; font-size:12px; max-width:180px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" title="${target}">${target}</td>
-                <td style="color:#0f172a; font-weight:600; font-size:14px;">${d.nickname}</td>
-                <td style="color:#10b981; font-weight:bold">${d.followers}</td>
-                <td style="color:#6366f1;">${d.avg_read}</td>
-                <td style="color:#f59e0b;">${d.avg_interact}</td>
-                <td style="color:#ef4444; font-weight:bold; font-size:14px;">¥${d.commercial.original_price}</td>
-                <td style="color:#64748b;">¥${d.commercial.cpm}</td>`
-                           : `<td>${icon}</td>
-                <td style="color:#94a3b8; font-size:12px; max-width:180px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" title="${target}">${target}</td>
-                <td colspan="6" style="color:#ef4444; font-weight:500">${errMsg}</td>`;
-            document.getElementById('resultBody').insertBefore(tr, document.getElementById('resultBody').firstChild);
+        function renderSuccessRow(row, d) {
+            row.className = ''; row.onclick = () => openBento(d);
+            let catHtml = d.category ? `<span class="domain-tag">${d.category}</span>` : '';
+            row.innerHTML = `
+                <td>${iconSuccess}</td>
+                <td><span class="user-name">${d.nickname}</span>${catHtml}</td>
+                <td style="font-weight: 600;">${d.followers}</td>
+                <td style="color: var(--text-sub);">${d.deep_data.read_median}</td>
+                <td style="font-weight: 700;">¥${d.commercial.original_price}</td>
+                <td class="val-red" style="font-weight: 600;">${d.commercial.cpm}</td>`;
         }
 
-        function updateProgress() {
-            let p = Math.round(stats.done / stats.total * 100);
-            document.getElementById('progressBar').style.width = p + '%';
-            document.getElementById('progText').innerText = `已扫描: ${stats.done} / ${stats.total}`;
+        // 【智能溯源防盲盒】：抓不到名字时，显示原始输入，彻底告别“未知账号”
+        function renderErrorRow(row, target, errMsg) {
+            row.className = '';
+            let parts = errMsg.split("||");
+            let cleanMsg = parts[0];
+            
+            // 如果后端提取到了真实名字，用真实名字。如果没提取到，展示用户当初粘贴的 URL/ID 以便溯源。
+            let scrapedName = parts.length > 1 && parts[1] ? parts[1].trim() : "";
+            let displayName = scrapedName ? scrapedName : target;
+            
+            // 如果展示的是原始长链接，用低调的 monospace 字体显示
+            let nameHtml = scrapedName ? `<span class="user-name" style="color:var(--text-sub);">${displayName}</span>` : `<span class="trace-link" title="${target}">${displayName}</span>`;
+            
+            let cat = parts.length > 2 && parts[2] ? `<span class="domain-tag">${parts[2]}</span>` : "";
+
+            row.innerHTML = `
+                <td>${iconError}</td>
+                <td style="max-width: 250px;">
+                    <div style="display:flex; align-items:center; gap:8px;">
+                        ${nameHtml}
+                        ${cat}
+                    </div>
+                </td>
+                <td colspan="4" class="val-red" style="font-size: 13px; font-weight:500;">${cleanMsg}</td>`;
+        }
+
+        function openModal(id) {
+            try {
+                document.body.classList.add('modal-open');
+                const modal = document.getElementById(id);
+                modal.style.display = 'flex';
+                setTimeout(() => modal.classList.add('show'), 10);
+            } catch(e) {}
+        }
+
+        function closeModal(id) {
+            document.body.classList.remove('modal-open');
+            const modal = document.getElementById(id);
+            modal.classList.remove('show');
+            setTimeout(() => modal.style.display = 'none', 400);
+        }
+
+        function openBento(data) {
+            currentBentoData = data;
+            document.getElementById('b_name').innerText = data.nickname;
+            if (data.category) {
+                document.getElementById('b_domain').innerText = data.category;
+                document.getElementById('b_domain').style.display = 'inline-block';
+            } else { document.getElementById('b_domain').style.display = 'none'; }
+            
+            document.getElementById('b_link').href = `https://weibo.com/u/${data.uid}`;
+            document.getElementById('b_fans').innerText = data.followers;
+            document.getElementById('b_price').innerText = `¥${data.commercial.original_price.toLocaleString()}`;
+            document.getElementById('b_cpm').innerText = data.commercial.cpm;
+            
+            document.getElementById('b_read_med').innerText = data.deep_data.read_median;
+            document.getElementById('b_int_med').innerText = data.deep_data.interact_median;
+            document.getElementById('b_dir_read').innerText = data.deep_data.direct_read_median;
+            document.getElementById('b_dir_int').innerText = data.deep_data.direct_interact_median;
+            document.getElementById('b_fwd_read').innerText = data.deep_data.forward_read_median;
+            document.getElementById('b_fwd_int').innerText = data.deep_data.forward_interact_median;
+
+            // 雷达对比图
+            if(!singleRadarInstance) singleRadarInstance = echarts.init(document.getElementById('singleRadarChart'));
+            const parseNum = (str) => { if(!str||str==="N/A") return 0; return parseFloat(str.replace('万',''))||0; };
+            singleRadarInstance.setOption({
+                tooltip: {},
+                radar: {
+                    indicator: [
+                        { name: '直发阅读', max: Math.max(parseNum(data.deep_data.direct_read_median), parseNum(data.deep_data.forward_read_median))*1.2 || 10 },
+                        { name: '直发互动', max: Math.max(parseNum(data.deep_data.direct_interact_median), parseNum(data.deep_data.forward_interact_median))*1.2 || 10 },
+                        { name: '转发阅读', max: Math.max(parseNum(data.deep_data.direct_read_median), parseNum(data.deep_data.forward_read_median))*1.2 || 10 },
+                        { name: '转发互动', max: Math.max(parseNum(data.deep_data.direct_interact_median), parseNum(data.deep_data.forward_interact_median))*1.2 || 10 }
+                    ],
+                    radius: '60%', splitNumber: 3, axisName: { color: '#71717a', fontSize: 10 },
+                    splitArea: { areaStyle: { color: ['rgba(255,255,255,0)', 'rgba(244,244,245,0.5)'] } }
+                },
+                series: [{
+                    type: 'radar',
+                    data: [
+                        { value: [parseNum(data.deep_data.direct_read_median), parseNum(data.deep_data.direct_interact_median), 0, 0], name: '直发效能', itemStyle: { color: '#3b82f6' }, areaStyle: { color: 'rgba(59,130,246,0.3)' } },
+                        { value: [0, 0, parseNum(data.deep_data.forward_read_median), parseNum(data.deep_data.forward_interact_median)], name: '转发效能', itemStyle: { color: '#8b5cf6' }, areaStyle: { color: 'rgba(139,92,246,0.3)' } }
+                    ]
+                }]
+            });
+
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.tab-btn')[0].classList.add('active');
+            if(!trendInstance) trendInstance = echarts.init(document.getElementById('trendChart'));
+            renderEcharts(data.charts && data.charts.trend_20 ? data.charts.trend_20 : [], '阅读量 (万)');
+            
+            openModal('bentoModal');
+            setTimeout(() => { trendInstance.resize(); singleRadarInstance.resize(); }, 50);
+        }
+
+        function switchChart(type) {
+            if(!currentBentoData) return;
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            if(type === 'trend') {
+                document.querySelectorAll('.tab-btn')[0].classList.add('active');
+                renderEcharts(currentBentoData.charts && currentBentoData.charts.trend_20 ? currentBentoData.charts.trend_20 : [], '阅读量 (万)');
+            } else {
+                document.querySelectorAll('.tab-btn')[1].classList.add('active');
+                renderEcharts(currentBentoData.charts && currentBentoData.charts.fan_growth ? currentBentoData.charts.fan_growth : [], '粉丝数 (万)');
+            }
+        }
+
+        function renderEcharts(dataArr, seriesName) {
+            const isEmpty = !dataArr || dataArr.length === 0 || dataArr.every(v => v === 0);
+            const xAxisData = isEmpty ? [] : dataArr.map((_, i) => `T-${dataArr.length - i}`);
+            const option = {
+                tooltip: { trigger: 'axis', backgroundColor: 'rgba(255,255,255,0.9)', borderColor: '#e4e4e7', textStyle: {color: '#09090b'} },
+                grid: { left: '2%', right: '2%', bottom: '0%', top: '5%', containLabel: true },
+                xAxis: { type: 'category', boundaryGap: false, data: xAxisData, axisLine: {show: false}, axisTick: {show: false}, axisLabel: {color: '#a1a1aa', fontSize: 10, margin: 12} },
+                yAxis: { type: 'value', splitLine: {lineStyle: {color: '#f4f4f5', type: 'dashed'}}, axisLabel: {color: '#a1a1aa', fontSize: 10} },
+                series: [{
+                    name: seriesName, type: 'line', smooth: 0.4, symbol: 'none',
+                    itemStyle: { color: '#09090b' }, lineStyle: { width: 3 },
+                    areaStyle: { color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{ offset: 0, color: 'rgba(9,9,11,0.15)' }, { offset: 1, color: 'rgba(9,9,11,0)' }]) },
+                    data: dataArr
+                }]
+            };
+            if (isEmpty) {
+                option.title = { text: '平台风控限制，暂无可用图表数据', left: 'center', top: 'middle', textStyle: { color: '#a1a1aa', fontSize: 13, fontWeight: 'normal' } };
+                option.xAxis.show = false; option.yAxis.show = false;
+            } else { option.title = null; }
+            trendInstance.setOption(option, true);
+        }
+
+        function openGlobalModal() {
+            try {
+                if(historyData.length === 0) return;
+                
+                const parseNum = (str) => { if(!str||str==="N/A") return 0; return parseFloat(str.replace('万',''))||0; };
+                const getMedian = (arr) => {
+                    if(arr.length === 0) return 0;
+                    arr.sort((a,b)=>a-b); const half = Math.floor(arr.length/2);
+                    if(arr.length % 2) return arr[half]; return (arr[half-1] + arr[half]) / 2.0;
+                };
+
+                let drs = [], frs = [], scatterData = [];
+
+                historyData.forEach(d => {
+                    drs.push(parseNum(d.deep_data.direct_read_median));
+                    frs.push(parseNum(d.deep_data.forward_read_median));
+                    if(d.followers_num > 0 && d.commercial.original_price > 0) {
+                        scatterData.push([d.followers_num/10000, d.commercial.original_price, d.nickname, d.commercial.cpm]);
+                    }
+                });
+
+                let avg_cpm = g_count > 0 ? (g_cpm_total/g_count).toFixed(1) : 0;
+                document.getElementById('g_fans').innerText = (g_fans/10000).toFixed(1);
+                document.getElementById('g_cpm').innerText = avg_cpm;
+                document.getElementById('g_d_read').innerText = getMedian(drs).toFixed(1);
+                document.getElementById('g_f_read').innerText = getMedian(frs).toFixed(1);
+
+                let insightStr = `本次成功提取 <b>${g_count}</b> 个账号。大盘加权 CPM 为 <span class="insight-highlight">${avg_cpm}</span>。`;
+                if (avg_cpm > 800) insightStr += `溢价严重，建议重筛。`;
+                else if (avg_cpm < 60) insightStr += `该矩阵属于极佳的流量洼地，投放性价比高。`;
+                
+                let d_med = getMedian(drs); let f_med = getMedian(frs);
+                if (d_med > f_med * 1.5) insightStr += ` <br><br>数据表明，博主群体具备<b>极强的纯原创生命力</b>，直发流量断层领先，主攻直发图文。`;
+                else insightStr += ` <br><br>数据表明，转发抽奖等活动对该矩阵流量有明显拉动。`;
+                document.getElementById('ai_insight').innerHTML = insightStr;
+
+                if(!globalInstance) globalInstance = echarts.init(document.getElementById('globalChart'));
+                globalInstance.setOption({
+                    tooltip: { formatter: function (p) { return `<div style="font-weight:600">${p.value[2]}</div>粉丝: ${p.value[0].toFixed(1)}万<br/>报价: ¥${p.value[1]}<br/>CPM: ${p.value[3]}`; }},
+                    grid: { left: '2%', right: '2%', bottom: '5%', top: '5%', containLabel: true },
+                    xAxis: { name: '粉丝量(万)', type: 'value', splitLine: {lineStyle: {type: 'dashed', color: '#e4e4e7'}} },
+                    yAxis: { name: '图文报价(¥)', type: 'value', splitLine: {lineStyle: {type: 'dashed', color: '#e4e4e7'}} },
+                    series: [{ type: 'scatter', symbolSize: 10, itemStyle: { color: 'rgba(37, 99, 235, 0.7)' }, data: scatterData }]
+                });
+
+                openModal('globalModal');
+                setTimeout(() => globalInstance.resize(), 50);
+            } catch(e) {}
         }
 
         async function invokeLogin() {
-            document.getElementById('overlayTitle').innerText = "🚀 正在唤醒浏览器...";
-            document.getElementById('overlayDesc').innerText = "请在弹出的窗口中操作，完成后随手关闭即可恢复任务。";
-            await fetch('/api/v1/login', {method: 'POST'});
-            document.getElementById('authOverlay').style.display = 'none';
-            isRunning = true;
-            runQueueMaster(); 
+            let btn = document.getElementById('authBtn');
+            btn.disabled = true;
+            btn.innerText = "正在安全唤醒沙盒...";
+            try { await fetch('/api/v1/login', {method: 'POST'}); } catch(e) {}
+            closeModal('authOverlay');
+            btn.disabled = false; btn.innerText = "唤醒沙盒验证";
+            isRunning = true; runQueueMaster(); 
         }
 
         function finalize() {
             document.getElementById('startBtn').disabled = false;
-            document.getElementById('startBtn').innerText = "⚡ 重新探测";
             document.getElementById('pauseBtn').style.display = 'none';
-            document.getElementById('exportBtn').style.display = 'flex';
+            document.getElementById('exportBtn').style.display = 'inline-flex';
+            document.getElementById('progText').innerText = '扫描完成';
         }
 
         function exportExcel() {
-            // 在导出前平铺数据结构，使导出的Excel更直观
-            const flatData = history.map(item => ({
-                "博主昵称": item.nickname,
-                "真实UID": item.uid,
-                "粉丝体量": item.followers,
-                "图文报价": item.commercial.original_price,
-                "直发CPM": item.commercial.cpm,
-                "平均阅读": item.avg_read,
-                "平均互动": item.avg_interact
+            const flatData = historyData.map(item => ({
+                "博主昵称": item.nickname, "所属领域": item.category,
+                "粉丝体量": item.followers, "图文直发报价": item.commercial.original_price, "直发CPM": item.commercial.cpm,
+                "直发阅读中位数": item.deep_data.direct_read_median, "转发阅读中位数": item.deep_data.forward_read_median,
+                "直发互动中位数": item.deep_data.direct_interact_median, "转发互动中位数": item.deep_data.forward_interact_median,
+                "点赞中位数": item.deep_data.like_median, "评论中位数": item.deep_data.comment_median,
+                "近期发文数": item.deep_data.post_count
             }));
             const ws = XLSX.utils.json_to_sheet(flatData);
-            const wb = XLSX.utils.book_new(); XLSX.utils.book_append_sheet(wb, ws, "专业报表");
-            XLSX.writeFile(wb, `MCN商业洞察报表_${Date.now()}.xlsx`);
+            const wb = XLSX.utils.book_new(); XLSX.utils.book_append_sheet(wb, ws, "MCN全局数据");
+            XLSX.writeFile(wb, `MCN矩阵分析_${Date.now()}.xlsx`);
         }
     </script>
 </body>
