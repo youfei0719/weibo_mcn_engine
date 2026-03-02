@@ -1,0 +1,409 @@
+var FrequentlyUtils = {
+
+    /**
+     * 扩展layer弹窗
+     *
+     * 引入样式 common-dialog，定义了标题栏及底部按钮样式
+     * options新增属性
+     * {
+     * ...
+     * _singleModeOptions: [Boolean | String | Object: {okText, href, target}], 底部单个按钮
+     * _doubleModeOptions: [Boolean | Object: {cancelText, okText, href, target}], 底部两个按钮
+     * _cancel: [Function], 点击取消或右上角关闭，添加后后弹窗需手动关闭
+     * _ok: [Function], 点击确定按钮回调，添加后后弹窗需手动关闭
+     * ...
+     * }
+     *
+     */
+    showCustomDialog: function (options) {
+        var _html = '', layerIndex;
+        if (options._singleModeOptions) {
+            _html += '<div class="common-dialog-has-btn">' + (options.content || '') + '</div>'
+
+            _html += '<div class="common-dialog-btn-p">';
+            if (typeof options._singleModeOptions === 'string') {
+                _html += '<a class="common-dialog-btn large-btn active-btn" href="javascript:;">' + options._singleModeOptions + '</a>';
+            } else if (Object.prototype.toString.call(options._singleModeOptions) === '[object Object]') {
+                _html += '<a class="common-dialog-btn large-btn active-btn" href="' + (options._singleModeOptions.href || 'javascript:;') + '" target="' + (options._singleModeOptions.target || '_self') + '">' + (options._singleModeOptions.okText || '确定') + '</a>';
+            } else {
+                _html += '<a class="common-dialog-btn large-btn active-btn">确定</a>';
+            }
+            _html += '</div>';
+        } else if (options._doubleModeOptions) {
+            _html += '<div class="common-dialog-has-btn">' + (options.content || '') + '</div>'
+
+            _html += '<div class="common-dialog-btn-p">';
+            if (Object.prototype.toString.call(options._doubleModeOptions) === '[object Object]') {
+                _html += '<a class="common-dialog-btn middle-btn default-btn" href="javascript:;">' + (options._doubleModeOptions.cancelText || '取消') + '</a>';
+                _html += '<a class="common-dialog-btn middle-btn active-btn" href="' + (options._doubleModeOptions.href || 'javascript:;') + '" target="' + (options._doubleModeOptions.target || '_self') + '">' + (options._doubleModeOptions.okText || '确定') + '</a>';
+            } else {
+                _html += '<a class="common-dialog-btn middle-btn default-btn">取消</a>';
+                _html += '<a class="common-dialog-btn middle-btn active-btn">确定</a>';
+            }
+            _html += '</div>';
+        } else {
+            _html += (options.content || '')
+        };
+
+        if (options._absolutHtml) {
+            _html += (options._absolutHtml || '');
+        }
+
+        options.content = _html;
+        options.skin = "common-dialog " + (options.skin || '');
+
+        var cancelFun = options.cancel;
+        options.cancel = function () {
+            if (typeof options._cancel === 'function') {
+                options._cancel.apply(this, arguments);
+            } else if (cancelFun) {
+                cancelFun.apply(this, arguments);
+            } else {
+                layer.close(layerIndex);
+            }
+        }
+
+        var successFun = options.success;
+        options.success = function () {
+            $('.common-dialog-btn-p').find('.default-btn').click(function () {
+                !options._cancel && layer.close(layerIndex);
+                typeof options._cancel === 'function' && options._cancel.apply(this, arguments);
+            })
+            $('.common-dialog-btn-p').find('.active-btn').click(function () {
+                !options._ok && layer.close(layerIndex);
+                typeof options._ok === 'function' && options._ok.apply(this, arguments);
+            })
+
+            successFun && successFun.apply(this, arguments);
+        }
+
+        !options.type && (options.type = 1);
+        layerIndex = layer.open(options);
+
+        return layerIndex;
+    },
+
+    // 弹窗（调用方式类似layer）
+    CreateSimpleDialig: function (options) {
+        var dialogDom = document.createElement("div");
+        var dialogDomId = dialogDom.id = "simple_" + Date.now();
+
+        typeof options !== 'object' && (options = {});
+        options.closeBtn === undefined && (options.closeBtn = true);
+        options.area = options.area || ["500px"];
+        var width = options.area[0];
+        var height = options.area[1] || "auto";
+
+        function show() {
+
+            var _dialog_html = "";
+
+            _dialog_html += '<div class="frequent-simple-dialog">'
+            _dialog_html += '<div class="frequent-simple-dialog-content-wrap ' + (options.title ? "frequent-simple-dialog-has-title" : "") + '" style="width: ' + width + '; height: ' + height + ';">'
+            if (options.closeBtn) {
+                _dialog_html += '<div class="frequent-simple-dialog-close"></div>'
+            }
+            if (options.title) {
+                _dialog_html += '<div class="frequent-simple-dialog-title">' + options.title + '</div>'
+            }
+            _dialog_html += '<div class="frequent-simple-dialog-content">'
+
+            var _html = '';
+            if (options._singleModeOptions) {
+                _html += '<div class="frequent-simple-dialog-content-sv">'
+                _html += '<div class="frequent-simple-dialog-has-btn">' + (options.content || '') + '</div>'
+                _html += '</div>'
+
+                _html += '<div class="frequent-simple-dialog-btn-p">';
+                if (typeof options._singleModeOptions === 'string') {
+                    _html += '<a class="frequent-simple-dialog-btn large-btn active-btn" href="javascript:;">' + options._singleModeOptions + '</a>';
+                } else if (Object.prototype.toString.call(options._singleModeOptions) === '[object Object]') {
+                    _html += '<a class="frequent-simple-dialog-btn large-btn active-btn" href="' + (options._singleModeOptions.href || 'javascript:;') + '" target="' + (options._singleModeOptions.target || '_self') + '">' + (options._singleModeOptions.okText || '确定') + '</a>';
+                } else {
+                    _html += '<a class="frequent-simple-dialog-btn large-btn active-btn">确定</a>';
+                }
+                _html += '</div>';
+            } else if (options._doubleModeOptions) {
+                _html += '<div class="frequent-simple-dialog-content-sv">'
+                _html += '<div class="frequent-simple-dialog-has-btn">' + (options.content || '') + '</div>'
+                _html += '</div>'
+
+                _html += '<div class="frequent-simple-dialog-btn-p">';
+                if (Object.prototype.toString.call(options._doubleModeOptions) === '[object Object]') {
+                    _html += '<a class="frequent-simple-dialog-btn middle-btn default-btn" href="javascript:;">' + (options._doubleModeOptions.cancelText || '取消') + '</a>';
+                    _html += '<a class="frequent-simple-dialog-btn middle-btn active-btn" href="' + (options._doubleModeOptions.href || 'javascript:;') + '" target="' + (options._doubleModeOptions.target || '_self') + '">' + (options._doubleModeOptions.okText || '确定') + '</a>';
+                } else {
+                    _html += '<a class="frequent-simple-dialog-btn middle-btn default-btn">取消</a>';
+                    _html += '<a class="frequent-simple-dialog-btn middle-btn active-btn">确定</a>';
+                }
+                _html += '</div>';
+            } else {
+                _html += '<div class="frequent-simple-dialog-content-sv">'
+                _html += (options.content || '')
+                _html += '</div>'
+            };
+            _dialog_html += _html;
+
+            _dialog_html += '</div>'
+            _dialog_html += '</div>'
+            _dialog_html += '</div>'
+
+
+            dialogDom.innerHTML = _dialog_html;
+
+            document.body.appendChild(dialogDom);
+
+            $('#' + dialogDomId + ' .frequent-simple-dialog-close').click(close);
+
+            $('#' + dialogDomId + ' .frequent-simple-dialog-btn-p').find('.default-btn').click(function () {
+                !options._cancel && close();
+                typeof options._cancel === 'function' && options._cancel.apply(this, arguments);
+            })
+            $('#' + dialogDomId + ' .frequent-simple-dialog-btn-p').find('.active-btn').click(function () {
+                !options._ok && close();
+                typeof options._ok === 'function' && options._ok.apply(this, arguments);
+            })
+        }
+
+        function close() {
+            typeof options._cancel === 'function' && options._cancel();
+            if (document.getElementById(dialogDomId)) {
+                document.body.removeChild(dialogDom);
+            }
+        }
+
+        return {
+            show: show,
+            close: close
+        }
+    },
+
+
+    // 获取文件
+    /**
+     * 获取本地文件
+     * @param {Object} options
+     * 支持配置项
+     * {
+     *  multiple: 'multiple', 是否支持多选
+     *  maxLength: [Number], 最多可选个数
+     *  maxLengthError: [String], 选择个数超限时错误提示
+     *  maxSize: [Number], 最大支持文件大小，单位bit
+     *  maxSizeError: [String], 选择文件大小超限时错误提示
+     *  suffix: [String | Array], 支持的文件类型 'pdf,jpg' | ['pdf', 'jpg']
+     *  suffixError: [String], 选择文件类型错误时提示
+     *  success: [Function], 选择成功 返回files
+     *  fail: [Function], 选择失败 返回Object 包含错误信息errorMsg及不支持文件的文件名nonsupportFiles
+     * }
+     *
+     */
+    selectFileFromFolder: function (options) {
+        if (options && Object.prototype.toString.call(options) !== '[object Object]') {
+            options.fail && options.fail.call(this, {
+                errorMsg: "options需为对象"
+            });
+            return false;
+        } else {
+            options = options || {};
+        }
+
+        var inputNode = getInputNode(options);
+        inputNode.click();
+
+        function onChange(el) {
+            if (el && el.target && el.target.files) {
+                var fileList = el.target.files;
+                var limitResult = limitPass(fileList);
+                if (limitResult.status == 1) {
+                    var argumentsArr = Array.prototype.slice.call(arguments);
+                    argumentsArr.unshift(fileList);
+                    options.success && options.success.apply(this, argumentsArr);
+                } else {
+                    options.fail && options.fail.call(this, limitResult);
+                }
+            } else {
+                options.fail && options.fail.call(this, {
+                    errorMsg: "文件选择失败"
+                });
+            }
+
+            inputNode.removeEventListener('change', onChange);
+            document.body.removeChild(inputNode);
+            inputNode = null;
+        }
+
+        function limitPass(fileList) {
+            var fileArr = Array.prototype.slice.call(fileList) // 文件列表
+                , errorSuffixFile = '' // 不支持类型的文件
+                , errorSizeFile = '' // 不支持大小的文件
+                , limitResult = {
+                    status: 1, // 1成功 2失败
+                    errorMsg: "", // 错误信息
+                    nonsupportFiles: "", // 不支持的文件名
+                };
+
+            // 限制文件类型数组
+            var supportSuffixArr = [];
+            if (options.suffix) {
+                if (typeof options.suffix === 'string') {
+                    var tempArr = options.suffix.split(',');
+                    for (var k = 0; k < tempArr.length; k++) {
+                        tempArr[k].trim() && supportSuffixArr.push(tempArr[k].trim().toLowerCase())
+                    }
+                } else if (Object.prototype.toString.call(options.suffix) === '[object Array]') {
+                    for (var k = 0; k < options.suffix.length; k++) {
+                        options.suffix[k].trim() && supportSuffixArr.push(options.suffix[k].trim().toLowerCase())
+                    }
+                } else {
+                    supportSuffixArr = [];
+                }
+            }
+
+            var i = 0, j = 0, fileItem = null, suffixIndex = 0, suffix = '';
+            for (i = 0; i < fileArr.length; i++) {
+                fileItem = fileArr[i];
+
+                // 限制文件类型 生成不支持的类型
+                if (options.suffix) {
+                    suffixIndex = fileItem.name.lastIndexOf(".");
+                    suffix = fileItem.name.substr(suffixIndex + 1).toLowerCase();
+                    for (j = 0; j < supportSuffixArr.length; j++) {
+                        if (supportSuffixArr[j] == suffix) {
+                            break;
+                        } else if (j === (supportSuffixArr.length - 1)) {
+                            // 非允许类型
+                            errorSuffixFile += (fileItem.name + ",")
+                        }
+                    }
+                }
+
+                // 限制文件大小
+                if (options.maxSize && fileItem.size > options.maxSize) {
+                    errorSizeFile += (fileItem.name + ",")
+                }
+            }
+
+            if (options.maxLength && fileList.length > options.maxLength) {
+                limitResult.status = 2;
+                limitResult.errorMsg = options.maxLengthError || ("最多可选择" + options.maxLength + "个文件");
+            } else if (errorSizeFile) {
+                limitResult.status = 2;
+                limitResult.errorMsg = options.maxSizeError || ("所选文件最大支持" + (options.maxSize >> 10) + "k");
+                limitResult.nonsupportFiles = errorSizeFile;
+            } else if (errorSuffixFile) {
+                limitResult.status = 2;
+                limitResult.errorMsg = options.suffixError || (options.multiple ? "包含不支持的文件类型" : "不支持的文件类型");
+                limitResult.nonsupportFiles = errorSuffixFile;
+            }
+
+            return limitResult;
+        }
+
+        function getInputNode(options) {
+            var inputNode = document.getElementById("frequently_select_file_ipt_id");
+            if (inputNode) {
+                inputNode.removeEventListener('change', onChange);
+                document.body.removeChild(inputNode);
+                inputNode = null;
+            }
+            inputNode = document.createElement("input");
+            inputNode.id = "frequently_select_file_ipt_id";
+            inputNode.name = Date.now() + 'file';
+            inputNode.type = "file";
+            if (options.multiple) {
+                inputNode.multiple = 'multiple';
+            }
+            inputNode.style = "display: none;"
+            inputNode.addEventListener('change', onChange);
+            document.body.appendChild(inputNode);
+            return inputNode;
+        }
+    },
+
+    // 文件上传
+    uploadFileAjax: function (options) {
+        $.ajax({
+            type: "POST",
+            url: options.url,
+            data: options.formData,
+            dataType: "json",
+            processData: false,  // 不处理数据
+            contentType: false, // 不设置内容类型
+            success: function (res) {
+                options.success && options.success(res)
+            },
+            error: function (jqXhr, textStatus, errorThrown) {
+                options.error && options.error.apply(this, arguments);
+            }
+        });
+    },
+
+    // 获取URL参数
+    getUrlParams: function () {
+        var optionsStr = location.search;
+        var options = {};
+        if (optionsStr) {
+            optionsStr = optionsStr.split('?')[1] || '';
+            var optionsArr = optionsStr.split('&');
+            for (var i = 0; i < optionsArr.length; i++) {
+                var optionArr = optionsArr[i].split('=');
+                optionArr[0] && (options[optionArr[0].trim()] = (optionArr[1] || '').trim());
+            }
+        }
+        return options;
+    },
+
+    // 删除URL参数
+    deleteUrlParams: function (params) {
+        var pathname = location.pathname, deleteNameArr = [];
+        if (Object.prototype.toString.call(params) === '[object Object]') {
+            deleteNameArr = Object.keys(params);
+        } else if (typeof params === 'string') {
+            deleteNameArr.push(params);
+        } else if (Object.prototype.toString.call(params) === '[object Array]') {
+            deleteNameArr = params;
+        }
+
+        if (deleteNameArr.length > 0) {
+            var options = FrequentlyUtils.getUrlParams();
+            for (var i = 0; i < deleteNameArr.length; i++) {
+                delete options[deleteNameArr[i]];
+            }
+
+            pathname += "?";
+            var okeys = Object.keys(options);
+            for (var i = 0; i < okeys.length; i++) {
+                pathname += ((i === 0 ? "" : "&") + okeys[i] + "=" + options[okeys[i]]);
+            }
+        }
+
+        history.replaceState(null, "", pathname);
+    },
+
+    // 添加URL参数
+    addUrlParams: function (obj) {
+        if (Object.prototype.toString.call(obj) === '[object Object]') {
+            var pathname = location.pathname;
+            var options = Object.assign({}, FrequentlyUtils.getUrlParams(), obj);
+
+            pathname += "?";
+            var okeys = Object.keys(options);
+            for (var i = 0; i < okeys.length; i++) {
+                pathname += ((i === 0 ? "" : "&") + okeys[i] + "=" + options[okeys[i]]);
+            }
+
+            history.replaceState(null, "", pathname);
+        }
+    },
+
+    // a标签下载文件
+    turnByANode: function (href, target) {
+        var aNode = document.createElement("a");
+        aNode.href = href;
+        aNode.target = target || "_self";
+        document.body.appendChild(aNode);
+        aNode.click();
+        document.body.removeChild(aNode);
+    }
+
+}

@@ -6,7 +6,6 @@ try:
     from fastapi import FastAPI, HTTPException
     from fastapi.responses import FileResponse
     from pydantic import BaseModel, Field
-    
     from database import init_db
     from spider import MasterSpiderEngine
 
@@ -31,7 +30,7 @@ try:
         yield
         await engine.close()
 
-    app = FastAPI(title="Weibo MCN Batch Engine", lifespan=lifespan)
+    app = FastAPI(title="Weibo MCN Matrix Engine", lifespan=lifespan)
 
     class CollectRequest(BaseModel):
         target: str = Field(...)
@@ -50,24 +49,25 @@ try:
         try:
             data = await engine.collect_all(request.target)
             return {"status": "success", "data": data}
-            
         except Exception as e:
             err_msg = str(e)
             print(f"\n⚠️ [追踪] 目标 '{request.target}' 异常: {err_msg}")
             
-            if "AUTH_EXPIRED" in err_msg:
-                raise HTTPException(status_code=401, detail="WEIQ授权已失效，需重新扫码登录")
-            elif "WEIQ_VERIFY_BLOCKED" in err_msg:
-                raise HTTPException(status_code=403, detail="WEIQ触发防爬滑块验证码，需人工滑动")
-            elif "NETWORK_ERROR" in err_msg:
+            if "AUTH_EXPIRED" in err_msg: 
+                raise HTTPException(status_code=401, detail="WEIQ授权已失效，需重新扫码")
+            elif "WEIQ_VERIFY_BLOCKED" in err_msg: 
+                raise HTTPException(status_code=403, detail="WEIQ触发防爬滑块验证码")
+            elif "NETWORK_ERROR" in err_msg: 
                 raise HTTPException(status_code=429, detail="服务器网络动荡或请求被重置")
-            elif "WEIQ_NO_DATA" in err_msg:
-                return {"status": "failed", "detail": "WEIQ未收录该账号报价"}
-            elif "ID_NOT_FOUND" in err_msg:
-                return {"status": "failed", "detail": "解析不到UID或查无此人"}
+            elif "WEIQ_NO_DATA" in err_msg: 
+                # 【核心修复】：将底层传来的 "WEIQ_NO_DATA||昵称||头像||分类" 替换为中文警告，且完美保留后缀传给前端
+                detail_msg = err_msg.replace("WEIQ_NO_DATA", "平台未收录该账号或暂无商业报价")
+                return {"status": "failed", "detail": detail_msg}
+            elif "ID_NOT_FOUND" in err_msg: 
+                return {"status": "failed", "detail": "解析不到纯净UID或查无此人"}
             else:
                 traceback.print_exc()
-                raise HTTPException(status_code=500, detail=f"底层代码崩溃: {type(e).__name__}")
+                raise HTTPException(status_code=500, detail=f"底层崩溃: {type(e).__name__}")
 
     if __name__ == "__main__":
         multiprocessing.freeze_support()
@@ -78,8 +78,8 @@ try:
 
 except Exception as e:
     print("\n" + "!" * 60)
-    print("🚨 致命报错拦截成功：")
+    print("🚨 致命启动报错被中枢拦截：")
     traceback.print_exc()
     print("!" * 60 + "\n")
-    input("请截图发给我，按回车键退出...")
+    input("请将上方的红色报错代码截图发给我，按回车键退出...")
     sys.exit(1)

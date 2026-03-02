@@ -1,0 +1,10 @@
+2026/03/01-23:52:19.136 5d90 Reusing MANIFEST D:\weibo_mcn_engine\temp_browser_profile\Default\EdgeCoupons/coupons_data.db/MANIFEST-000001
+2026/03/01-23:52:19.137 5d90 Recovering log #10
+2026/03/01-23:52:19.138 5d90 Level-0 table #12: started
+2026/03/01-23:52:19.492 5d90 Level-0 table #12: 681688 bytes OK
+2026/03/01-23:52:19.493 5d90 Recovering log #11
+2026/03/01-23:52:19.493 5d90 Reusing old log D:\weibo_mcn_engine\temp_browser_profile\Default\EdgeCoupons/coupons_data.db/000011.log 
+2026/03/01-23:52:19.517 5d90 Delete type=0 #10
+2026/03/01-23:52:19.709 6f24 Level-0 table #14: started
+2026/03/01-23:52:19.712 6f24 Level-0 table #14: 681688 bytes OK
+2026/03/01-23:52:19.717 6f24 Delete type=0 #11

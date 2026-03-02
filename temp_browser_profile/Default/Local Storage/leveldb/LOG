@@ -1,0 +1,7 @@
+2026/03/02-00:01:53.412 6a30 Reusing MANIFEST D:\weibo_mcn_engine\temp_browser_profile\Default\Local Storage\leveldb/MANIFEST-000001
+2026/03/02-00:01:53.416 6a30 Recovering log #4
+2026/03/02-00:01:53.417 6a30 Level-0 table #6: started
+2026/03/02-00:01:53.431 6a30 Level-0 table #6: 178532 bytes OK
+2026/03/02-00:01:53.431 6a30 Recovering log #6
+2026/03/02-00:01:53.432 6a30 Reusing old log D:\weibo_mcn_engine\temp_browser_profile\Default\Local Storage\leveldb/000006.log 
+2026/03/02-00:01:53.465 6a30 Delete type=0 #4

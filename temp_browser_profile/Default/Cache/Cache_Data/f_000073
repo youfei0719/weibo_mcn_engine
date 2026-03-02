@@ -1,0 +1,733 @@
+// function showMask() {
+//     $.ajax({
+//         type: "GET",
+//         url: evaluate,
+//         data: {},
+//         dataType: "JSON",
+//         success: function (res) {
+//             if (res.code == 200) {
+//                 $('.mask-activity').show();
+//                 $('body').css('overflow','hidden');
+//             } else {
+//                 $('.mask-activity').hide();
+//                 $('body').css('overflow','');
+//             }
+//         }
+//     });
+//     $('.close-mask').click(function () {
+//         $('.mask-activity').hide();
+//         $('body').css('overflow','');
+//     })
+//     $('.mask-main').click(function () {
+//         $('.mask-activity').hide();
+//         $('body').css('overflow','');
+//     })
+//     $('.to-activity').click(function (event) {
+//         event.stopPropagation()
+//         window.open("{:U('/owner/index/activity')}")
+//     })
+// }
+function initbanner() {
+    var mySwiper = new Swiper('.swiper-container-banner', {
+        // loop: true, // 循环模式选项
+        // effect: 'fade',
+        speed: 1000,
+        autoplay: {
+            delay: 5000,
+            disableOnInteraction: false,
+        }, //可选选项，自动滑动
+        // 如果需要分页器
+        // pagination: {
+        //     el: '.swiper-pagination-banner',
+        //     clickable: true,
+        //     renderBullet: function (index, className) {
+        //         return '<span class="' + className + '"></span>';
+        //     },
+        // },
+        navigation: {
+            prevEl: '.flow-red-grass-swiper-prev',
+            nextEl: '.flow-red-grass-swiper-next',
+        },// 前进后退按钮
+        scrollbar: {
+            el: '.flow-red-grass-swiper-scrollbar',
+            // dragSize: 100 / $(".index-banner-wrap .swiper-slide").length,
+            dragSize: 100 / Number(banner_data_count || 0),
+        },// 滚动条
+    });
+    var prevNode = $(".flow-red-grass-swiper-prev");
+    var nextNode = $(".flow-red-grass-swiper-next");
+    if (banner_data_count < 2) {
+        prevNode.hide();
+        nextNode.hide();
+        $(".flow-red-grass-swiper-scrollbar").hide();
+    }
+    $('#bannerWrap').mouseenter(function () {
+        mySwiper.autoplay.stop();
+        if (banner_data_count > 1) {
+            prevNode.css("left", "10px");
+            nextNode.css("right", "10px");
+        }
+    }).mouseleave(function () {
+        mySwiper.autoplay.start();
+        if (banner_data_count > 1) {
+            prevNode.css("left", "-50px");
+            nextNode.css("right", "-50px");
+        }
+    })
+}
+$('.eye').click(function () {
+    if ($('.eye').find('.xe621').css('display') === 'block') {
+        $('.eye').find('.xe621').hide()
+        $('.eye').find('.xe622').show()
+        $('.eye').find('.label').html('显示数据')
+        $('.balance-one').hide()
+        $('.balance-two').show()
+        $('.freeze-one').hide()
+        $('.freeze-two').show()
+    } else {
+        $('.eye').find('.xe621').show()
+        $('.eye').find('.xe622').hide()
+        $('.eye').find('.label').html('隐藏数据')
+        $('.balance-one').show()
+        $('.balance-two').hide()
+        $('.freeze-one').show()
+        $('.freeze-two').hide()
+    }
+})
+function initCharts(id, type, data) {
+    var _indicator = [
+        {
+            text: '提及品牌量',
+            max: 100
+        },
+        {
+            text: '种草视频\n播放量  ',
+            max: 100
+        },
+        {
+            text: '种草视频评论量',
+            max: 100
+        },
+        {
+            text: '种草视频\n 点赞量',
+            max: 100
+        },
+    ],
+        _lineColor = '#3468F7',
+        _areaColor = '#3468F7',
+        _splitLineColor = "#D6E3FE";
+    if (type == 'douyin') {
+        _indicator = [
+            {
+                text: '传播指数',
+                max: 100
+            },
+            {
+                text: '合作指数',
+                max: 100
+            },
+            {
+                text: '性价比指数',
+                max: 100
+            },
+            {
+                text: '转化指数',
+                max: 100
+            },
+            {
+                text: '种草指数',
+                max: 100
+            },
+        ]
+    } else if (type == 'weibo') {
+        _indicator = [
+            {
+                text: '粉丝数量',
+                max: 100
+            },
+            {
+                text: '种草内容\n互动量  ',
+                max: 100
+            },
+            {
+                text: '提及品牌量',
+                max: 100
+            },
+            {
+                text: '种草内容\n   数量',
+                max: 100
+            }
+        ]
+        _lineColor = '#FF9D61';
+        _areaColor = '#FF721C';
+        _splitLineColor = "#FFE5D5";
+    } else if (type == 'redbook') {
+        _indicator = [
+            {
+                text: '提及品牌量',
+                max: 100
+            },
+            {
+                text: '种草内容\n收藏量  ',
+                max: 100
+            },
+            {
+                text: '种草内容评论量',
+                max: 100
+            },
+            {
+                text: '种草内容\n 点赞量',
+                max: 100
+            }
+        ]
+        _lineColor = '#FF9D61';
+        _areaColor = '#FF721C';
+        _splitLineColor = "#FFE5D5";
+    }
+    if (type == 'douyin1') {
+        _lineColor = '#FF9D61';
+        _areaColor = '#FF721C';
+        _splitLineColor = "#FFE5D5";
+    }
+    var _chart = echarts.init(document.getElementById(id));
+    var _opt = {
+        radar: {
+            name: {
+                color: "#999999",
+                fontSize: 12,
+                fontFamily: "PingFang SC-Regular, PingFang SC",
+                // fontWeight: "bold",
+                textLineHeight: 17,
+            },
+            nameGap: 5,
+            splitNumber: 4,
+            indicator: _indicator,
+            center: ['50%', '50%'],
+            radius: 70,
+            axisLine: {
+                lineStyle: {
+                    color: _splitLineColor
+                }
+            },
+            splitLine: {
+                lineStyle: {
+                    color: _splitLineColor
+                }
+            },
+            splitArea: {
+                areaStyle: {
+                    color: "#fff"
+                }
+            }
+        },
+        series: {
+            type: 'radar',
+            symbol: 'none',
+            lineStyle: {
+                color: _lineColor,
+                width: 1,
+            },
+            areaStyle: {
+                color: _areaColor,
+                opacity: '.25',
+            },
+            data: [{
+                value: data
+            }]
+        }
+    };
+    _chart.setOption(_opt);
+}
+function initTpl(type) {
+    layui.use(['jquery', 'laytpl'], function () {
+        var laytpl = layui.laytpl;
+        var result
+        if (type == 'douyinAll') {
+            if (!douyinList[d_page]) return false;
+            result = laytpl($('#card-second').html()).render({ data: douyinList[d_page] });
+            $('.douyin').html(result);
+            for (var index = 0; index < douyinList[d_page].length; index++) {
+                var element = 'echarts_d' + index;
+                var _data = [douyinList[d_page][index]["spread_index"], douyinList[d_page][index]["cooperate_index"], douyinList[d_page][index]["cp_index"], douyinList[d_page][index]["convert_index"], douyinList[d_page][index]["shopping_index"]];
+                initCharts(element, 'douyin', _data)
+            }
+        } else if (type == 'weibo') {
+            if (!obj[type][a_apge_w]) return false;
+            result = laytpl($('#card-first').html()).render({ data: [obj[type][a_apge_w]], type: type });
+            $('.all').append(result);
+            var element = 'echarts_a' + type, _data;
+            _data = [obj[type][a_apge_w]["fans_score"], obj[type][a_apge_w]["brand_interact_score"], obj[type][a_apge_w]["brand_score"], obj[type][a_apge_w]["art_score"]];
+            initCharts(element, 'weibo', _data);
+        } else if (type == 'weibo1') {
+            if (!obj[type][a_apge_d]) return false;
+            result = laytpl($('#card-first').html()).render({ data: [obj[type][a_apge_d]], type: type });
+            $('.all').append(result);
+            var element = 'echarts_a' + type, _data;
+            _data = [obj[type][a_apge_d]["fans_score"], obj[type][a_apge_d]["brand_interact_score"], obj[type][a_apge_d]["brand_score"], obj[type][a_apge_d]["art_score"]];
+            initCharts(element, 'weibo', _data);
+        } else if (type == 'douyin') {
+            if (!obj[type][a_apge_d]) return false;
+            result = laytpl($('#card-first').html()).render({ data: [obj[type][a_apge_d]], type: type });
+            $('.all').append(result);
+            _data = [obj[type][a_apge_d]["seeding_index"], obj[type][a_apge_d]["total_play_score"], obj[type][a_apge_d]["total_comment_score"], obj[type][a_apge_d]["total_like_score"]];
+            var element = 'echarts_a' + type, _data;
+            initCharts(element, 'douyin1', _data);
+        } else if (type == 'redbook') {
+            if (!obj[type][a_apge_r]) return false;
+            result = laytpl($('#card-first').html()).render({ data: [obj[type][a_apge_r]], type: type });
+            $('.all').append(result);
+            var element = 'echarts_a' + type, _data;
+            _data = [obj[type][a_apge_r]["brand_score"], obj[type][a_apge_r]["brand_collect_score"], obj[type][a_apge_r]["brand_like_score"], obj[type][a_apge_r]["brand_comment_score"]];
+            initCharts(element, 'redbook', _data);
+        }
+
+    });
+}
+function getData() {
+    $.ajax({
+        type: 'POST',
+        url: douyinAccount,
+        dataType: "json",
+        data: {
+            page: 1,
+            rows: 30
+        },
+        success: function (data) {
+            if (!data) return false; 
+            for (var i = 0; i < data.data.length; i += 3) {
+                douyinList.push(data.data.slice(i, i + 3));
+            }
+            initTpl('douyinAll');
+            syncPagination("douyinAll");
+        },
+        error: function () {
+            // alert("error");
+        }
+    })
+}
+function getAllData() {
+    $.when(
+        // $.ajax({
+        //     type: 'POST',
+        //     url: douyinAccount,
+        //     dataType: "json",
+        //     data: {
+        //         page: 1,
+        //         rows: 10
+        //     },
+        //     success: function (data) {
+        //         if (!data) return false; 
+        //         obj.douyin = data.data;
+        //     },
+        //     error: function () {
+        //         // alert("error");
+        //     }
+        // }),
+        $.ajax({
+            type: 'POST',
+            url: weiboAccount,
+            dataType: "json",
+            data: {
+                page: 1,
+                rows: 20
+            },
+            success: function (data) {
+                if (!data) return false;
+                obj.weibo = [];
+                obj.weibo1 = [];
+                let list;
+                (data.data || []).forEach(function(t, i) {
+                    i % 2 === 0 ? (list = obj.weibo) : (list = obj.weibo1);
+                    list.push(t);
+                })
+            },
+            error: function () {
+                // alert("error");
+            }
+        }),
+        $.ajax({
+            type: 'POST',
+            url: readBookAccount,
+            dataType: "json",
+            data: {
+                page: 1,
+                rows: 10
+            },
+            success: function (data) {
+                if (!data) return false; 
+                obj.redbook = data.data;
+            },
+            error: function () {
+                // alert("error");
+            }
+        })
+    ).then(function () {
+        for (var key in obj) {
+            initTpl(key);
+        }
+        // all_max_page_length = Math.max(obj.weibo.length, obj.douyin.length, obj.redbook.length);
+        all_max_page_length = Math.max(obj.weibo.length, obj.weibo1.length, obj.redbook.length);
+        syncPagination("all");
+    })
+}
+
+var all_page_index = 0;
+var all_max_page_length = 0;
+function syncPagination (type) {
+    if (type === "all") {
+        if (all_page_index == 0) {
+            $(".pagination-wrap.page-all-anchor").find(".last").removeClass("disabled").addClass("disabled");
+        } else {
+            $(".pagination-wrap.page-all-anchor").find(".last").removeClass("disabled");
+        }
+        if (all_page_index == all_max_page_length - 1) {
+            $(".pagination-wrap.page-all-anchor").find(".next").removeClass("disabled").addClass("disabled");
+        } else {
+            $(".pagination-wrap.page-all-anchor").find(".next").removeClass("disabled");
+        }
+        $(".pagination-wrap.page-all-anchor").find(".count-wrap .page").html(all_page_index + 1);
+        $(".pagination-wrap.page-all-anchor").find(".count-wrap .total-page").html(all_max_page_length);
+        if (all_max_page_length > 0) {
+            $(".pagination-wrap.page-all-anchor").css("display", "flex");
+        }
+    } else if (type === "douyinAll") {
+        if (d_page == 0) {
+            $(".pagination-wrap.page-douyin-anchor").find(".last").removeClass("disabled").addClass("disabled");
+        } else {
+            $(".pagination-wrap.page-douyin-anchor").find(".last").removeClass("disabled");
+        }
+        if (d_page == douyinList.length - 1) {
+            $(".pagination-wrap.page-douyin-anchor").find(".next").removeClass("disabled").addClass("disabled");
+        } else {
+            $(".pagination-wrap.page-douyin-anchor").find(".next").removeClass("disabled");
+        }
+        $(".pagination-wrap.page-douyin-anchor").find(".count-wrap .page").html(d_page + 1);
+        $(".pagination-wrap.page-douyin-anchor").find(".count-wrap .total-page").html(douyinList.length);
+        if (douyinList.length > 0) {
+            $(".pagination-wrap.page-douyin-anchor").css("display", "flex");
+        }
+    }
+}
+$(".pagination-wrap").find(".btn").click(function () {
+    var type = $(this).data("type");
+    var tag = $(this).data("tag");
+    if (tag == 1) { // all
+        if (type === "last") {
+            if (all_page_index <= 0) {
+                all_page_index = 0;
+                return false;
+            } else {
+                all_page_index--;
+            }
+        } else if (type === "next") {
+            if (all_page_index >= all_max_page_length - 1) {
+                all_page_index = all_max_page_length - 1;
+                return false;
+            } else {
+                all_page_index++;
+            }
+        }
+        a_apge_w = (all_page_index % obj.weibo.length);
+        a_apge_d = (all_page_index % obj.weibo1.length);
+        // a_apge_d = (all_page_index % obj.douyin.length);
+        a_apge_r = (all_page_index % obj.redbook.length);
+        $('.all').empty();
+        for (var key in obj) {
+            initTpl(key);
+        }
+        syncPagination("all");
+    } else if (tag == 0) { // douyin
+        if (type === "last") {
+            if (d_page <= 0) {
+                d_page = 0;
+                return false;
+            } else {
+                d_page--;
+            }
+        } else if (type === "next") {
+            if (d_page >= douyinList.length - 1) {
+                d_page = douyinList.length - 1;
+                return false;
+            } else {
+                d_page++;
+            }
+        }
+        initTpl('douyinAll');
+        syncPagination("douyinAll");
+    }
+})
+function initBar(data) {
+    layui.use(['jquery', 'laytpl'], function () {
+        var laytpl = layui.laytpl;
+        var result = laytpl($('#bar').html()).render({ data: data });
+        $('.tab-bar').html(result);
+    })
+}
+function getBar() {
+    $.ajax({
+        type: 'POST',
+        url: getBarUrl,
+        dataType: "json",
+        data: {},
+        success: function (data) {
+            dataType = data.data[0].id;
+            initBar(data.data);
+            getContent(data.data[0].id, 1, 'add');
+        },
+        error: function () {
+            // alert("error");
+        }
+    })
+}
+function getContent(id, page, type) {
+    msg_list_loading = true;
+    $.ajax({
+        type: 'POST',
+        url: getContentUrl,
+        dataType: "json",
+        data: {
+            page: page,
+            perpage: 10,
+            category_id: id
+        },
+        success: function (data) {
+            msg_list_loading = false;
+            if (type == 'switch') {
+                $('.new').empty();
+                initList(data.data, 'add');
+            } else if (type == 'add') {
+                if (data.data.length) {
+                    initList(data.data, 'add');
+                }
+            } else {
+                initList(data.data);
+            }
+            flag = data.data.length > 0;
+        },
+        error: function () {
+            msg_list_loading = false;
+            // alert("error");
+        }
+    })
+}
+function switchBar(is, id) {
+    $(is).addClass('active').siblings().removeClass('active');
+    page = 1;
+    msg_list_loading = false;
+    dataType = id;
+    $(".new").scrollTop(0);
+    getContent(id, 1, 'switch');
+}
+function initList(data, type) {
+    layui.use(['jquery', 'laytpl'], function () {
+        var laytpl = layui.laytpl;
+
+        if (page == 1 && data && data.length > 0) {
+            var firstItemArr = data.splice(0, 1);
+            var resultSingle = laytpl($('#list').html()).render({ data: firstItemArr });
+            $('.single-new').html(resultSingle);
+        }
+
+        var result = laytpl($('#list').html()).render({ data: data });
+        if (type == 'add') {
+            return $('.new').append(result);
+        }
+    })
+}
+function load_more_msg() {
+    var totalH = $(".new > a").length * 146 - 20;
+    var scrollH = $(".new").scrollTop();
+    var boxH = $(".new").height();
+
+    if (totalH - scrollH - boxH < 30) {
+        page++
+        getContent(dataType, page, 'add')
+    }
+}
+
+// 兼容IE浏览器不识别png后缀动图
+function compatibleIE() {
+    if (!!window.ActiveXObject || "ActiveXObject" in window) {
+        // ie
+        var grassImageView = $("#grass_image_view");
+        if (grassImageView) {
+            var url = grassImageView.attr('src');
+            url && grassImageView.attr('src', url.replace("grass1.png", "grass.png"))
+        }
+
+        var shoppingCartImageView = $("#shopping_cart_image_view");
+        if (shoppingCartImageView) {
+            var url = shoppingCartImageView.attr('src');
+            url && shoppingCartImageView.attr('src', url.replace("shopping_cart1.png", "shopping_cart.png"))
+        }
+    }
+}
+
+var d_page = 0,
+    /** 记录种草红人第一列数据渲染项索引 */
+    a_apge_w = 0,
+    /** 记录种草红人第二列数据渲染项索引 */
+    a_apge_d = 0,
+    /** 记录种草红人第三列数据渲染项索引 */
+    a_apge_r = 0,
+    douyinList = [],
+    obj = {
+        weibo: null,
+        /** 种草红人第二列位置改为微博(原抖音) */
+        weibo1: null,
+        // douyin: null,
+        redbook: null,
+    };
+
+// 加入购物车
+$(".card-main").on("click", ".recommend-account-item .capsule-wrap .add-cart", function () {
+    var plattype = $(this).data("plattype");
+    var mediaid = $(this).data("id");
+    var requestUrl = "", targetUrl = "";
+    if (plattype == 3) { // douyin
+        requestUrl = douyin_checkbox;
+        targetUrl = douyin_mediauser;
+    } else if (plattype == 2) { // weibo
+        requestUrl = weibo_checkbox;
+        targetUrl = weibo_mediauser;
+        setTrackCode(20110)
+    } else { // redbook
+        requestUrl = redbook_checkbox;
+        targetUrl = redbook_mediauser;
+    }
+
+    $.ajax({
+        type: "POST",
+        url: requestUrl,
+        data: { mediaid: mediaid },
+        dataType: "JSON",
+        success: function (ret) {
+            if (ret.err == 200) {
+                window.location.href = targetUrl;
+            } else if (ret.err > 50000 && ret.err < 50100){ // 禁止下单 弹窗提示
+                stopDownOrderDialog();
+            } else {
+                layer.msg('投放失败！');
+            }
+        },
+        error: function () {
+            layer.msg("网络异常，请稍后重试");
+        }
+    });
+})
+
+// 关注
+var followFlag = false;// 防止重复提交
+$(".card-main").on("click", ".recommend-account-item .capsule-wrap .add-favor", function () {
+    if (followFlag) return;
+    followFlag = true;
+
+    var _this = $(this);
+    var plattype = _this.data("plattype");
+    var mediaid = _this.data("id");
+    var account_uid = _this.data("uid");
+    var type = _this.data("type");
+    var requestUrl = "", requestParams;
+    if (plattype == 3) { // douyin
+        requestUrl = douyin_enshrineurl;
+        requestParams = { mediaid: mediaid, account_uid: account_uid, type: type == 1 ? 2 : 1 };
+    } else if (plattype == 2) { // weibo
+        requestUrl = type == 0 ? weibo_enshrineurl : weibo_noenshrineurl;
+        requestParams = { mediaid: mediaid, account_uid: account_uid, platform: "weibo" };
+    } else { // redbook
+        requestUrl = redbook_enshrineurl;
+        requestParams = { mediaid: mediaid, account_uid: account_uid, type: type == 1 ? 2 : 1 };
+    }
+
+    $.ajax({
+        type: "POST",
+        url: requestUrl,
+        data: requestParams,
+        dataType: "JSON",
+        success: function (ret) {
+            followFlag = false;
+
+            if ((plattype == 2 && ret.err==0) || (plattype != 2 && ret.err==200)) {
+                if (type == 0) {
+                    !_this.hasClass("active") && _this.addClass("active").data("type", 1);
+                    layer.msg(new_order_process == 1 ? '已关注红人</br> 可在红人资源池中查看已关注红人' : '收藏成功，可前往“只看收藏”查看！');
+                } else {
+                    _this.hasClass("active") && _this.removeClass("active").data("type", 0);
+                    layer.msg(new_order_process == 1 ? '已取消关注</br> 该红人信息已从红人资源池中移除' : '取消收藏成功！');
+                }
+
+                if (plattype == 3) { // douyin
+                    if (obj.douyin && obj.douyin.length > 0) {
+                        for (var i = 0; i < obj.douyin.length; i++) {
+                            if (obj.douyin[i].media_id == mediaid) {
+                                obj.douyin[i].ad_followed = (type == 0 ? 1 : 0);
+                                break;
+                            }
+                        }
+                    }
+                    if (douyinList && douyinList.length > 0) {
+                        for (var i = 0, j, index = -1; i < douyinList.length; i++) {
+                            for (j = 0; j < douyinList[i].length; j++) {
+                                if (douyinList[i][j].media_id == mediaid) {
+                                    douyinList[i][j].ad_followed = (type == 0 ? 1 : 0);
+                                    index = j;
+                                    break;
+                                }
+                            }
+                            if (index != -1) break;
+                        }
+                    }
+                } else if (plattype == 2) { // weibo
+                    if (obj.weibo && obj.weibo.length > 0) {
+                        for (var i = 0; i < obj.weibo.length; i++) {
+                            if (obj.weibo[i].media_id == mediaid) {
+                                obj.weibo[i].ad_followed = (type == 0 ? 1 : 0);
+                                break;
+                            }
+                        }
+                    }
+                } else { // redbook
+                    if (obj.redbook && obj.redbook.length > 0) {
+                        for (var i = 0; i < obj.redbook.length; i++) {
+                            if (obj.redbook[i].media_id == mediaid) {
+                                obj.redbook[i].ad_followed = (type == 0 ? 1 : 0);
+                                break;
+                            }
+                        }
+                    }
+                }
+            } else {
+                layer.msg(ret.msg);
+            }
+        },
+        error: function () {
+            followFlag = false;
+            layer.msg("网络异常，请稍后重试");
+        }
+    });
+})
+
+$(function () {
+    compatibleIE();
+    // getBar();
+    // showMask();
+    initbanner();
+    if (!black_agent) { // 代理商黑名单 不展示模块
+        getData();
+        getAllData();
+    }
+    // $(window).on('scroll', function(){  
+    //     if (!msg_list_loading && flag) {
+    //         load_more_msg(); 
+    //     }
+    // })
+
+    // 营销学院加载更多
+    // $(".new").on("scroll", function () {
+    //     if (!msg_list_loading && flag) {
+    //         load_more_msg();
+    //     }
+    // })
+
+
+})

@@ -1,0 +1,2166 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>WEIQ红人营销平台|精准化一站式营销投放</title>
+            <meta name='keywords' content='微博营销,新浪微博推广,微博推广平台,微信推广,微信营销'>
+            <meta name='description' content='WEIQ红人营销平台是IMS新媒体商业集团研发的基于大数据技术的红人营销服务撮合与交易平台。为各行业广告主提供微博、微信、抖音、小红书、快手、B站、知乎等平台精准社会化自媒体广告投放服务，已服务宝洁、中粮、华为等近万品牌，累计150万+红人入驻。'>
+            <script type="text/javascript" nonce="f20b5c74d4f148f1bfa68ece4bb" src="//injections.adguard.org?ts=1772378873301&amp;type=content-script&amp;dmn=weiq.com&amp;url=http%3A%2F%2Fweiq.com%2Fowner%2Findex%2Findex.html&amp;app=msedge.exe&amp;css=3&amp;js=1&amp;rel=1&amp;rji=1&amp;sbe=0&amp;stealth=1&amp;st-dnt"></script><script type="text/javascript" nonce="f20b5c74d4f148f1bfa68ece4bb" src="//injections.adguard.org?ts=1772378873301&amp;name=AdGuard%20Extra&amp;name=AdGuard%20Popup%20Blocker&amp;type=user-script"></script><link href='/Public/favicon.ico' rel='shortcut icon'>        <link rel="stylesheet" type="text/css" href="/Public/publichead/css/public/base.css">
+        <link rel="stylesheet" type="text/css" href="/Public/publichead/css/public/layout.css">
+        <link rel="stylesheet" type="text/css" href="/Public/owner/css/managecenter/managecenterNew.css?v=1.0.0">
+        <link rel="stylesheet" type="text/css" href="https://video.weiq.com/static/swiper-v4.5.3/swiper.min.css">
+        <link rel="stylesheet" type="text/css" href="/Public/owner/css/managecenter/indexNew2.css?v=1.0">
+        <link rel="stylesheet" type="text/css" href="/Public/owner/css/index/redPacket.css?v=3.2.9">
+        <link rel="stylesheet" type="text/css" href="/Public/css/dialog_queue.css?v=3.3.0">
+        <script type="text/javascript" src="https://video.weiq.com/static/js/jquery-1.8.0.min.js"></script>
+        <script type="text/javascript" src="https://video.weiq.com/static/swiper-v4.5.3/swiper.min.js"></script>
+        <script type="text/javascript" src="https://video.weiq.com/static/js/echarts/echarts.min.js"></script>
+        <script type="text/javascript" src="https://video.weiq.com/static/layui-v1.0.0/layui.js"></script>
+        <script type="text/javascript" src="https://video.weiq.com/static/layer-v2.4/layer.js"></script>
+    </head>
+<body>
+    <!--div class="wechat_top">
+  <div class="weChat_content">
+	 <ul class="ri cf">
+		<li class="fore1 accountm"><a href="javascript:void(0);" class="m-r-10" style="cursor:text;">可用余额:<span class="blue2">0</span></a><a href="javascript:void(0);" style="cursor:text;">冻结金额:<span class="blue2">0</span></a></li>
+         <li class="fore2"></li>
+         <li class="fore1"><a href="/owner/footer/ownerhelp.html">帮助中心</a></li>
+      </ul>
+   </div>
+ </div-->
+ <!--header begin-->
+<!--div class="weChat_header">
+  <div class="weChat_content"-->
+    <!--广告主推广平台头页面begin-->
+     <!--div class="logo"><a href="/owner/index/index.html"><img src="/Public/owner/images/weChat_logo.png" _src="/Public/owner/images/weChat_logo.png" width="103" height="40" border="0"></a><span>广告主推广平台</span></div>
+     <ul class="cpcNav"><li ><a href="/owner/index/index.html"></a></li></ul>
+     <div class="headerri cf">
+             <a class='assets lf ' href="/owner/pay/financialmessage.html" ><i></i></a>              <a class='mail lf ' href="/Owner/ownerlist/platformmessage.html"><i></i></a>
+            <span class="username font14 lf">
+                欢迎您,
+                <div class="nameTextB">
+                    <a href="/Owner/ownerlogin/revise.html" class="nameText">17607126546 <span class="arrow"></span>
+                    </a>
+                    <div class="menu-wrap pop-up">            
+                        <a class="brief" href="">
+                            <span>17607126546</span>
+                        </a>            
+                        <div class="usermenu">
+                            <a href="/owner/ownerlogin/revise.html" >账号设置</a>                                
+                            <a href="/owner/ownerlist/platformmessage.html">消息通知</a>                            <a href="/owner/ownerlogin/loginout.html" class="J_logout">退出</a>            
+                        </div>        
+                    </div>
+                </div>
+            </span>
+     </div-->
+    <!--广告主推广平台头页面end-->
+      <!--/div>
+</div-->
+<!--header end-->
+
+<!-- public css -->
+<link rel="stylesheet" type="text/css" href="https://video.weiq.com/static/font-SansB/index.css">
+<link rel="stylesheet" type="text/css" href="/Public/owner/css/newOwner/iconfont.css?v=2.2">
+<link rel="stylesheet" href="/Public/publichead/css/public/cms_nav.css?v=3.3.7">
+<link rel="stylesheet" href="/Public/owner/css/commondialog.css?v=1.3">
+<!-- 新定义头部样式 -->
+<link rel="stylesheet" href="/Public/publichead/css/public/head_new.css?v=20260115">
+<script type="text/javascript" src="/Public/owner/js/frequentlyUtils.js?v=1.7"></script>
+<script type="text/javascript" src="/Public/publichead/js/autocomplete.js"></script>
+<!-- main-nav begin -->
+<div class="cms-main-nav ">
+    <div class="cms-nav-main cf">
+        <div class="cms-logo-wrap lf flex">
+                <a href="/index.html">
+                                            <img src="/Public/publichead/images/public/weiq_logo_new.png?v=1.0" alt="">                </a>
+            </div>                    <div class="cms-nav-list lf cf">            <a href="/owner/index/index.html?trackcode=10000" class="lf cms-nav-list-item active">我的</a>
+            <a href="/chat" class="lf cms-nav-list-item">BOSS红人智投</a>
+            <a href="/client/product/douyin-live/list" class="lf cms-nav-list-item">众星同播</a>                            <a href="/owner/newweibo/mediauser.html?trackcode=20000" class="lf cms-nav-list-item ">红人广场</a>            <!-- <a href="" class="lf cms-nav-list-item ">数据中心</a> -->
+            <!-- <a href="/home/index/marketingacademy.html?trackcode=30000" class="lf cms-nav-list-item ">营销学院</a> -->
+            <!-- <a href="" class="lf cms-nav-list-item ">热榜</a> -->
+            <!--  -->
+            <!--  -->
+                        <!--  -->
+                    </div>
+        <div class="cms-handle-wrap ri cf" style="margin-left: 20px;">
+            <a class="cms-handle-help-wrap lf" href="/owner/footer/ownerhelp.html">
+                    <i class="base-iconfont iconfont-help">&#xe631;</i>
+                    <i class="base-iconfont iconfont-help-hover">&#xe630;</i>
+                    <p class="cms-tips-info" style="top:56px;">
+                        点击跳转帮助中心
+                    </p>
+                </a>            <a class="im-chat-p lf" href="javascript:;" onclick="window.open(&apos;/owner/message/communicate.html?platid=&plattype=&apos;,'msg')">
+                <span class="im-chat-icon">
+                    <!-- <span class="im-chat-icon-new"></span> -->
+                    <span class="im-chat-icon-count" style="left: 20px;bottom: 22px;"></span>
+                    <span class="im-chat-icon-count-plus" style="left: 20px;bottom: 22px;"></span>
+                </span>
+            </a>
+            <div class="cms-handle-msg-wrap lf">
+                    <a class="cms-handle-msg-icon" href="/owner/Innermessage/totalMessage.html">
+                        <i class="base-iconfont iconfont-msg">&#xe78e;</i>
+                        <i class="base-iconfont iconfont-msg-hover">&#xe78f;</i>
+    
+                        <span class="new-message-icon-new"></span>
+                        <span class="new-message-count"></span>
+                        <span class="new-message-count-plus"></span>
+                    </a>
+    
+                    <div class="new-message-list-p">
+                        <i class="triangle-icon"></i>
+                        <i class="base-iconfont close-icon">&#xe676;</i>
+                        <p class="message-dialog-name">通知公告</p>
+                        <div class="new-message-list"></div>
+                        <div class="new-message-empty">
+                            <span class="empty-img"></span>
+                            <p>暂无消息</p>
+                        </div>
+                        <div class="more-p">
+                            <a class="more-content" href="/owner/Innermessage/totalMessage.html">
+                                查看全部
+                                <i class="base-iconfont arrow">&#xe649;</i>
+                            </a>
+                        </div>
+                    </div>
+                </div>            <div class="cms-handle-download-wrap lf">
+                <a class="wq-button--download" href="/download">
+                    <div class="wq-button--download_span">
+                        <img src="/Public/publichead/images/public/icon_phone.png" class="icon_phone" alt="">
+                        <div class="text-list-box">
+                            <div class="text-list">
+                                <p class="text">下载中心</p>
+                                <p class="text">移动应用</p>
+                                <p class="text">下载中心</p>
+                                <p class="text">移动应用</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="cms-handle-mine-wrap lf">
+                <div class="cms-handle-mine-header-wrap cf">
+                    <p class="cms-mine-header-avatar-wrap lf">
+                        <img src="/Public/publichead/images/public/default_avatar_new_2.png" class="cms-mine-avatar" alt="">
+                    </p>
+                    <!-- <p class="cms-handle-mine-header-name lf">17607126546</p> -->
+                    <!-- <i class="base-iconfont iconfont-arrow lf">&#xe656;</i> -->
+                    <div class="cms-account-info">
+                                                <i class="cms-account-triangle-icon"></i>
+                        <div class="cms-account-info-top cf">
+                            <p class="cms-mine-avatar-wrap lf">
+                                <img src="/Public/publichead/images/public/default_avatar_new_2.png" class="cms-mine-avatar" alt="">
+                            </p>
+                            <div class="cms-account-info-detail lf">
+                                <p class="cms-account-name">
+                                    17607126546                                                                    </p>
+                                
+                                <span class="cms-account-type">广告主</span>
+                            </div>
+                        </div>
+                        <div class="cms-account-money-wrap">
+                            <p class="cms-account-money-title">可用余额</p>
+                            <p class="cms-account-money">
+                                <span class="cms-account-money-icon">￥</span>
+                                <span>0</span>
+                            </p>
+                        </div>
+                        <div class="cms-account-handle-wrap">
+                            <a href="https://pay.weiq.com/adver/balance.html" class="cms-account-handle-btn">充值</a>
+                            <a href="/owner/ownerlogin/loginout.html" class="cms-account-handle-btn">退出登录</a>
+                        </div>
+                    </div>
+                </div>
+        </div>
+                </div>
+        <!-- 选号车 -->
+                <!-- saas会员 -->
+            </div>
+</div>
+
+<script>
+    var black_agent = 0; // 代理商黑名单 1是 0否 G类
+    var new_order_process = "0"; // 是否外部代理商 == 1项目
+    var self_help = "1"; // 
+    var agent_label = "0"; // self_help==1||agent_label==5||agent_label==3 推广
+    var need_brand_auth = "1"; // == 1 工作单 sanlimcn
+    // 获取选号车列表
+    var shoppingcarGetList = "/owner/shoppingcar/getList.html"; 
+    // 获取选号车账号计数
+    var getAllPlatformList = "/owner/shoppingcar/getAllPlatformList.html"
+</script>
+<script type="text/javascript">
+    // 选号车悬浮
+    // hover状态下 更新的新元素会不断的触发mouseenter事件
+    var mouseenterKey = true
+    $('.cms-shopping-cart').mouseenter(cartMouseenter);
+    $('.cms-shopping-cart').mouseleave(function (){ mouseenterKey = true});
+    function cartMouseenter(){
+        if(!mouseenterKey) return;
+        var _li = ''
+        var platformArr = [
+            '/Public/owner/images/newOwner/plat/icon_weibo.png',
+            '/Public/owner/images/newOwner/plat/icon_wechat.png',
+            '/Public/owner/images/newOwner/plat/icon_douyin.png',
+            '/Public/owner/images/newOwner/plat/icon_redbook.png',
+            '/Public/owner/images/newOwner/plat/icon_ks.png',
+            '/Public/owner/images/newOwner/plat/icon_bilibili.png',
+        ]
+        $('.cms-shopping-ul').show()
+        $('.cms-shopping-none').hide()
+        $('.cms-shopping-total').show()
+        getAllPlatformListFn()
+        $.ajax({
+            type: "get",
+            url: shoppingcarGetList,
+            dataType: "JSON",
+            success: function (res) {
+                if (res.code == 200 ) {
+                    if(res.data.data.length > 0){
+                        
+                        $('.cms-shopping-count').html(res.data.count)
+                        for(var i = 0; i < res.data.data.length; i++) {
+                            var price = res.data.data[i].price == 0?'-':'￥'+res.data.data[i].price
+                            var _avatar = res.data.data[i].platform == 1 ? "https://imgwb.apput.com/img_url?" + res.data.data[i].avatar : res.data.data[i].avatar;
+                            _li += '<li class="cms-shopping-li">'+
+                            '<div class="shopping-li-information">'+
+                                '<div class="shopping-li-photo">'+
+                                    '<img class="shopping-li-avatar" src="'+_avatar+'" >'+
+                                    '<img class="shopping-li-platform" src="'+platformArr[+res.data.data[i].platform-1]+'" >'+
+                                '</div>'+
+                                '<div class="shopping-li-name text-hid">'+
+                                    res.data.data[i].account_name
+                                +'</div>'+
+                            '</div>'+
+                            '<div class="shopping-li-price">'+
+                                '<span>'+price+'</span>'+
+                                '<i platform="'+(+res.data.data[i].platform)+'" mediaid="'+res.data.data[i].mediaid+'" class="base-iconfont shopping-li-del">&#xe67d;</i>'+
+                            '</div>'+
+                        '</li>'
+                        }
+                        $('.cms-shopping-ul').html(_li)
+                        
+                        
+                    }else{
+                        $('.cms-shopping-ul').hide()
+                        $('.cms-shopping-none').show()
+                        $('.cms-shopping-total').hide()
+                    }
+                    mouseenterKey = false
+                } else {
+                    layer.msg(res.msg);
+                }
+               
+            },
+            error: function (res) {
+                layer.msg('操作失败');
+                // layer.close(_idx);
+            }
+        });
+	}
+    // 删除
+    $(document).on("click",'.shopping-li-del',function (e){
+        // debugger
+        var delApi = [
+            "/owner/newweibo/delShoppingcarAccount.html",
+            "/owner/wechat/delShoppingcarAccount.html",
+            "/owner/douyin/delShoppingcarAccount.html",
+            "/owner/redbook/delShoppingcarAccount.html",
+            "/owner/ks/delShoppingcarAccount.html",
+            "/owner/bili/delShoppingcarAccount.html",
+        ]
+        var delName = [
+            'weibo',
+            'wechat',
+            'douyin',
+            'xhs',
+            'ks',
+            'bili',
+        ]
+        var dom = $(this)
+        var mediaid = dom.attr('mediaid')
+        var platform = dom.attr('platform')
+        var $check = $("#check_" + mediaid);
+        $.ajax({
+            type: "post",
+            url: delApi[+platform - 1],
+            data:{mediaid:mediaid},
+            dataType: "JSON",
+            success: function (res) {
+                if (res.code == 200 ) {
+                    // debugger
+                    // 重新渲染列表
+                    mouseenterKey = true
+                    // 选号车页面 悬浮框删除账号 更新选号车列表
+                    typeof delNavAccount === 'function' && delNavAccount(delName[+platform - 1])
+                    cartMouseenter()
+                    $check.removeAttr("checked");
+                } else {
+                    layer.msg(res.msg);
+                }
+            },
+        })
+    })
+
+    // 获取选号车账号计数
+    window.getAllPlatformListFn = function (){
+        $.ajax({
+            type: "get",
+            url: getAllPlatformList,
+            dataType: "JSON",
+            success: function (res) {
+                if (res.code == 200 ) {
+                     // layer.close(_idx);
+                    if(res.data.all >= 10){
+                        $('.cms-shopping-num').addClass('nine')
+                    }else{
+                        $('.cms-shopping-num').removeClass('nine')
+                    }
+                    $('.cms-shopping-num').html(res.data.all>99?'99+':res.data.all)
+                } else {
+                    layer.msg(res.msg);
+                }
+            },
+            error: function (res) {
+                layer.msg(res.msg);
+                // layer.close(_idx);
+            }
+        })
+    }
+
+    getAllPlatformListFn()
+
+    $("div.cms-handle-search-btn").on("click",function(event){
+        var e = event || window.event;
+        $(this).hide();
+        $("div.account-search-box").show();
+        $(".account-search-box input.search-ipt").focus();
+        e.stopPropagation();
+    })
+    $("div.account-search").on("click",function(event){
+        var e = event || window.event;
+        e.stopPropagation();
+    })
+    $("body").click(function(){
+        $("div.cms-handle-search-btn").show();
+        $(".account-search-box input.search-ipt").val("");
+        $("div.account-search-box").hide();
+    })
+    $(".account-search-box .account-search-reset-wrap").click(function(){
+        $("div.cms-handle-search-btn").show();
+        $(".account-search-box input.search-ipt").val("");
+        $("div.account-search-box").hide();
+    })
+    //搜索下拉框
+	$('.cms-main-nav .account-search').autocomplete({
+        onSubmit: function(text){
+        	if($('#pageSearchCont').val() == ''){
+        		$('.cms-main-nav .account-search form').attr('action','http://s.weiq.com')
+        	};
+            $('.cms-main-nav .account-search form').submit();
+        }
+    },'pageSearchCont','cms-main-nav .account-search','search-ipt-autocomplete');
+    $('.search-submit.redbtn-bg').click(function(){
+    	if($('#pageSearchCont').val() == ''){
+        	$('.cms-main-nav .account-search form').attr('action','http://s.weiq.com')
+        };
+    });
+    $("div.cms-handle-mine-wrap").hover(function(){
+        $(this).find("div.cms-account-info").stop(true,true).fadeIn("fast");
+        $(this).find("i.iconfont-arrow").css("transform",'rotate(180deg)');
+    },function(){
+        $(this).find("div.cms-account-info").fadeOut("fast");
+        $(this).find("i.iconfont-arrow").css("transform",'rotate(0)');
+    })
+
+    // 站内信弹窗点击关闭
+    $('.new-message-list-p').find('.close-icon').click(function() {
+        var $newMessageListP = $(this).parent();
+        $newMessageListP.hide();
+
+        // 过渡动画有300ms时间
+        setTimeout(function() {
+            $newMessageListP.show();
+        }, 100);
+    })
+
+    $(document).ready(function(){
+        var str = "";
+        $.ajax({
+            type: "GET",
+            url: "/owner/message/getMessageCount.html",
+            dataType: "json",
+            async:false,
+            success: function(data){
+                if(data.count > 0) {
+                    str = '<i class="cms-nav-msg-dot-icon lf"></i>';
+                    $("#message_count").append(str);
+
+                    // 顶导im数据更新统一置于 Application\Publichead\View\Ownerfoot\service.html 公共浮窗中
+                }
+            }
+        })
+    })
+
+    // 顶导同步站内信信息
+    function topNavSyncMessageInfo() {
+        // 获取未读数
+        $.ajax({
+            type: "GET",
+            url: "/owner/innermessage/get_unread_list.html",
+            dataType: "json",
+            async:false,
+            success: function(res){
+                var data = res.data || {};
+                if (data.is_new) {
+                    // 有近24小时内未读新消息
+                    $('.cms-handle-msg-wrap').find('.new-message-icon-new').show();
+                    $('.cms-handle-msg-wrap').find('.new-message-count').hide();
+                    $('.cms-handle-msg-wrap').find('.new-message-count-plus').hide();
+                } else if (data.unread_count && data.unread_count.length > 1) {
+                    // 未读数两位数及以上
+                    $('.cms-handle-msg-wrap').find('.new-message-icon-new').hide();
+                    $('.cms-handle-msg-wrap').find('.new-message-count').hide();
+                    $('.cms-handle-msg-wrap').find('.new-message-count-plus').html(data.unread_count).show();
+                } else if (data.unread_count && data.unread_count != '0' && data.unread_count.length > 0) {
+                    // 有未读消息
+                    $('.cms-handle-msg-wrap').find('.new-message-icon-new').hide();
+                    $('.cms-handle-msg-wrap').find('.new-message-count').html(data.unread_count).show();
+                    $('.cms-handle-msg-wrap').find('.new-message-count-plus').html(data.unread_count).hide();
+                } else {
+                    $('.cms-handle-msg-wrap').find('.new-message-icon-new').hide();
+                    $('.cms-handle-msg-wrap').find('.new-message-count').hide();
+                    $('.cms-handle-msg-wrap').find('.new-message-count-plus').hide();
+                }
+            },
+            error: function(xhr,status,error) {
+
+            }
+        })
+
+        // 获取最新未读消息
+        $.ajax({
+            type: "POST",
+            url: "/owner/innermessage/msg_list.html",
+            dataType: "json",
+            async:false,
+            data: {
+                type: 0, // 消息类型0全部1系统2订单3沟通
+                status: 0, // 0全部1已读2未读
+                search: '', // 搜索内容
+                size: '3', // 每页条数
+            },
+            success: function(res){
+                // 最多三条
+                var length = res.data.data.length > 3 ? 3 : res.data.data.length;
+                if (length > 0) {
+                    var _html = '', item;
+                    for (var i = 0; i < length; i++) {
+                        item = res.data.data[i];
+                        _html += '<a class="message-item" href="'+"/owner/Innermessage/totalMessage.html?id=" + item.id +'">'
+                        _html +=     '<p class="message-title single-line-ellipsis">'+ item.title +'</p>'
+                        _html +=     '<div class="message-content two-line-ellipsis">'+(item.sub_title || item.content) +'</div>'
+                        _html += '</a>'
+                    }
+
+                    $('.new-message-list-p').find('.new-message-list').html(_html).show();
+                    $('.new-message-list-p').find('.new-message-empty').hide();
+                } else {
+                    $('.new-message-list-p').find('.new-message-empty').show();
+                    $('.new-message-list-p').find('.new-message-list').hide();
+                }
+
+            },
+            error: function(xhr,status,error) {
+
+            }
+        })
+    }
+
+    $(function() {
+        topNavSyncMessageInfo();
+    })
+
+    // 查看延期支付权益
+    function checkPayDelayRights() {
+        var _html = "";
+
+        _html += '<ul style="padding: 39px 30px 0; text-align: left;">';
+        _html +=     '<li style="margin-bottom: 20px;">';
+        _html +=         '<p style="font-family: PingFangSC-Medium, PingFang SC;font-size: 14px;color: #333333;font-weight: 500;line-height: 20px;">申请条件简单</p>';
+        _html +=         '<p style="margin-top: 5px;font-size: 12px;font-family: PingFangSC-Regular, PingFang SC;font-weight: 400;color: #666666;line-height: 17px;">上传与广告主签署的合同扫描件，即可完成申请</p>';
+        _html +=     '</li>';
+        _html +=     '<li style="margin-bottom: 20px;">';
+        _html +=         '<p style="font-family: PingFangSC-Medium, PingFang SC;font-size: 14px;color: #333333;font-weight: 500;line-height: 20px;">审批及时立即可用</p>';
+        _html +=         '<p style="margin-top: 5px;font-size: 12px;font-family: PingFangSC-Regular, PingFang SC;font-weight: 400;color: #666666;line-height: 17px;">24小时内完成审批，审批通过后可立即使用</p>';
+        _html +=     '</li>';
+        _html +=     '<li style="margin-bottom: 20px;">';
+        _html +=         '<p style="font-family: PingFangSC-Medium, PingFang SC;font-size: 14px;color: #333333;font-weight: 500;line-height: 20px;">不使用不收服务费</p>';
+        _html +=         '<p style="margin-top: 5px;font-size: 12px;font-family: PingFangSC-Regular, PingFang SC;font-weight: 400;color: #666666;line-height: 17px;">仅针对最终投放使用了的部分收取服务费，未使用部分不收取服务费</p>';
+        _html +=     '</li>';
+        _html +=     '<li style="margin-bottom: 20px;">';
+        _html +=         '<p style="font-family: PingFangSC-Medium, PingFang SC;font-size: 14px;color: #333333;font-weight: 500;line-height: 20px;">多种延期期限可选</p>';
+        _html +=         '<p style="margin-top: 5px;font-size: 12px;font-family: PingFangSC-Regular, PingFang SC;font-weight: 400;color: #666666;line-height: 17px;">最长可享受90天延期支付服务，可结合自身业务情况选择适合的档位（30/60/90天）进行使用</p>';
+        _html +=     '</li>';
+        _html +=     '<li>';
+        _html +=         '<p style="font-family: PingFangSC-Medium, PingFang SC;font-size: 14px;color: #333333;font-weight: 500;line-height: 20px;">提醒支付保障全面</p>';
+        _html +=         '<p style="margin-top: 5px;font-size: 12px;font-family: PingFangSC-Regular, PingFang SC;font-weight: 400;color: #666666;line-height: 17px;">支付截止日前多次提醒，以免遗忘。可主动还款，也可待支付截止日系统自动扣款，将从账户余额里扣除</p>';
+        _html +=     '</li>';
+        _html += '</ul>';
+
+        var SimpleDialog = FrequentlyUtils.CreateSimpleDialig({
+            title: '权益介绍',
+            area: ["345px", "542px"],
+            content: _html,
+            _singleModeOptions: {
+                okText: "我知道了"
+            },
+            _ok: function () {
+                SimpleDialog.close();
+            }
+        });
+        SimpleDialog.show();
+    }
+
+    var delay_locked_adver_notice = ''; // 欠款广告主
+    // var delay_locked_adver_notice = '欠款广告主'; // 欠款广告主
+    var delay_locked_agent_notice = ''; // 欠款代理商下未欠款广告主
+    var delay_notice = ''; // 欠临近/逾期还款提示
+
+    // 延期付款相关弹窗 1欠款广告主 2欠款代理商下未欠款广告主 3欠临近/逾期还款提示
+    function showDebtDialog(type, content, cb) {
+        var _html = "";
+        var singleModeOptions = {
+            okText: "立即前往"
+        };
+        var closeBtn = 1;
+
+        if (type == 1) { // 欠款广告主
+            singleModeOptions = {
+                okText: "立即前往",
+                href: "https://pay.weiq.com/adver/adver_delay_payment.html"
+            }
+            closeBtn = 0;
+            _html += '<div style="padding: 50px 30px 40px; text-align: center; color: #666666; font-size: 14px; line-height: 20px;">';
+            _html += content;
+            _html += '</div>';
+        } else if (type == 2) { // 欠款代理商下未欠款广告主
+            singleModeOptions = {
+                okText: "退出登录",
+                href: "/owner/ownerlogin/loginout.html"
+            }
+            closeBtn = 0;
+            _html += '<div style="padding: 50px 30px 40px; text-align: center; color: #666666; font-size: 14px; line-height: 20px;">';
+            _html += content;
+            _html += '</div>';
+        } else if (type == 3) { // 欠临近/逾期还款提示
+            singleModeOptions = {
+                okText: "确定"
+            }
+            closeBtn = 1;
+            _html += '<div style="padding: 50px 30px 40px; text-align: left; color: #666666; font-size: 14px; line-height: 20px;">';
+            _html += content;
+            _html += '</div>';
+        } else {
+            return;
+        }
+
+        var SimpleDialog = FrequentlyUtils.CreateSimpleDialig({
+            title: '通知',
+            area: ["500px"],
+            closeBtn: closeBtn,
+            content: _html,
+            _singleModeOptions: singleModeOptions,
+            _ok: function() {
+                cb && cb()
+                if (closeBtn) {
+                    SimpleDialog.close();
+                }
+            }
+        });
+        SimpleDialog.show();
+    }
+
+    // 不是总览页，并且不是从代理商跳过来的
+    if (location.pathname != '/owner/index/index.html' && !location.pathname.includes('/owner/index/index/ownerid')) {
+        showPaymentDialog()
+    }
+    function showPaymentDialog (cb) {
+        if (delay_locked_adver_notice) { // 欠款广告主
+            showDebtDialog(1, delay_locked_adver_notice, cb);
+        } else if (delay_locked_agent_notice) { // 欠款代理商下未欠款广告主
+            showDebtDialog(2, delay_locked_agent_notice, cb);
+        } else if (delay_notice) { // 欠临近/逾期还款提示
+            showDebtDialog(3, delay_notice, cb);
+        } else {
+            if (cb) return cb()
+        }
+    }
+
+    // 禁止下单情况下的弹窗提示
+    function getStopDownOrderDialogContent() {
+        return "目前您的账号处于禁止投放状态，请联系销售处理。"
+    }
+    function stopDownOrderDialog(sinaMakerExamineDialogFlag) {
+        // 防止重复弹窗
+        if( $('.stopDownOrderDialogOFF').attr('off')) return;
+        var _html = "";
+        var closeBtn = 1;
+        singleModeOptions = {
+            okText: "我知道了"
+        }
+        closeBtn = 1;
+        _html += '<div class="stopDownOrderDialogOFF" off="false" style="padding: 41px 47px 50px;text-align: left;color: #333;font-size: 14px;line-height: 22px;">';
+        _html += getStopDownOrderDialogContent();
+        _html += '</div>';
+
+        var SimpleDialog = FrequentlyUtils.CreateSimpleDialig({
+            title: '通知',
+            area: ["416px"],
+            closeBtn: closeBtn,
+            content: _html,
+            _singleModeOptions: singleModeOptions,
+            _ok: function() {
+                if (closeBtn) {
+                    $('.stopDownOrderDialogOFF').attr('off',false);
+                    SimpleDialog.close();
+                    // sinaMakerExamineDialogFlag:微博授权弹出
+                    if(sinaMakerExamineDialogFlag == 0) {
+                        new_order_process == 0 ?sinaMakerExamineDialog('','personal'): sinaMakerExamineDialog();
+                    }
+                }
+            },
+            _cancel:function() {
+                $('.stopDownOrderDialogOFF').attr('off',false);
+                // sinaMakerExamineDialogFlag:微博授权弹出
+                if(sinaMakerExamineDialogFlag == 0) {
+                    new_order_process == 0 ?sinaMakerExamineDialog('','personal'): sinaMakerExamineDialog();
+                }
+            }
+
+        });
+        SimpleDialog.show();
+        $('.stopDownOrderDialogOFF').attr('off',true);
+    }
+
+    // 微任务品牌授权审核   
+    function genSinaMakerExamineDialogContent(userType,msg) {
+        var _label = ''
+        if(new_order_process==1){
+            _label = '项目'
+        } else if(self_help==1||agent_label==5||agent_label==3){
+            _label = '项目'
+        } else if(need_brand_auth==1) {
+            _label = '工作单'
+        }
+        var _html = "";
+        // 个人
+        if(userType == 'personal') {
+            _html += '微博已开启品牌授权投放模式，如选择主体资质时显示无法投放，请先取得品牌授权文件，并联系平台客服。';
+        } else if(userType == 'task') { // 提交时提示
+            _html += '该任务中的主体资质对应品牌已开启授权投放，目前您尚未获得授权，不能进行投放。';
+        } else if (userType == 'certification') { // 资质弹窗
+            _html += '该主体资质对应品牌已开启授权投放，目前您尚未获得授权，不能进行投放。'
+        } else if (userType == 'brand') {
+            _html += '该品牌已开启授权投放，目前您尚未获得授权，不能进行投放。';
+        } else if (userType == 404) {
+            _html += '该'+ _label +'无品牌信息，请重新创建项目或选择包含品牌信息的'+_label+'。';
+        } else if (Number(userType) >= 50001 && Number(userType) <= 59999) {
+            _html += (msg || "");
+        } else {
+            // _html += '该'+ _label +'对应品牌已开启授权投放，目前您尚未获得授权，不能进行投放。';
+            _html += '该品牌已开启授权投放，目前您尚未获得授权，不能进行投放。';
+        }
+        return _html;
+    }
+    function sinaMakerExamineDialog(callback,userType,msg) {
+        var _label = ''
+        if(new_order_process==1){
+            _label = '项目'
+        } else if(self_help==1||agent_label==5||agent_label==3){
+            _label = '项目'
+        } else if(need_brand_auth==1) {
+            _label = '工作单'
+        }
+        // 防止重复弹窗
+        if( $('.sinaMakerExamineDialogOFF').attr('off')) return;
+        var _html = "";
+        var closeBtn = 1;
+        singleModeOptions = {
+            okText: "我知道了"
+        }
+        closeBtn = 1;
+        _html += '<div class="sinaMakerExamineDialogOFF" off="false" style="padding: 41px 50px 30px;text-align: left;color: #333;font-size: 14px;line-height: 22px;">';
+        _html += genSinaMakerExamineDialogContent(userType,msg);
+        _html += '</div>';
+        var SimpleDialog = FrequentlyUtils.CreateSimpleDialig({
+            title: '通知',
+            area: ["500px"],
+            closeBtn: closeBtn,
+            content: _html,
+            skin: "sinaMakerExamineDialogAnchor",
+            _singleModeOptions: singleModeOptions,
+            _ok: function() {
+                if (closeBtn) {
+                    $('.sinaMakerExamineDialogOFF').attr('off',false);
+                    SimpleDialog.close();
+                    callback && callback()
+                }
+            },
+            _cancel:function() {
+                $('.sinaMakerExamineDialogOFF').attr('off',false);
+                callback && callback()
+            }
+
+        });
+        SimpleDialog.show();
+        $('.sinaMakerExamineDialogOFF').attr('off',true);
+    }
+</script>
+<!-- main-nav end -->
+
+
+    <div class="inner-w put-manage-center cf">
+        <link rel="stylesheet" type="text/css" href="/Public/publichead/css/public/menu.css?v=2.4">
+<div class="manage-center-aside lf c64">
+</div>
+
+<style>
+    .manage-center-aside {
+        border-radius: 10px;
+    }
+
+    .manage-center-aside .icon {
+        width: 24px;
+        height: 24px;
+        vertical-align: middle;
+        margin-right: 5px;
+    }
+
+    .aside-list-tlt {
+        padding: 0 15px;
+    }
+
+    .aside-list-tlt .icon-nor { display: inline-block; }
+    .aside-list-tlt .icon-act { display: none; }
+    .aside-list-tlt.active .icon-nor { display: none; }
+    .aside-list-tlt.active .icon-act { display: inline-block; }
+
+    .aside-list-tlt img,
+    .aside-list-tlt span,
+    .aside-list-tlt i {
+        position: relative;
+        z-index: 10;
+    }
+
+    .aside-list-tlt > span {
+        font-family: PingFang SC-Medium, PingFang SC;
+        font-weight: 500;
+    }
+
+    .aside-list-tlt.active span,
+    .aside-list-tlt.active i {
+        color: #fff;
+    }
+
+    .aside-list-tlt *,
+    .aside-list-item *,
+    .aside-list-tlt::after,
+    .aside-list-item::after {
+        transition: all .3s;
+    }
+
+    .aside-list-item {
+        position: relative;
+        display: flex;
+        align-items: center;
+    }
+
+    .aside-list-item img,
+    .aside-list-item span {
+        position: relative;
+        z-index: 10;
+        font-family: PingFang SC-Regular, PingFang SC;
+        font-weight: 400;
+    }
+
+    .aside-list-item.active span {
+        color: #fff !important;
+        font-family: PingFang SC-Medium, PingFang SC;
+        font-weight: 500;
+    }
+
+    .aside-list-tlt:hover span,
+    .aside-list-item:hover span {
+        color: #FF405C;
+        font-family: PingFang SC-Medium, PingFang SC;
+        font-weight: 500;
+    }
+
+    .manage-center-aside .aside-list-tlt:hover .base-iconfont.right-dir {
+        color: #FF405C;
+    }
+
+    .aside-list-item.active,
+    .aside-list-item:hover {
+        background: transparent;
+    }
+
+    .aside-list-tlt::after,
+    .aside-list-item::after {
+        content: "";
+        width: 163px;
+        height: 40px;
+        background: transparent;
+        border-radius: 5px;
+        position: absolute;
+        visibility: visible;
+        top: 7px;
+        left: 10px;
+        z-index: 0;
+    }
+
+    .aside-list-tlt:hover::after,
+    .aside-list-item.active::after,
+    .aside-list-item:hover::after {
+        background: #FFEBEE;
+    }
+
+    .aside-list-tlt.active::after,
+    .aside-list-item.active::after {
+        background: linear-gradient(135deg, #FF405C 0%, #FFA78A 100%);
+    }
+
+    .aside-list-tlt .right-dir {
+        transform: rotate(0deg) !important;
+    }
+
+    .aside-list-tlt.isclose .right-dir {
+        transform: rotate(180deg) !important;
+    }
+
+    .aside-list-tlt .new-tishi {
+        position: absolute;
+        left: 103px;
+        top: 5px;
+        z-index: 10;
+    }
+     /* 2024.9.6 增加菜单样式调整 */
+     .three-con .aside-list-item{
+        text-indent: 64px;
+        font-size: 12px;
+        height: 44px;
+        line-height: 44px;
+    }
+    .three-con .aside-list-item::after{
+        height: 40px;
+        top:0
+    }
+    .three-list-item .base-iconfont.right-dir{
+        position: relative;
+        right: 10px !important;
+        z-index: 9;
+    }
+    .aside-list-item.three-list-item:hover,.aside-list-item.three-list-item:hover span,.aside-list-item.three-list-item:hover::after{
+        background: none;
+        color: #666;
+     }
+     /* 20241121 新增样式 */
+    .aside-list-tlt > span{
+        color: #212133 !important;
+    }
+    .aside-list-tlt:hover::after, .aside-list-item.active::after, .aside-list-item:hover::after{
+        background: transparent !important;
+    }
+    .aside-list-tlt.active::after, .aside-list-item.active::after{
+        background: #fff5f7 !important;
+        color: #ff405c !important; 
+        font-weight: 400;
+    }
+    .aside-list-tlt.active span, .aside-list-tlt.active i,.aside-list-item.active span{
+        color: #ff405c !important; 
+    }
+    .aside-list-wrap{
+        background-color: #fff;
+    }
+</style>
+
+<script type="text/javascript">
+    $(function () {
+        var iconObj = {
+            '总览': '<img class="icon icon-nor" src="/Public/publichead/images/public_img/icon_zl.png" alt=""><img class="icon icon-act" src="/Public/publichead/images/public_img/icon_zl_active.png" alt="">',
+            '产品服务': '<img class="icon icon-nor" src="/Public/publichead/images/public_img/icon_cpfw.png" alt=""><img class="icon icon-act" src="/Public/publichead/images/public_img/icon_cpfw_active.png" alt="">',
+            '我的项目': '<img class="icon icon-nor" src="/Public/publichead/images/public_img/icon_wdxm.png" alt=""><img class="icon icon-act" src="/Public/publichead/images/public_img/icon_wdxm_active.png" alt="">',
+            'DNR工作单': '<img class="icon icon-nor" src="/Public/publichead/images/public_img/icon_dnr.png" alt=""><img class="icon icon-act" src="/Public/publichead/images/public_img/icon_dnr_active.png" alt="">',
+            "我的任务": '<img class="icon icon-nor" src="/Public/publichead/images/public_img/icon_wdrw.png" alt=""><img class="icon icon-act" src="/Public/publichead/images/public_img/icon_wdrw_active.png" alt="">',
+            "财务中心": '<img class="icon icon-nor" src="/Public/publichead/images/public_img/icon_cwzx.png" alt=""><img class="icon icon-act" src="/Public/publichead/images/public_img/icon_cwzx_active.png" alt="">',
+            "资料设置": '<img class="icon icon-nor" src="/Public/publichead/images/public_img/icon_zlsz.png" alt=""><img class="icon icon-act" src="/Public/publichead/images/public_img/icon_zlsz_active.png" alt="">',
+            "我的工具": '<img class="icon icon-nor" src="/Public/publichead/images/public_img/icon_wdgj.png" alt=""><img class="icon icon-act" src="/Public/publichead/images/public_img/icon_wdgj_active.png" alt="">',
+            // 只针对华为其中一个用户
+            '全量项目管理': '<img class="icon icon-nor" src="/Public/publichead/images/public_img/icon_wdxm.png" alt=""><img class="icon icon-act" src="/Public/publichead/images/public_img/icon_wdxm_active.png" alt="">'
+        };
+        var _trackcode = {
+            '产品服务': 70000,
+            "我的任务": 80000,
+            "财务中心": 90000,
+            "资料设置": 110000,
+            "我的工具": 100000
+        }
+        function initRender() {
+            $.ajax({
+                url: '/owner/menu/menu_list.html',
+                type: "POST",
+                dataType: 'JSON',
+                data: { url: window.location.pathname },
+                success: dealMenu
+            });
+        };
+        function dealMenu(res) {
+            var _html = '';
+            for (var i = 0, L = res.length; i < L; i++) {
+                _html += dealChild(res[i]);
+                // if(res[i].extend == 0){
+                //     _html += dealChild(res[i]);
+                // }else{
+                //     _html += dealExtend(res[i]);
+                // };
+            };
+            $('.manage-center-aside').html(_html);
+            bindEvent();
+        };
+        function dealChild(data) {
+            var _html = "<div class='center-aside-list '>",
+                _isActive = data.active == 1;
+            if (data.title === '总览' || (data.title === '我的项目' && data.child.length == 0) || (data.title === 'DNR工作单' &&  data.child.length == 0)) {
+                _html += '<a class="aside-list-tlt cf ' + (_isActive ? " isclose" : '') + (_isActive && data.child.length === 0 ? " active" : '') + '" href="' + data.url + '">';
+            } else if (data.title === '产品服务') {
+                _html += '<a class="aside-list-tlt cf ' + (_isActive ? " isclose" : '') + (_isActive && data.child.length === 0 ? " active" : '') + '" href="javascript:void(0);" data-trackcode="70000"><img class="new-tishi" src="/Public/owner/images/evaluateGivingRedPacket/icon_tishi.png"/>';
+            } else if (data.title === '我的工具' && data.newicon) { // newicon：右上角new icon显示时间
+                _html += '<a class="aside-list-tlt cf ' + (_isActive ? " isclose" : '') + (_isActive && data.child.length === 0 ? " active" : '') + '" href="javascript:void(0);" data-trackcode="100000">';
+            } else {
+                _html += '<a class="aside-list-tlt cf ' + (_isActive ? " isclose" : '') + (_isActive && data.child.length === 0 ? " active" : '') + '" href="javascript:void(0);" data-trackcode="' + _trackcode[data.title] + '">';
+            }
+            _html += iconObj[data.title]; // 图标
+            _html += '<span>' + data.title + '</span>';
+            _html += (data.child.length ? '<i class="base-iconfont right-dir ri">&#xe656;</i>' : '');
+            _html += '</a>'
+            _html += '<div class="aside-list-wrap ' + (_isActive ? "wrap-first" : '') + '">'
+            for (var i = 0, L = data.child.length; i < L; i++) {
+                if (data.title === '财务中心') {
+                    _html += '<a class="aside-list-item ' + (_isActive && data.child[i].active == 1 ? 'active' : '') + '" href="' + data.child[i].url + '">';
+                    _html += '<span pay>' + data.child[i].product_name + '</span>' + '</a>'
+                } else if (data.child[i].product_name == '红人数据导出') {
+                    _html += '<a class="aside-list-item ' + (_isActive && data.child[i].active == 1 ? 'active' : '') + '" href="' + data.child[i].url + '">';
+                    _html += '<span>' + data.child[i].product_name + '</span>' + '<img class="reds-export-icon" src="/Public/owner/images/sensation/icon_sjd.png"/></a>'
+                } else if(data.child[i].product_name == '微信推广任务' && data.child[i].child){
+                    _html += '<a class="aside-list-item three-list-item" href="javascript:void(0);">';
+                    _html += '<span>' + data.child[i].product_name + '</span>' + '</a>'
+                    _html +='<div class="three-con">'
+                        for(var j=0;j<data.child[i].child.length;j++){
+                            _html +='<a class="aside-list-item '+ (_isActive && data.child[i].child[j].active == 1 ? 'active' : '') +'" href="'+data.child[i].child[j].url+'"><span>'+data.child[i].child[j].product_name+'</span></a>'
+                        }
+                    _html +='</div>'
+                } else if(data.child[i].product_name == '抖音推广任务' && data.child[i].child){
+                    _html += '<a class="aside-list-item three-list-item" href="javascript:void(0);">';
+                    _html += '<span>' + data.child[i].product_name + '</span>' + '</a>'
+                    _html +='<div class="three-con">'
+                    for(var j=0;j<data.child[i].child.length;j++){
+                        _html +='<a class="aside-list-item '+ (_isActive && data.child[i].child[j].active == 1 ? 'active' : '') +'" href="'+data.child[i].child[j].url+'"><span>'+data.child[i].child[j].product_name+'</span></a>'
+                    }
+                    _html +='</div>'
+                } else if(data.child[i].product_name == '小红书推广任务' && data.child[i].child){
+                    _html += '<a class="aside-list-item three-list-item" href="javascript:void(0);">';
+                    _html += '<span>' + data.child[i].product_name + '</span>' + '</a>'
+                    _html +='<div class="three-con">'
+                    for(var j=0;j<data.child[i].child.length;j++){
+                        _html +='<a class="aside-list-item '+ (_isActive && data.child[i].child[j].active == 1 ? 'active' : '') +'" href="'+data.child[i].child[j].url+'"><span>'+data.child[i].child[j].product_name+'</span></a>'
+                    }
+                    _html +='</div>'
+                } else {
+                    _html += '<a class="aside-list-item ' + (_isActive && data.child[i].active == 1 ? 'active' : '') + '" href="' + data.child[i].url + '">';
+                    _html += '<span>' + data.child[i].product_name + '</span>' + '</a>'
+                }
+            };
+            _html += '</div></div>';
+            return _html;
+        };
+        function dealExtend(data) {
+            var _html = "<div class='center-aside-list '>",
+                _isActive = data.active == 1;
+            _html += '<div class="aside-list-contain ">';
+            _html += '<a class="aside-list-tlt cf ' + (_isActive ? "active" : '') + '" href="' + data.url + '">';
+            _html += iconObj[data.title] + data.title + '<i class="base-iconfont right-dir ri">&#xe649;</i></a>';
+            _html += '<div class="center-aside-extend" style="display:none">'
+            _html += '<div class="aside-extend-product extend-pick">';
+            for (var i = 0, L = data.extend.length; i < L; i++) {
+                var extend = data.extend[i];
+                // console.log(extend)
+                _html += '<p class="extend-product-tlt c64"><span class="product-tlt-wd">' + extend.title + '</span></p>';
+                _html += '<div class="extend-product-wrap cf">';
+                for (var j = 0, _L = extend.child.length; j < _L; j++) {
+                    _html += '<div class="extend-product-list lf overflow-noellipsis">'
+                    _html += '<a href="' + extend.child[j].url + '" class="c64 red-link-1">'
+                    _html += '<img src="' + extend.child[j].imgurl + '" />'
+                    _html += '<span class="product-list-wd">' + extend.child[j].name + '</span>'
+                    _html += '</a></div>'
+                };
+                _html += '</div>';
+            };
+            _html += '</div></div></div>'
+            _html += '<div class="aside-list-wrap ' + (_isActive ? "wrap-first" : '') + ' ">'
+            for (var i = 0, L = data.child.length; i < L; i++) {
+                _html += '<a class="aside-list-item ' + (data.child[i].active == 1 ? 'active' : '') + '" href="' + data.child[i].url + '">';
+                _html += '<span>' + data.child[i].product_name + '</span>' + '</a>'
+            };
+            _html += '</div></div></div>';
+            return _html;
+        };
+        function bindEvent() {
+            // 点击一级菜单
+            $('.aside-list-tlt').click(function () {
+                var _this = $(this);
+                if (_this.siblings(".aside-list-wrap").children().length === 0) {
+                    if (!_this.hasClass("active")) {
+                        _this.addClass('active').parents('.center-aside-list').siblings('.center-aside-list').each(function () {
+                            $(this).find(".aside-list-tlt").removeClass("active");
+                            $(this).find('.aside-list-wrap').slideUp().siblings(".aside-list-tlt").removeClass("isclose");
+                        });
+                    }
+                } else {
+                    var childWrap = _this.parents('.center-aside-list').find('.aside-list-wrap');
+                    if (childWrap.css("display") === "none") {
+                        childWrap.slideDown().parents('.center-aside-list').siblings('.center-aside-list').find('.aside-list-wrap').each(function () {
+                            var _this2 = $(this);
+                            _this2.slideUp(function () {
+                                if (_this2.find(".aside-list-item.active").length > 0) {
+                                    _this2.parents(".center-aside-list").find(".aside-list-tlt").addClass('active');
+                                }
+                            });
+                            _this2.siblings(".aside-list-tlt").removeClass("isclose");
+                        });
+                        childWrap.siblings(".aside-list-tlt").addClass("isclose");
+                        if (childWrap.find(".aside-list-item.active").length > 0) {
+                            _this.removeClass('active');
+                        }
+                    } else {
+                        childWrap.slideUp(function () {
+                            if (childWrap.find(".aside-list-item.active").length > 0) {
+                                _this.addClass('active');
+                            }
+                        });
+                        childWrap.siblings(".aside-list-tlt").removeClass("isclose");
+                    }
+                }
+
+            });
+            $('.aside-list-item').click(function () {
+                var _name = $(this).find("span[pay]").html()
+                var href = $(this).attr('data-href')
+                var _o = {
+                    '延期支付管理': 91000,
+                    '账户余额': 92000,
+                    '财务流水': 93000,
+                    '优惠券': 94000,
+                    '实名认证': 95000,
+                }
+                if (_o[_name]) {
+                    $.ajax({
+                        type: "post",
+                        url: trackcodeUrl,
+                        data: { trackcode: _o[_name] },
+                        timeout: 3000,
+                        complete: function () {
+                            if (href) {
+                                window.location.replace(href)
+                            }
+                        },
+                    });
+                }
+            })
+            // var enterTime,leaveTime;
+            // $('.aside-list-contain').mouseover(function(){
+            //     clearTimeout(leaveTime);
+            //     var $this = $(this);
+            //     enterTime=setTimeout(function(){
+            //         $this.find('.center-aside-extend').show();
+            //     },240);
+            // }).mouseout(function(){
+            //     clearTimeout(enterTime);
+            //     var $this = $(this);
+            //     leaveTime=setTimeout(function(){
+            //         $this.find('.center-aside-extend').hide();
+            //     },200);
+            // });
+        };
+        (function () {
+            initRender();
+        })()
+    });
+
+</script>
+        <!-- <div class="mask-activity">
+            <div class="mask-main">
+                <div>
+                    <img src="/Public/publichead/images/public/active_img.png" alt="">
+                    <div class="close-mask"></div>
+                    <div class="to-activity"></div>
+                </div>
+            </div>
+        </div> -->
+        <div class="manage-center-cont ri">
+            <div class="center-cont-account cf">
+                <div class="detail-cont">
+                    <div class="detail-head">
+                        <p class="head-username">17607126546</p>
+
+                        
+                        <div class="auth-status-line">
+                                                            <div class="sub-head">
+                                    <i class="base-iconfont iconcolor">&#xe686;</i>
+                                    <span>投放资质未认证，</span>
+                                    <a class="auth-entry-a" href="https://pay.weiq.com/adver/adver_auth.html" target="_blank">
+                                        <span style="margin-right: 5px;">前往认证</span>
+                                        <i class="base-iconfont">&#xe649;</i>
+                                    </a>
+                                </div>
+                            <div class="head-help">
+                                    <a href="/owner/footer/ownerhelp.html" target="_blank">
+                                        <span style="margin-right: 5px;">帮助中心</span>
+                                        <i class="base-iconfont">&#xe649;</i>
+                                    </a>
+                                </div>                        </div>
+
+                    </div>
+
+                    <div class="money-area">
+                        <div class="head-money">
+                            <div class="balance">
+                                <span class="balance-one price-ff">0</span>
+                                <span class="balance-two price-ff">******</span>
+                                <div class="blance-text">
+                                    <span>可用余额</span>
+                                    <span class="help-main">
+                                        <i class="base-iconfont iconfont-mark help">&#xe66b;</i>
+                                        <p class="account-info-fans-info black img-arrow">
+                                            <img class="triangle-down-icon" src="/Public/publichead/images/public/pic_sanjiao.png" alt="">
+                                            账户中可用于下单的金额
+                                        </p>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="freeze">
+                                <span class="freeze-one price-ff">0</span>
+                                <span class="freeze-two price-ff">******</span>
+                                <div class="blance-text">
+                                    <span>冻结金额</span>
+                                    <span class="help-main">
+                                        <i class="base-iconfont iconfont-mark help">&#xe66b;</i>
+                                        <p class="account-info-fans-info black img-arrow">
+                                            <img class="triangle-down-icon" src="/Public/publichead/images/public/pic_sanjiao.png" alt="">
+                                            进行中推广任务冻结的金额，不可用于下单
+                                        </p>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                                            </div>
+
+                    <div class="func-area">
+                        <!-- 会员 -->
+                        <div class="eye">
+                            <span class="icon-wrap">
+                                <i class="base-iconfont xe621">&#xe621;</i>
+                                <i class="base-iconfont xe622">&#xe622;</i>
+                            </span>
+                            <span class="label">隐藏数据</span>
+                        </div>
+                        <div class="pay-btn">
+                            <a href="https://pay.weiq.com/adver/balance.html" style="width: 100%;height: 100%; display: inline-block;font-size: 14px; color: #fff;">
+                                前往充值
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- banner -->
+                <div class="banner-cont" style="height: 277px;" id="bannerWrap">
+                    <div class="index-banner-wrap">
+                        <div class="swiper-container-banner swiper-container" style="border-radius: 10px;">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                                                                                                                <a href="https://www.weiq.com/home/index/newsdetail.html?id=110" target="_blank">                                        <img src="https://img.weiq.com/cms/202308/16922799802098747280.png" alt="" width="997" height="277">
+                                        </a>
+                                    </div>                            </div>
+                            <!-- 如果需要分页器 -->
+                        </div>
+                    </div>
+                    <!-- <div class="swiper-pagination swiper-pagination-banner"></div> -->
+                    <!-- 导航按钮 -->
+                    <div class="swiper-button-prev swiper-btn swiper-btn-prev flow-red-grass-swiper-prev"></div>
+                    <div class="swiper-button-next swiper-btn swiper-btn-next flow-red-grass-swiper-next"></div>
+                    <!-- 分页器 滚动条 -->
+                    <div class="swiper-pagination-scrollbar flow-red-grass-swiper-pagination-scrollbar">
+                        <div class="swiper-scrollbar flow-red-grass-swiper-scrollbar">
+                            <div class="swiper-scrollbar-drag"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="promotion">
+                    <div class="module-name">
+                        <img class="icon" src="/Public/publichead/images/public/owner_home_title_icon.png" alt="">
+                        <span class="promotion-title">红人推广</span>
+                        
+                                            </div>
+
+                    <ul class="promote-type">
+                                                <li>
+                            <img class="plat-bg" src="/Public/publichead/images/public/owner_home_plat_bg_weibo.png" alt="">
+                            <a href="/owner/newweibo/mediauser.html?trackcode=120000">
+                                <span class="plat-icon-box">
+                                    <img class="plat-icon" src="/Public/publichead/images/public/icon_weibo_rect.png" alt="">
+                                </span>
+                                <p>微博推广
+                                    <img class="arrow" src="/Public/publichead/images/public/icon_arrow_circle.png" alt="">
+                                    <img class="arrow arrow-hover" src="/Public/publichead/images/public/icon_arrow_circle_hover.png" alt="">
+                                </p>
+                            </a>
+                        </li>
+                        <li class="yd_1-box">
+                            <img class="plat-bg" src="/Public/publichead/images/public/owner_home_plat_bg_weixin.png" alt="">
+                            <a class="wx-icon-a" href="/owner/wechat/mediauser.html?trackcode=130000">
+                                <span class="plat-icon-box">
+                                    <img class="plat-icon" src="/Public/publichead/images/public/icon_weixin_rect.png" alt="">
+                                </span>
+                                <p>微信推广
+                                    <img class="arrow" src="/Public/publichead/images/public/icon_arrow_circle.png" alt="">
+                                    <img class="arrow arrow-hover" src="/Public/publichead/images/public/icon_arrow_circle_hover.png" alt="">
+                                </p>
+                            </a>
+                        </li>
+                        <li>
+                            <img class="plat-bg" src="/Public/publichead/images/public/owner_home_plat_bg_douyin.png" alt="">
+                            <a href="/owner/douyin/mediauser.html?trackcode=140000">
+                                <span class="plat-icon-box">
+                                    <img class="plat-icon" src="/Public/publichead/images/public/icon_douyin_rect.png" alt="">
+                                </span>
+                                <p>抖音推广
+                                    <img class="arrow" src="/Public/publichead/images/public/icon_arrow_circle.png" alt="">
+                                    <img class="arrow arrow-hover" src="/Public/publichead/images/public/icon_arrow_circle_hover.png" alt="">
+                                </p>
+                            </a>
+                        </li>
+                        <li>
+                            <img class="plat-bg" src="/Public/publichead/images/public/owner_home_plat_bg_redbook.png" alt="">
+                            <a href="/owner/redbook/media.html?trackcode=150000">
+                                <span class="plat-icon-box">
+                                    <img class="plat-icon" src="/Public/publichead/images/public/icon_redbook_rect.png" alt="">
+                                </span>
+                                <p>小红书推广
+                                    <img class="arrow" src="/Public/publichead/images/public/icon_arrow_circle.png" alt="">
+                                    <img class="arrow arrow-hover" src="/Public/publichead/images/public/icon_arrow_circle_hover.png" alt="">
+                                </p>
+                            </a>
+                        </li>                        <li>
+                            <img class="plat-bg" src="/Public/publichead/images/public/owner_home_plat_bg_ks.png" alt="">
+                            <a href="/owner/ks/mediauser.html?trackcode=160000">
+                                <span class="plat-icon-box">
+                                    <img class="plat-icon" src="/Public/publichead/images/public/icon_ks_rect.png" alt="">
+                                </span>
+                                <p>快手推广
+                                    <img class="arrow" src="/Public/publichead/images/public/icon_arrow_circle.png" alt="">
+                                    <img class="arrow arrow-hover" src="/Public/publichead/images/public/icon_arrow_circle_hover.png" alt="">
+                                </p>
+                            </a>
+                        </li>
+                        <li>
+                            <img class="plat-bg" src="/Public/publichead/images/public/owner_home_plat_bg_bili.png" alt="">
+                            <a href="/owner/bili/mediauser.html?trackcode=170000">
+                                <span class="plat-icon-box">
+                                    <img class="plat-icon" src="/Public/publichead/images/public/icon_bili_rect.png" alt="">
+                                </span>
+                                <p>bilibili推广
+                                    <img class="arrow" src="/Public/publichead/images/public/icon_arrow_circle.png" alt="">
+                                    <img class="arrow arrow-hover" src="/Public/publichead/images/public/icon_arrow_circle_hover.png" alt="">
+                                </p>
+                            </a>
+                        </li>
+                        <!-- <li>
+                            <a href="/owner/zhihu/mediauser.html?code='20700'">
+                                <img src="/Public/publichead/images/public/icon_zhihu.png" style="width: 48px;" alt="">
+                                <p>知乎推广</p>
+                            </a>
+                        </li> -->
+                    </ul>
+                </div>
+                <div class="recommend">
+                    <div class="module-name">
+                        <img class="icon" src="/Public/publichead/images/public/owner_home_title_icon.png" alt="">
+                        <span class="recommend-title">种草红人推荐</span>
+                        <!-- <span class="promotion-subtitle">(今日已有<span style="color: #FF405C;">0</span>人选择种草红人推广)</span> -->
+                        <span class="promotion-subtitle"></span>
+                        <span class="more"><a href="/owner/newweibo/mediauser.html?trackcode=190000">更多红人<i class="base-iconfont" style="font-size: 14px;margin-left: 5px;">&#xe649;</i></a></span>
+                    </div>
+                    <div class="card-main all"></div>
+                    <!-- <div class="change1">
+                        <i class="base-iconfont" style="font-size: 14px; color:#666666;">&#xe62d;</i>
+                        <span>换一换</span>
+                    </div> -->
+                    <div class="pagination-wrap page-all-anchor">
+                        <span class="btn last" data-type="last" data-tag="1"><img src="/Public/publichead/images/public/icon_page_arrow_last.png" alt=""></span>
+                        <span class="count-wrap">
+                            <span class="page"></span>
+                            <span>/</span>
+                            <span class="total-page"></span>
+                        </span>
+                        <span class="btn next" data-type="next" data-tag="1"><img src="/Public/publichead/images/public/icon_page_arrow_next.png" alt=""></span>
+                    </div>
+                </div>
+                <div class="recommend">
+                    <div class="module-name">
+                        <img class="icon" src="/Public/publichead/images/public/owner_home_title_icon.png" alt="">
+                        <span class="recommend-title">带货红人推荐</span>
+                        <!-- <span class="promotion-subtitle">(今日已有<span style="color: #FF405C;">0</span>人选择带货红人推广)</span> -->
+                        <span class="promotion-subtitle"></span>
+                        <span class="more"><a href="/owner/douyin/mediauser.html?trackcode=210000">更多红人<i class="base-iconfont" style="font-size: 14px;margin-left: 5px;">&#xe649;</i></a></span>
+                    </div>
+                    <div class="card-main douyin"></div>
+                    <div class="pagination-wrap page-douyin-anchor">
+                        <span class="btn last" data-type="last" data-tag="0"><img src="/Public/publichead/images/public/icon_page_arrow_last.png" alt=""></span>
+                        <span class="count-wrap">
+                            <span class="page"></span>
+                            <span>/</span>
+                            <span class="total-page"></span>
+                        </span>
+                        <span class="btn next" data-type="next" data-tag="0"><img src="/Public/publichead/images/public/icon_page_arrow_next.png" alt=""></span>
+                    </div>
+                </div>            <!-- 营销学院 -->
+            <!-- <div class="recommend" style="padding: 20px 20px 0px 20px; height: auto;">
+                <div class="module-name tab-bar-wrap">
+                    <img class="icon" src="/Public/publichead/images/public/owner_home_title_icon.png" alt="">
+                    <ul class="tab-bar"></ul>
+                </div>
+                <div class="news-wrap">
+                    <div class="single-new"></div>
+                    <div class="new beauty-scroll-bar"></div>
+                </div>
+            </div> -->
+        </div>
+        <!-- 右上角悬浮窗 -->
+        <!--  -->
+        
+    </div>
+    <!--footer begin-->
+<!--div class="weChat_footer">
+  <div class="weChat_content">
+    <p class="footr">
+        <a href="/owner/footer/aboutcompany.html">关于WEIQ</a><span>|</span>
+        <a href="/owner/footer/contact.html">联系我们</a><span>|</span>
+        <a href="/owner/footer/goodcase.html">客户案例</a>
+    </p>
+    <p>Copyright © 2016 IMS新媒体商业集团 沪ICP备16013380号-1<br></p>
+    <div class="weibobot">
+        <a class="icon_weixin codeIco">
+            <span class="codeIcoBig" style="display: none;">
+               <i></i-->
+               <!-- 悬浮之后的大图 -->
+               <!--img _src="/Public/images/wxcode.jpg" width="76" height="76" src="/Public/images/wxcode.jpg">
+               <p>扫一扫</p>
+            </span>
+        </a>
+        <a class="icon_sina codeIco" href="http://weibo.com/u/5328765014/" target="_blank">
+            <span class="codeIcoBig" style="display: none;">
+               <i></i-->
+               <!-- 悬浮之后的大图 -->
+                <!--img _src="/Public/images/sinacode.png" width="76" height="76" src="/Public/images/sinacode.png">
+                <p>扫一扫</p>
+            </span>
+        </a>
+    </div>
+  </div>
+</div-->
+<!-- public css -->
+<link rel="stylesheet" href="/Public/publichead/css/public/cms_footer.css?v=3.3.5">
+<div class="cms-footer">
+	<div class="footer-main-wrap">
+		<div class="footer-main cf">
+			<div class="footer-top cf">
+				<!-- <div class="footer-top-logo">
+					<img src="/Public/publichead/images/public/weiq_logo_foot.png" alt="">
+				</div> -->
+				<div class="aboutlink cf lf">
+					<div class="aboutlink-col lf">
+						<h5 class="aboutlink-tlt">移动终端</h5>
+						<a
+							href="/download"
+							class="aboutlink-href"
+						>下载中心</a>
+					</div>
+					<div class="aboutlink-col lf">
+						<h5 class="aboutlink-tlt">产品介绍</h5>
+						<a href="/home/index/weibo.html" class="aboutlink-href">微博推广</a>
+						<a href="/home/index/wechat.html" class="aboutlink-href">微信推广</a>
+						<a href="/home/index/douyin.html" class="aboutlink-href">抖音推广</a>
+						<a href="/home/index/redbook.html" class="aboutlink-href">小红书推广</a>
+					</div>
+					<div class="aboutlink-col lf">
+						<h5 class="aboutlink-tlt">帮助中心</h5>
+						<a href="/owner/footer/ownerhelp.html" class="aboutlink-href" target="_blank">常见问题</a>
+						<a href="/media/footer/mediahelp.html?order" class="aboutlink-href" target="_blank">如何接单</a>
+						<a href="/media/footer/mediahelp.html?finance" class="aboutlink-href" target="_blank">如何结算</a>
+					</div>
+					<div class="aboutlink-col lf">
+						<h5 class="aboutlink-tlt">关于我们</h5>
+						<a href="/aboutus#CONTACTS" class="aboutlink-href">联系我们</a>
+						<a href="/aboutus#WEIQ" class="aboutlink-href">关于WEIQ</a>
+					</div>
+				</div>
+				<div class="aboutlink-line lf"></div>
+				<div class="footer-top-right ri">
+					<div class="aboutCode cf">
+						<div class="aboutCode-Col lf">
+							<div class="aboutCode-wrap">
+								<img src="/Public/publichead/images/public/imswechat_code.png" alt="">
+							</div>
+							<p>微信公众号</p>
+						</div>
+						<div class="aboutCode-Col ri">
+							<div class="aboutCode-wrap">
+								<img src="/Public/publichead/images/public/imssina_code.png" alt="">
+							</div>
+							<p>官方微博</p>
+						</div>
+						<div class="aboutCode-Col ri">
+							<div class="aboutCode-wrap">
+								<img src="/Public/media/images/footer/service_wechat_code.png" alt />
+							</div>
+							<p>客服微信</p>
+						</div>
+					</div>
+					<div class="about-way">
+						<div class="cf">
+							<div class="about-way-tel cf lf">
+								<!-- <i class="homebg tel-grey-icon"></i> -->
+								<i class="base-iconfont iconfont-foot-tel">&#xe66e;</i>
+								<span class="aw-qqTxt">400-0070-066</span>
+							</div>
+							<a class="lf" class="about-way-qq" href="https://admin.qidian.qq.com/template/blue/mp/menu/qr-code-jump-market.html?linkType=0&env=ol&kfuin=3009073278&fid=1400&key=449f3009a98e2567cc0f1f29c754e604&cate=1&source=&isLBS=&isCustomEntry=&type=16&ftype=1&_type=wpa&qidian=true" target="_blank">
+								<i class="base-iconfont iconfont-foot-qq">&#xe66d;</i>
+								<!-- <i class="homebg qq-grey-icon"></i> -->
+								<span class="aw-qqTxt">QQ在线咨询</span>
+							</a>
+						</div>
+						<div class="about-way-time">服务时间：周一至周日 7x24小时</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="footer-btm footer-other">
+		<div class="footer-other-wrap cf">
+			<p class="otherCopy lf">Copyright © <span id="copyrightYear"></span> 天下秀科技有限公司 版权所有 <a href="https://beian.miit.gov.cn/" target="_blank">桂ICP备2023014452号-3</a></p>
+			<p class="lf">
+				<!--
+				<a href="http://wap.scjgj.sh.gov.cn/businessCheck/verifKey.do?showType=extShow&serial=9031000020190524133843000004682220-SAIC_SHOW_310000-20190731170136490534&signData=MEUCIQD11GJX28h+FPPksdbU+QQtUdIjGC/pkiq37/muDSNxkwIgdIXzusWWhaMBMfWSpH0buSp8uxMYvUr90+Fj6KDlNc4=" target="_blank">
+					<i class="e-business-license-icon"></i>
+					标识编号 20190731170136490
+					<img class="foot-other-img" src='https://img.weiq.com/weiqjs/ims_lz2.jpg'>
+				</a>
+				-->
+				<i class="foot-other-icon"></i>
+				合字B2-20240320
+				<a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=31010102006884" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;">
+					<i class="foot-other-icon"></i>
+					<p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">桂公网安备 45050302000202号</p>
+				</a>
+			</p>
+		</div>
+	</div>
+</div>
+<!-- page footer end -->
+<script type="text/javascript">
+	var uid="68228";
+	if(uid=="") uid=0;
+	var _ana = _ana || [];
+	_ana._uid = uid;
+	_ana._type = 'weiq';
+	$(".weChat_main").css("padding-bottom","0");
+	window.onscroll=function(){
+		var scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop || 0;
+		var suspensionTopNode = document.querySelector(".suspension-top");
+		if (suspensionTopNode) {
+			if(scrollTop>200){
+				suspensionTopNode.style.height = "44px";
+				suspensionTopNode.style.display === "none" && (suspensionTopNode.style.display = "block");
+			}else{
+				suspensionTopNode.style.height = "0";
+			}
+		};
+	}
+
+	// 获取当前年份
+  document.getElementById('copyrightYear').textContent = new Date().getFullYear();
+</script>
+<link rel="stylesheet" href="/Public/publichead/css/public/cms_service.css?v=3.3.6">
+<div class="suspension-box owner-box">
+    <!-- <div class="activity-fixed-icon"></div> -->
+    <!--<a class="coupon-activity-icon" target="_blank" href="/home/Activity/coupon.html"></a>-->
+    <div class="suspension-item br-top suspension-msg"  onclick="window.open(&apos;/owner/message/communicate.html?platid=&plattype=&apos;,'msg')">
+        <div class="suspension-msg-wrap">
+            <i class="suspension-msg-icon"></i>
+            <span class="suspension-msg-num"></span>
+            <div class="suspension-desc suspension-msg-desc">点击后，<br>打开WEIQ在线聊天工具。</div>
+        </div>
+    </div>
+    <div class="suspension-item suspension-wx">
+        <i class="suspension-wx-icon"></i>
+        <div class="suspension-desc suspension-wx-desc">
+            <img src="/Public/media/images/footer/service_wechat_code.png" alt="">
+            <p class="wx-code-tip">WEIQ客服微信</p>
+        </div>
+    </div>
+    <div class="suspension-item suspension-qq">
+        <a href="https://wpa1.qq.com/0XregnEf?_type=wpa&qidian=true" class="suspension-qq-area" target="_blank">
+            <i class="suspension-qq-icon"></i>
+            <div class="suspension-desc suspension-qq-desc">
+                您好，如沟通中有问题可拨打<br/>
+                客服热线：400-0070-066
+            </div>
+        </a>
+    </div>
+    <div class="suspension-item br-bottom suspension-tel">
+        <i class="suspension-tel-icon"></i>
+        <div class="suspension-desc suspension-tel-desc">
+            客服电话：<br/>
+            400-0070-066<br/>
+            服务时间：<br/>
+            周一至周日7x24小时
+        </div>
+    </div>
+    <div class="suspension-item br-all suspension-top">
+        <i class="suspension-top-icon"></i>
+        <div class="suspension-desc suspension-top-desc">返回顶部</div>
+    </div>
+</div>
+<!-- suspension end -->
+<script>
+    document.querySelector(".suspension-top").onclick = function(){
+        document.documentElement.scrollTop = 0;
+        window.pageYOffset = 0;
+        document.body.scrollTop = 0;
+        var contentwrap = $('.main-content-wrap')[0]
+        if (contentwrap) {
+            contentwrap.scrollTop = 0
+        }
+    }
+    var ownerId = '68228';
+    var agentId = "";
+
+    // 原im接口
+    var getNumUrl = document.location.protocol+"//im.weiq.com/api/Getmsg/get_unreaded_count";
+    var ownerType = "";
+    if(agentId){
+        ownerType = 3;
+    }else{
+        if(ownerId){
+            ownerType = 1;
+        }
+    }
+    getMailMess();
+    var mailTimer = setInterval(getMailMess,300000);
+    function getMailMess(){
+        /*参数：@param int $from_id 广告主id*/
+        $.ajax({
+            type: "GET",
+            url: "/owner/message/getMessageCount.html",
+            dataType: "json",
+            async:false,
+            // data: {
+            //     "from_id":ownerId,
+            //     "type":ownerType,
+            // },
+            success: function(data){
+                if(data.count > 0) {
+                    if (data.count > 99) {
+                        $(".suspension-msg-num").text("99+").show();
+
+                        // 顶导im入口
+                        $('.im-chat-p').find('.im-chat-icon-count').hide();
+                        $('.im-chat-p').find('.im-chat-icon-count-plus').html('99+').show();
+                    } else if (data.count > 9) {
+                        $(".suspension-msg-num").text(data.count).show();
+
+                        // 顶导im入口
+                        $('.im-chat-p').find('.im-chat-icon-count').hide();
+                        $('.im-chat-p').find('.im-chat-icon-count-plus').html(data.count).show();
+                    } else {
+                        $(".suspension-msg-num").text(data.count).show();
+
+                        // 顶导im入口
+                        $('.im-chat-p').find('.im-chat-icon-count').html(data.count).show();
+                        $('.im-chat-p').find('.im-chat-icon-count-plus').hide();
+                    }
+
+                } else {
+                    $(".suspension-msg-num").text("").hide();
+
+                    // 顶导im入口
+                    $('.im-chat-p').find('.im-chat-icon-count').hide();
+                    $('.im-chat-p').find('.im-chat-icon-count-plus').hide();
+                }
+
+                // if ($('.cms-account-name').length) {
+                //     $('.activity-fixed-icon').show()
+                // } else {
+                //     $('.activity-fixed-icon').hide()
+                // }
+            }
+        })
+    }
+    $('.activity-fixed-icon').click(function () {
+        window.open("/owner/index/activity.html")
+    })
+
+    var trackcodeUrl = "/owner/track/trackcode.html" // 埋点接口
+</script>
+<!-- 埋点 -->
+<script type="text/javascript" src="/Public/js/buriedPoint.js"></script>
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan  style='display:none;' id='cnzz_stat_icon_1281296894'%3E%3C/span%3E%3Cscript src='"+cnzz_protocol+"s4.cnzz.com/z_stat.php%3Fid%3D1281296894' type='text/javascript'%3E%3C/script%3E"));</script>
+</html>
+
+<!--footer end-->
+<!--<script src="http://s95.cnzz.com/z_stat.php?id=1257847445&web_id=1257847445" language="JavaScript"></script>-->
+<!--script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1257847445'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1257847445%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));$("#cnzz_stat_icon_1257847445").css({"text-align":"right","display":"block","background-color":"#fff","padding-bottom":"0px"});</script-->
+<script>
+/*$(".weibobot a").hover(function(){
+  $(this).find(".codeIcoBig").show();
+  },function(){
+      $(this).find(".codeIcoBig").hide();
+  });
+$(window).load(function(){
+  resetH();
+})
+function resetH(){
+  var menuH=$(".LAB_maincont").height();
+  $(".menu").height(menuH);
+  $(".menu .menuMain").height(menuH);
+  var menuH=$(".rigntSide").height();
+  $(".left_nav").height(menuH);
+}
+window.onload = function(){
+  var windowWidth=document.documentElement.clientWidth;
+  if(windowWidth<=1180){
+    $(".wechat_top,.weChat_header,.weChat_footer").width(1180);
+  }else{
+    $(".wechat_top,.weChat_header,.weChat_footer").width('100%');
+  }
+}
+window.onresize = function(){
+  var windowWidth=document.documentElement.clientWidth;
+  if(windowWidth<=1180){
+    $(".wechat_top,.weChat_header,.weChat_footer").width(1180);
+  }else{
+    $(".wechat_top,.weChat_header,.weChat_footer").width('100%');
+  }
+}
+//设置脚部外边距
+$(".weChat_footer").css("margin-top",-$(".weChat_footer").height());*/
+</script> 
+    <!-- 服务商 & 私人顾问 弹窗 -->
+    <!-- <div class="sp-dialog is_show_identity_1">
+        <div class="sp-dialog-box serviceProvider-dialog">
+            <img class="close" src="/Public/owner/images/index/selIdentity/close_icon.png">
+            <img class="card-dialog-sp" src="/Public/owner/images/index/selIdentity/card_dialog_sp.png" alt="">
+            <a href="/owner/index/serviceProviderList.html" class="btn"></a>
+        </div>
+    </div> -->
+    <div class="sp-dialog is_show_identity_2">
+        <div class="sp-dialog-box">
+            <img class="close" src="/Public/owner/images/index/selIdentity/close_icon.png">
+            <img class="card-dialog-sp" src="/Public/owner/images/index/selIdentity/card_dialog_counselor.png" alt="">
+        </div>
+    </div>
+    <!-- 红包弹出层 —— 已下线 -->
+    <!-- 活动提示 -->
+        <!-- 自定义弹窗 -->
+    <div class="common-popup-box">
+        <div class="common-popup" data-popup_id="">
+            <img class="close-popup" src="/Public/owner/images/popup/icon_close.png" alt="">
+            <div class="common-popup-title"></div>
+            <div class="common-popup-content"></div>
+                        <div class="common-popup-btn"></div>                    </div>
+    </div>
+    <!-- 微信价格认证上线提醒 —— 已下线 -->
+    <div class="wechat-authentication-tip">
+        <div class="wechat-authentication-tip-box">
+            <img class="wechat-authentication-tip-img" src="/Public/owner/images/evaluateGivingRedPacket/wxtg_tc_sub.png" alt="">
+            <div class="wechat-authentication-tip-look"></div>
+            <div class="today-no-tip"></div>
+            <img class="wechat-authentication-tip-check-btn" src="/Public/owner/images/newOwner/wechat/price_iconfont_checked.png" alt="">
+        </div>
+    </div>
+    <!-- 协议更改通知 -->
+    <div class="agreement-dialog">
+        <div class="agreement-box">
+            <div class="title">隐私政策</div>
+            <div class="agreement-content">
+                <p>版本更新日期：2021-11-11</p>
+                <p>版本生效日期：2021-11-19</p>
+                <p>&nbsp;</p>
+                <p>为切实保护WEIQ用户个人信息，优化用户体验，WEIQ（以下或称“我们”，指天下秀科技有限公司，注册地址：中国(上海)自由贸易试验区美盛路171号3幢6层643室）根据现行法规及政策，制定WEIQ“隐私政策”（“本政策”）。 本政策将详细说明WEIQ在获取、管理及保护用户个人信息方面的政策及措施。本政策适用于WEIQ向你提供的所有服务，无论你是通过计算机设备、移动终端还是其他设备获得的WEIQ服务。在您开始使用我们的产品/服务前，请您务必仔细阅读和理解本政策，<span class="thick-text">特别应重点阅读我们以粗体标识的条款，以确保您充分理解和同意后再开始使用。</span>本政策中涉及的专业词汇，我们尽量以简明通俗的语言向您解释，以便于您理解。</p>
+                <p>&nbsp;</p>
+                <p><span class="thick-text">您同意本隐私政策即表示您已知悉WEIQ产品/服务的功能及其所需收集和使用的必要个人信息，并同意给予相应的收集和使用的授权,但并不代表您已同意开启附加功能、处理非必要个人信息；对于附加功能、非必要个人信息以及敏感个人信息的处理，我们将根据实际情况由您主动开启、提供或单独征求您的同意，同时您也可通过本隐私政策释明的方式管理上述个人信息或权限。</span>如你对于本政策或相关事宜有任何问题，你可随时通过访问WEIQ在线客服系统、WEIQ官方服务账号或拨打我们的任何一部客服电话等多种方式与我们联系。</p>
+                <p>&nbsp;</p>
+               <p>本政策将帮助你了解以下内容：</p>
+               <p>一、个人信息的收集</p>
+               <p>二、对 Cookie 和web beacon的使用</p>
+               <p>三、个人信息的使用</p>
+               <p>四、个人信息的保护和安全措施</p>
+               <p>五、个人信息的存储</p>
+               <p>六、个人信息的共享、转让、公开披露</p>
+               <p>七、个人信息的管理</p>
+               <p>八、对未成年人个人信息的特别保护</p>
+               <p>九、隐私政策的修改</p>
+               <p>十、争议解决</p>
+               <p>十一、其他</p>
+               <p>&nbsp;</p>
+               <p><span class="thick-text">本政策是你使用WEIQ服务及各项功能的基础性法律文件，我们希望你在使用WEIQ服务前仔细阅读并明确你已经充分理解、接受本政策的内容，希望你可以根据自己的理解做出合适的选择。我们努力通过通俗的语言表述本政策中涉及的相关术语，并提供进一步说明的链接，以便你更好地理解。在我们更新本政策后（我们会及时提示你更新的情况）你继续使用我们的产品与/或服务，即意味着你同意本政策(含更新版本)内容，并且同意我们按照本政策收集、使用、保存和共享你的相关信息。</span></p>
+               <p>本政策涉及的个人信息包括：个人基本信息（包括个人姓名、生日、性别、住址、个人电话号码、电子邮箱）；个人身份信息（包括身份证、军官证、护照、驾驶证、相关身份证明等）；个人位置信息；网络身份标识信息（包括系统账号、IP地址、邮箱地址及与前述有关的密码、密保）；通讯录；个人上网记录（包括搜索记录、软件使用记录、点击记录）；个人常用设备信息（包括硬件型号、设备MAC地址、操作系统类型、软件列表、唯一设备识别码（如IMEI/android ID/IDFA/OPENUDID/GUID、SIM卡IMSI信息等在内的描述个人常用设备基本情况的信息）。</p>
+               <p><span class="thick-text">个人敏感信息是指一旦泄露、非法提供或滥用可能危害人身和财产安全，极易导致个人名誉、身心健康受到损害或歧视性待遇等的个人信息，本政策中涉及的个人敏感信息包括：个人身份信息（包括身份证、军官证、护照、驾驶证、户口本，相关身份证明等）；网络身份识别信息（包括账户名、账户昵称、邮箱地址及与前述有关的密码与密码保护问题和答案）；其他信息（包括通讯录、个人电话号码、手机号码、行程信息、网页浏览记录、精准定位信息、银行账户）。对于个人敏感信息，我们将在本政策中进行显著标识，请您注意仔细阅读。</span></p>
+               <p>&nbsp;</p>
+               <h1>一、个人信息的收集</h1>
+               <p><span class="thick-text">你已知悉且同意，在你注册WEIQ账号或使用WEIQ提供的服务时，WEIQ将记录你提供的相关个人信息，如：密码、手机号码等，上述个人信息是你获得WEIQ提供服务的基础。同时，基于优化用户体验之目的，WEIQ会获取与提升WEIQ服务有关的其他信息，例如当你访问WEIQ时，我们可能会收集我们各类服务的受欢迎程度、浏览器软件信息等以便优化我们的服务。</span></p>
+               <p>在你使用WEIQ前，我们会引导你阅读本政策，并在你接受本政策的基础上，获得你的相关个人信息。如果你不同意提供个人信息，你将无法使用WEIQ的全部或部分功能和服务，或无法获得更个性化的功能，或无法参加某些活动，或无法收到我们的通知等。</p>
+               <p><span class="thick-text">1、WEIQ仅会在出现下列情况时收集你的个人信息：</span></p>
+               <p><span class="thick-text">（1）在你注册WEIQ账号时，我们会收集你的账户昵称、性别、密码、密码保护选项、电子邮箱、手机号码、出生年月/年龄信息。</span>若你以其他方式关联登陆WEIQ，我们会向关联第三方请求你的个人信息，对于我们要求但第三方无法提供的个人信息，我们仍可以要求你提供。收集这些信息是为了帮您创建WEIQ账号，如果你拒绝提供这些信息，将影响你注册使用WEIQ。在您注册使用WEIQ时，我们会对你进行实名验证，如果你拒绝提供有关信息，WEIQ将无法向你提供服务。在你发送WEIQ、使用WEIQ提供的位置定位服务时，我们会收集你的位置信息、设备信息。收集这些信息是为了向你提供签到信息分享服务，或向你提供更精准和个性化的服务及保护你的账号安全。WEIQ保证在你的设备使用定位服务时不会收集其他无关信息。</p>
+               <p><span class="thick-text">（2）在你使用WEIQ提供的搜索服务时，我们会收集你的查询关键字信息、搜索历史记录、设备信息。</span>为了提供高效的搜索服务，这些信息有部分会暂时存储在你的本地存储设备之中。在此，你需要注意的是，你的关键词信息无法单独识别你的个人身份，其不属于你的个人信息，因此我们有权以其他的目的对其进行使用；只有当你的搜索关键词信息与你的其他信息互有联系并可以识别你的个人身份时，则在结合使用期间，我们会将你的搜索关键词信息作为你的个人信息，与你的搜索历史记录一同按照本政策进行处理与保护。</p>
+               <p><span class="thick-text">（3）姓名、身份证号、职业、有关身份证明信息，收集这些信息是为了完成你的身份认证。</span>WEIQ对你的这些隐私信息会加以最大程度的保护，如果你不提供这些信息，我们将无法提供相关服务。针对部分涉及公共信息传播的账号，例如实名官方账号，我们将强制收集主要责任人的身份证信息，以确保公共传播秩序的维护。除该类情形，WEIQ一般不强制收集用户身份证信息。</p>
+               <p><span class="thick-text">（4）当你参加WEIQ的有关营销活动时，我们会收集你的姓名、学校名称、通讯地址、联系方式、银行账号等信息。</span>这些信息是你收到转账或礼品的基础，如果你拒绝提供这些信息，我们将无法向你转账或发放礼品。</p>
+               <p><span class="thick-text">（5）如果你希望获得你所在城市的有关资讯，WEIQ会收集你设备的具体位置信息。</span>WEIQ所收集的信息中不会涉及你设备的其他信息。</p>
+               <p><span class="thick-text">（6）当你在WEIQ中使用第三方提供的服务时，你需要允许第三方收集你的订单信息、支付信息等，如果你拒绝第三方在提供服务时收集此类信息，将可能会导致你无法在WEIQ中使用第三方服务。</span></p>
+               <p>2、基于对你信息的有效保护，我们会对收集到的你的信息进行去标识化处理，以保护你的信息安全。<span class="thick-text">在此希望你了解并接受，在对收集到的你的信息进行去标识化处理、不会透露你个人信息的前提下，WEIQ有权对经过去标识化处理的你的信息进行分析并予以商业化的利用。</span></p>
+               <p><span class="thick-text">3、当你通过WEIQ登录第三方应用时，第三方可能会通过WEIQ获得你的个人昵称、头像等信息。</span></p>
+               <p>4、当涉及国家安全与利益、社会公共利益、与犯罪侦查有关的相关活动，或者涉及你或他人生命财产安全但在特殊情况下无法获得你的及时授权，以及能够从其他合法公开的渠道获取或法律法规规定的其他情形下，WEIQ可能在不经过你的同意或授权的前提下，收集你的个人信息。</p>
+               <p>5、在某些特殊情况下，WEIQ会要求你提供相关证明等纸质版信息。如你按要求提供该类纸质版信息的，WEIQ会在收到你的纸质版信息的30天内，妥善处理你的信息并及时告知你。</p>
+               <p><span class="thick-text">6、WEIQ如在上述场景之外获得你的个人信息，将重新征得你的明示同意，并在获得你明示同意前向你充分说明应用场景与获取你相关信息的内容与范围。</span></p>
+               <p>&nbsp;</p>
+               <h1>二、对Cookie及web beacon的使用</h1>
+               <p>Cookie可以帮助网站辨认注册用户，计算用户数量，通常被各网站用来判定完成注册的用户是否已经实现登录。WEIQ承诺，对cookie信息的研究仅用于提升服务/产品质量及优化用户体验之目的。同时，如你不希望个人信息保留在cookie中，你可以对浏览器进行配置：选择"拒绝cookie"或"当网站发送cookie时通知你"，你应当知道，鉴于WEIQ的服务是通过支持cookie来实现的，完成关闭cookie的操作后，可能影响到你访问WEIQ或不能充分取得WEIQ的服务。你不禁用cookie时，可能会得到提示，是否在下一次进入此网站时保留用户信息以便简化登录手续（如一键登录）。</p>
+               <p>WEIQ使用web beacon的方法和目的与cookie是相同的。</p>
+               <p>&nbsp;</p>
+               <h1>三、个人信息的使用</h1>
+               <p>为了向你提供更好的服务或产品，WEIQ会在下述情形使用你的个人信息：</p>
+               <p>（1）根据相关法律法规的要求；</p>
+               <p>（2）根据你的授权；</p>
+               <p>（3）根据WEIQ相关服务条款、应用许可使用协议的约定。</p>
+               <p><span class="thick-text">此外，你已知悉并同意：</span></p>
+               <p><span class="thick-text">在现行法律法规允许的范围内，WEIQ可能会将你非敏感的个人信息用于市场营销，使用方式包括但不限于：WEIQ会使用你所提供信息在WEIQ平台中向你展示或提供广告和促销资料，向你通告或推荐WEIQ的服务或产品信息，以及其他此类根据你使用WEIQ服务或产品的情况所认为你可能会感兴趣的信息。其中也包括你在采取授权等某动作时选择分享的信息，例如当你新增好友、在动态中新增地标、使用WEIQ的联络人汇入工具等。</span></p>
+               <p>&nbsp;</p>
+               <h1>四、个人信息的保护和安全措施</h1>
+               <p>1、WEIQ将尽一切合理努力保护我们获得的用户个人信息，并由专门的数据安全部门对个人信息进行保护。为防止用户个人信息在意外的、未经授权的情况下被非法访问、复制、修改、传送、遗失、破坏、处理或使用，WEIQ已经并将继续采取以下措施保护你的个人信息：</p>
+               <p>（1）我们的网络服务采取了传输层安全协议等加密技术，通过https等方式提供浏览服务，确保用户数据在传输过程中的安全。</p>
+               <p>（2）通过采取加密技术对用户个人信息进行加密保存，并通过隔离技术进行隔离。</p>
+               <p>（3）在个人信息使用时，例如个人信息展示、个人信息关联计算时，我们会采用包括内容替换、加密脱敏等多种数据脱敏技术增强个人信息在使用中的安全性。</p>
+               <p>（4）设立严格的数据使用和访问制度，采用严格的数据访问权限控制和多重身份认证技术保护个人信息，避免数据被违规使用。</p>
+               <p>（5）采取专门的数据和技术安全审计，设立日志审计和行为审计多项措施。</p>
+               <p>2、保护个人信息采取的其他安全措施</p>
+               <p>（1）通过建立数据分类分级制度、数据安全管理规范、数据安全开发规范来管理规范个人信息的存储和使用。</p>
+               <p>（2）建立数据安全专项部门，负责安全应急响应组织，来推进和保障个人信息安全。</p>
+               <p>（3）加强安全意识。我们还会举办安全和隐私保护培训课程，加强员工对于保护个人信息重要性的认识。</p>
+               <p>3、个人信息安全事件的通知</p>
+               <p>（1）如发生个人信息有关的安全事件，WEIQ将第一时间向相应主管机关报备，并及时进行问题排查，开展应急措施。</p>
+               <p>（2）向全量用户发送通知提醒更改密码，或通过电话、短信等各种方式触达用户知晓，并在WEIQ公共运营平台运营宣传，制止数据泄露。</p>
+               <p>4、尽管WEIQ已经采取了上述合理有效措施，并已经遵守了相关法律规定要求的标准，用户仍应采取积极措施保证个人信息的安全，如：定期修改账号密码，不将自己的账号密码等个人信息透露给他人。</p>
+               <p><span class="thick-text">5、你知悉：WEIQ提供的个人信息保护措施仅适用于WEIQ平台，一旦你离开WEIQ，浏览或使用其他网站、服务及内容资源，WEIQ即没有能力及义务保护你在WEIQ以外的网站提交的任何个人信息，无论你登录或浏览上述网站是否基于WEIQ的链接或引导。</span></p>
+               <p>网络环境中始终存在各种信息泄漏的风险，当出现意外事件、不可抗力等情形导致你的信息出现泄漏时，WEIQ将极力控制局面，及时告知你事件起因、WEIQ采取的安全措施、你可以主动采取的安全措施等相关情况。</p>
+               <p>&nbsp;</p>
+               <h1>五、个人信息的存储</h1>
+               <p>1、WEIQ会采取合适的安全措施和技术手段存储及保护你的个人信息，以防止丢失、被误用、受到未授权访问或泄漏、被篡改或毁坏。你的个人信息存放在有密码控制的位于中国境内的服务器中，访问均是受到限制的。当你需要跨境信息传输服务时，WEIQ会默认你继续使用中国境内的服务器。</p>
+               <p>2、WEIQ会依照个人信息的不同等级存储不同期限，存储期限严格按照法律及相关法规规定，最低期限不少于6个月。我们将会按照《网络安全法》、《电子商务法》规定的期限保存您的个人信息。超出法定保存期限后，我们会将您的个人信息删除或做匿名化处理。</p>
+               <p>3、如果您终止使用“WEIQ”软件及服务，我们将停止对您的信息的收集和使用，法律法规另有规定的除外。如果我们停止运营，我们将停止收集和使用您的个人信息。</p>
+               <p>4、我们仅允许有必要知晓这些信息的WEIQ员工等第三方访问个人信息，并要求他们履行相应的保密义务。</p>
+               <p>5、我们在中华人民共和国境内运营中收集和产生的个人信息，将存储在中国境内。以下情形下，我们会在履行法律规定的义务后，向可能的境外实体提供您的个人信息：</p>
+               <p>（1）适用的法律有明确规定；</p>
+               <p>（2）获得您的单独同意；</p>
+               <p>（3）您作为一方当事人的跨境交易及其他类型合同订立和履行所必需的。</p>
+               <p>针对以上情形，我们会按照本政策依法保护您的个人信息安全。</p>
+               <p>&nbsp;</p>
+               <h1>六、个人信息的共享、转让、公开披露</h1>
+               <p>1、我们会以高度的勤勉义务对待您的信息。除非经过您本人事先授权同意，我们不会向第三方共享、转让可识别的个人信息。我们可能共享、转让去标识化处理后的个人信息，且保证共享第三方无法重新识别此类信息的自然人主体。</p>
+               <p>2、特定前提下，我们可能将您的个人信息与第三方共享，但我们只会共享必要的个人信息，且第三方受本政策中所声明目的的约束。我们将要求第三方对您的个人信息采取保护措施并且严格遵守相关法律法规与监管要求。第三方如要改变个人信息的处理目的，将再次征求您的授权同意。</p>
+               <p><span class="thick-text">3、您同意我们与如下几类第三方授权合作伙伴共享信息：</span></p>
+               <p><span class="thick-text">（1）为实现特定功能，我们可能会与业务合作伙伴共享您的信息。</span>我们的某些服务将由授权合作伙伴提供。我们可能会与合作伙伴共享您的某些个人信息，以提供更好的客户服务和用户体验。我们共享这些信息仅为实现本政策中声明的目的。例如，当第三方软件、设备系统与“WEIQ”产品或服务结合为您提供基于位置的服务时，“WEIQ”可能会基于您对系统定位的授权及设定，收集您的位置信息及设备信息（例如硬件型号、操作系统版本号、国际移动设备身份识别码（IMEI）、网络设备硬件地址（MAC）），并经过去标识化处理后提供给前述合作伙伴，特殊情境下还会包含您另行填写的联系信息。如您拒绝此类信息的收集及使用，您需要在设备系统中进行设置或关闭提供服务的软件，“WEIQ”中无法自动或手动设置关闭相关服务。我们仅会出于合法、正当、必要、特定、明确的目的共享您的个人信息，并且只会共享提供服务所必要的个人信息。我们的合作伙伴无权将共享的个人信息用于任何其他用途。</p>
+               <p><span class="thick-text">（2）为实现程序化广告推送，我们可能会与广告合作伙伴共享去标识化或匿名化处理后的信息。</span>未经您授权，我们不会将您的个人身份信息（指可以识别您身份的信息，例如姓名或电子邮箱，通过这些信息可以联系到您或识别您的身份）与提供广告的服务商共享。但我们可能会将您的匿名化的用户画像与广告服务商共享，以帮助其在不识别您个人的前提下提升广告有效触达率。例如，只有在广告主同意遵守我们的广告发布规范后，我们才可能会告诉广告主他们广告的效果如何，或者有多少人看了他们广告或在看到广告后安装了应用，或者向这些合作伙伴提供不能识别个人身份的统计信息（例如“女性，25-29岁，位于北京”），帮助他们了解其受众或顾客。您可以拒绝我们向您推送程序化广告，但不影响您使用其他服务。</p>
+               <p><span class="thick-text">（3）为帮助您参加营销推广活动，我们可能会与第三方共享您的信息。</span>当您选择参加我们举办的有关营销活动时，根据活动需要，您可能会向我们提供姓名、通信地址、联系方式、银行账号。经过您的明示同意，我们会将上述信息与第三方共享以便我们能委托第三方及时向您提供服务。</p>
+               <p>4、对我们与之共享个人信息的公司、组织和个人，我们会对其数据安全环境进行调查，与其签署严格的保密协定，要求他们按照我们的说明、本隐私政策以及其他任何相关的保密和安全措施来处理个人信息。</p>
+               <p>5、随着我们业务的持续发展，我们以及我们的关联公司有可能进行合并、收购、资产转让或类似的交易，您的个人信息有可能作为此类交易的一部分而被转移，我们将在转移前通知您，我们将按照法律法规及不低于本隐私政策所要求的标准继续保护或要求新的控制者继续保护您的个人信息。</p>
+               <p><span class="thick-text">6、未经您本人允许，我们不会向除公司及其关联方外的任何公司、组织和个人，共享、转让、公开披露您的个人信息，下列情形除外：</span></p>
+               <p>（1）事先获得您的明确授权同意；</p>
+               <p>（2）您自行向第三方共享、转让、公开的；</p>
+               <p>（3）与国家安全、国防安全、公共安全、公共卫生、公共利益直接相关的；</p>
+               <p>（4）根据适用的法律法规、法律程序的要求、强制性的行政司法要求进行披露或提供，或对外提供的个人信息是与犯罪侦查、起诉、审判和判决执行等直接相关的。在前述情况下，我们会依据被要求提供或披露的个人信息类型和方式提供/披露您的个人信息。在符合法律法规的前提下，当我们收到上述披露信息的请求时，我们会要求请求方必须出具相应的法律文件，如传票或调查函。我们将对所有的请求都进行审慎的审查，以确保其具备合法依据，且请求的数据仅限于行政、司法部门因特定调查目的有合法权利获取的数据；</p>
+               <p>（5）在法律法规允许的范围内，为维护“WEIQ”其他用户、公司及其关联公司、控制公司的生命、财产等合法权益或维护产品或服务的安全稳定运行所必需的，例如查找、预防、处理欺诈等违法活动和减少信用风险等；不过这并不包括违反本政策中所做的承诺而为获利目的对外公开或提供个人信息；</p>
+               <p>（6）公司为维护合法权益而向用户提起诉讼或仲裁；</p>
+               <p>（7）在涉及合并、分立、收购、资产转让或类似的交易时，如涉及到个人信息转让，公司会要求新的持有您的个人信息的公司、组织继续受本隐私政策的约束，否则，公司有权要求该公司、组织重新取得您的授权同意；</p>
+               <p>（8）从合法公开披露的信息中收集个人信息的，如合法的新闻报道、政府信息公开等渠道；</p>
+               <p>（9）为学术研究目的，或为学术研究机构，出于公共利益开展统计或学术研究所必要，且对外提供学术研究或描述的结果时，对结果中所包含的个人信息进行去标识化处理的；</p>
+               <p>（10）法律法规规定的其他情形。</p>
+               <p>7、您应当理解，您在使用WEIQ服务过程中，可以向特定的人发送照片、身份信息、位置信息等个人信息，也可以基于WEIQ的服务向不特定人共享自己的照片、位置信息、身份信息等个人信息。您因为这些主动共享、披露行为导致您个人信息被他人知晓的，WEIQ不承担相关责任。</p>
+               <p>&nbsp;</p>
+               <h1>七、个人信息的管理</h1>
+               <p>1、当你完成WEIQ的账号注册并进行合理和必要的身份验证后，你可以查阅、修改、删除你提交给WEIQ的个人信息。一般情况下，你可随时浏览、修改、删除自己提交的信息。WEIQ始终将对你个人信息的保护放在首位，同时，WEIQ重视你对个人信息的关注。对于你的个人信息，你可以通过手机客户端等途径进行在线查询、修改、删除。</p>
+               <p>2、你有权自主更新或更正你的个人信息，或授权WEIQ客服进行信息更新、更正。在你进行信息更新更正之前，我们会首先验证你的身份，核实身份后你才能进行信息的更正与更新。</p>
+               <p>3、如果你对本政策或其中有关你个人信息的收集、使用、存储、保护等功能存在意见或建议时，你可以通过WEIQ功能页面、或WEIQ客户服务渠道反馈意见或投诉，WEIQ会在收到你意见及建议的第一时间将反馈信息回复给你。</p>
+               <p>4、你可以通过关闭WEIQ部分功能的方式阻止WEIQ获得你的个人信息，关闭部分功能之后，我们将无法向你提供相应的服务。</p>
+               <p><span class="thick-text">5、你可以自主要求注销WEIQ账号以保障WEIQ不再收集你的个人信息。你可以通过手机客户端注销账号，在你注销你的账号之前，WEIQ将验证你的个人身份、安全状态、常用设备等信息。你注销账号的行为是不可逆的行为，一旦你注销你的账号，WEIQ将即刻删除有关你账户的一切信息，并保证这些信息不会泄露，同时，你也无法通过已注销的账户获得WEIQ的服务。</span></p>
+               <p>6、如果我们终止服务或运营，我们会至少提前三十日向你通知，并在终止服务或运营后对你的个人信息进行删除或匿名化处理。</p>
+               <p>&nbsp;</p>
+               <h1>八、对未成年人个人信息的特别保护</h1>
+               <p><span class="thick-text">如您为未成年人，请您的父母或其他监护人仔细阅读本政策，并在征得您的父母或其他监护人同意的前提下使用WEIQ的服务或向我们提供信息。</span></p>
+               <p><span class="thick-text">如果您是14周岁以下儿童的，在您使用我们的服务前，您和您的监护人应仔细阅读我们专门制定的《儿童隐私保护规则》，确保在取得监护人对《儿童隐私保护规则》的同意后，您才可在监护人的指导下使用WEIQ的服务，确保您在使用我们的服务和进行交易时的安全。</span></p>
+               <p><span class="thick-text">若您是儿童的父母或其他监护人，请您关注儿童是否是在取得您的授权同意之后使用我们的服务。</span></p>
+               <p>&nbsp;</p>
+               <h1>九、隐私政策的修改</h1>
+               <p>1、为给你提供更好的服务以及随着我们业务的发展，本政策也会随之更新。但未经你明确同意，我们不会削减你依据当前生效隐私政策所应享有的权利。</p>
+               <p><span class="thick-text">我们会在网站、移动端上发出更新版本并在生效前通过网站公告或其他适当方式提醒你相关内容的更新，以便你及时了解最新的隐私政策。</span></p>
+               <p>2、对于重大变更，我们还会提供更为显著的通知（我们会通过包括但不限于邮件、短信、私信或在浏览页面做特别提示等方式，说明隐私政策的具体变更内容）。</p>
+               <p>3、本政策所指的重大变更包括但不限于：</p>
+               <p>（1）我们的服务模式发生重大变化。如处理个人信息的目的、处理的个人信息类型、个人信息的使用方式等；</p>
+               <p>（2）我们在所有权结构、组织架构等方面发生重大变化。如业务调整、破产并购等引起的所有者变更等；</p>
+               <p>（3）个人信息共享、转让或公开披露的主要对象发生变化；</p>
+               <p>（4）你参与个人信息处理方面的权利及其行使方式发生重大变化；</p>
+               <p>（5）我们负责处理个人信息安全的责任部门、联络方式及投诉渠道发生变化时；</p>
+               <p>（6）个人信息安全影响评估报告表明存在高风险时。</p>
+               <p>&nbsp;</p>
+               <h1>十、争议解决</h1>
+               <p><span class="thick-text">当你因为本政策的实施与WEIQ产生任何纠纷时，双方应首先协商友好解决；若不能协商解决，双方有权依照被告住所地向有管辖权的法院提起诉讼。</span></p>
+               <p>&nbsp;</p>
+               <h1>十一、如何联系我们</h1>
+               <p>1、如果你对本隐私政策有任何疑问，请你通过以下方式与我们联系，<span class="thick-text">我们将在15天内回复您的请求</span>：</p>
+               <p>（1）客服热线：400-007-0066</p>
+               <p>（2）@WEIQ红人营销平台，私信联系WEIQ客服</p>
+               <p>&nbsp;</p>
+               <p>&nbsp;</p>
+               <p>附：《儿童隐私保护规则》</p>
+               <p>&nbsp;</p>
+               <p><span class="thick-text">儿童隐私保护规则</span></p>
+               <p>一、收集和使用儿童个人信息</p>
+               <p>二、共享、转让、公开披露儿童个人信息的情形</p>
+               <p>三、储存儿童个人信息</p>
+               <p>四、保护儿童个人信息</p>
+               <p>五、管理儿童个人信息</p>
+               <p>六、本规则的修订</p>
+               <p>七、如何联系我们</p>
+               <p>&nbsp;</p>
+               <h1>一、收集和使用儿童个人信息</h1>
+               <p>1、我们会严格履行法律法规规定的儿童个人信息保护义务与责任，遵循正当必要、知情同意、目的明确、安全保障、依法利用的原则，在征得监护人的同意后收集和使用儿童个人信息。</p>
+               <p><span class="thick-text">请您注意并理解，绝大多数情形下我们无法识别且不会判断收集和处理的个人信息是否属于儿童个人信息，我们将按照《隐私政策》收集和处理用户的个人信息。</span></p>
+               <p>2、您或您的监护人确认并理解你，根据相关法律法规规定，以下情形中收集儿童的信息无需征得儿童监护人的授权同意：</p>
+               <p>（1）与WEIQ履行法律法规规定的义务相关的；</p>
+               <p>（2）与国家安全、国防安全、公共安全、公共卫生、重大公共利益有关的；</p>
+               <p>（3）与犯罪侦查、起诉、审判和判决执行等有关的；</p>
+               <p>（4）出于维护儿童的生命、财产等重大合法权益但又很难得到监护人同意的；</p>
+               <p>（5）所收集的信息是儿童或监护人自行向社会公众公开的；</p>
+               <p>（6）从合法公开披露的信息中收集信息的，如合法的新闻报道、政府信息公开等渠道；</p>
+               <p>（7）根据与您或您的孩子签订和履行相关协议或其他书面文件所必需的；</p>
+               <p>（8）用于维护我们的产品及服务的安全稳定运行所必需的，例如发现、处置我们的产品及服务的故障；</p>
+               <p>（9）学术研究机构基于公共利益开展统计或学术研究所必要，且对外提供学术研究或描述的结果时，对结果中所包含的信息进行去标识化处理的；</p>
+               <p>（10）法律法规规定的其他情形。</p>
+               <p>&nbsp;</p>
+               <h1>二、共享、转让、公开披露儿童个人信息的情形</h1>
+               <p>我们承诺对儿童个人信息进行严格保密，仅在符合隐私政策、本规则和您明确授权同意的情况下对外共享儿童个人信息。</p>
+               <p>同时，我们要求第三方对儿童个人信息采取保护措施，并且严格遵守相关法律法规与监管要求。</p>
+               <p>&nbsp;</p>
+               <h1>三、储存儿童个人信息</h1>
+               <p><span class="thick-text">WEIQ在中华人民共和国境内运营中收集和产生的儿童个人信息，将存储在中国境内。</span>以下情形下，我们会在履行了法律规定的义务后，向境外的组织或个人提供儿童的个人信息：</p>
+               <p>1、适用的法律有明确规定；</p>
+               <p>2、获得您的明确授权；</p>
+               <p>3、您或者您的孩子通过互联网进行跨境交易等个人主动行为。</p>
+               <p>针对以上情形，我们会通过包括但不限于合同等形式确保以不低于本保护规则规定的程度保护儿童的个人信信息。</p>
+               <p>&nbsp;</p>
+               <h1>四、保护儿童个人信息</h1>
+               <p>我们非常重视儿童的隐私安全，并采取符合法律、法规、监管要求的一切合理可行的措施，保护儿童个人信息。</p>
+               <p>如您希望了解更多，请查阅《隐私政策》。</p>
+               <p>&nbsp;</p>
+               <h1>五、管理儿童个人信息</h1>
+               <p>我们为您和您的孩子提供了相应的操作设置，您和您的孩子可以按照《隐私政策》中的“个人信息的管理”指引进行操作。</p>
+               <p>下列情形下，您或您的孩子可以通过《隐私政策》“如何联系我们”所列的渠道联系我们，要求删除相应的儿童个人信息：</p>
+               <p>1、WEIQ违反法律、行政法规的规定或者双方的约定收集、存储、使用、对外提供儿童个人信息的；</p>
+               <p>2、超出目的范围或者必要期限收集、存储、使用、对外提供儿童个人信息的；</p>
+               <p>3、您撤回同意的；</p>
+               <p>4、您或您的孩子通过注销等方式终止使用WEIQ产品或者服务的。</p>
+               <p>&nbsp;</p>
+               <h1>六、本规则的修订</h1>
+               <p>具体详见隐私政策“隐私政策的修改”。</p>
+               <p>&nbsp;</p>
+               <h1>七、如何联系我们</h1>
+               <p>具体详见隐私政策“如何联系我们”。</p>
+            </div>
+            <p class="agree-btn">同意<span class="sec">(<span class="sec-num">5</span>s)</span></p>
+        </div>
+    </div>
+
+    <!-- 透明遮罩层 —— 价格认证引导使用 -->
+    <div class="transparency-mask-layer"></div>
+</body>
+<script id='card-first' type="text/html">
+    {{#  layui.each(d.data, function(index, item){ }}
+    <div class="recommend-account-item-wrap">
+        <div class="recommend-account-item">
+            <div class="capsule-wrap">
+                <a href="javascript:;" class="a-entry add-favor {{item.ad_followed == 1 ? 'active' : ''}}" data-plattype="{{item.plattype}}" data-id="{{item.media_id}}" data-uid="{{item.account_uid}}" data-type="{{item.ad_followed}}">
+                    <img class="icon-nor" src="/Public/publichead/images/public/icon_pentacle.png" alt="">
+                    <img class="icon-act" src="/Public/publichead/images/public/icon_pentacle_active.png" alt="">
+                </a>
+    
+                <a href="javascript:;" class="a-entry add-cart" data-plattype="{{item.plattype}}" data-id="{{item.media_id}}">
+                    <img src="/Public/publichead/images/public/icon_cart.png" alt="">
+                </a>
+    
+                {{#  if(item.plattype && item.plattype == 3){ }}
+                <a href="javascript:;" class="a-entry" onclick="window.open(&apos;/owner/message/communicate.html?platid={{item.media_id}}&plattype=4&apos;,'msg')">
+                {{# } else if(item.plattype && item.plattype == 2){ }}
+                <a href="javascript:;" class="a-entry" onclick="window.setTrackCode(20102); window.open(&apos;/owner/message/communicate.html?platid={{item.account_uid}}&plattype=2&apos;,'msg')">
+                {{# } else { }}
+                <a href="javascript:;" class="a-entry" onclick="window.open(&apos;/owner/message/communicate.html?platid={{item.media_id}}&plattype=5&apos;,'msg')">
+                {{# } }}
+                    <img src="/Public/publichead/images/public/icon_chat.png" alt="">
+                </a>
+    
+                <span class="open-icon">
+                    <img src="/Public/publichead/images/public/down_open.png" alt="">
+                </span>
+            </div>
+            <div class="a-info">
+                <span class="avatar-p">
+                    {{# if(item.plattype && item.plattype == 2){ }}
+                    <img class="avatar" src="https://imgwb.apput.com/img_url?{{item.avatar}}" alt="">
+                    {{# } else { }}
+                    <img class="avatar" src="{{item.avatar}}" alt="">
+                    {{# } }}
+    
+                    {{#  if(item.plattype && item.plattype == 3){ }}
+                    <img  class="plat-icon" src="/Public/publichead/images/public/icon_douyin2.png" alt="">
+                    {{# } else if(item.plattype && item.plattype == 2){ }}
+                    <img  class="plat-icon" src="/Public/publichead/images/public/icon_weibo2.png" alt="">
+                    {{# } else { }}
+                    <img  class="plat-icon" src="/Public/publichead/images/public/icon_redbook2.png" alt="">
+                    {{# } }}
+                </span>
+                <div class="text-p">
+                    <p class="name single-line-ellipsis">{{item.account_name}}</p>
+                    {{#  if(item.account_class && item.account_class.length > 0){ }}
+                    <ul class="tags">
+                        <li class="tag">{{item.account_class.join('/')}}</li>
+                    </ul>
+                    {{# } }}
+                </div>
+            </div>
+            <div class="echarts-box" id="echarts_a{{d.type}}"></div>
+            <div class="desc-line">
+                <span>种草能力得分 </span>
+                <span class="heigh-light">{{Math.floor(item.seeding_index)}}</span>
+                <span> 超过 </span>
+                <span class="heigh-light">{{Math.floor(item.seeding_rate)}}%</span>
+                <span> 红人</span>
+                <span class="help-main" style="font-weight:normal; margin-left: 5px;">
+                    <i class="base-iconfont iconfont-mark help">&#xe66b;</i>
+                    <p class="account-info-fans-info black img-arrow" style="width:280px;white-space: normal;">
+                        <img class="triangle-down-icon" src="/Public/publichead/images/public/pic_sanjiao.png" alt="">
+                        种草能力根据自媒体发布内容中提及品牌量、种草内容互动量等指数综合得出。
+                    </p>
+                </span>
+            </div>
+            <div class="count-line">
+                <div class="item">
+                    {{#  if(item.plattype && item.plattype == 4){ }}
+                    <div class="value price-ff">{{item.followers_count.replace('万', 'w')}}</div>
+                    {{# } else { }}
+                    <div class="value price-ff">{{item.account_followers.replace('万', 'w')}}</div>
+                    {{# } }}
+                    <div class="name">粉丝量</div>
+                </div>
+                <div class="item">
+                    {{#  if(item.plattype && item.plattype == 3){ }}
+                    <div class="value price-ff">{{item.avg_play_num ? item.avg_play_num.replace('万', 'w') : "0"}}</div>
+                    <div class="name">预计播放量</div>
+                    {{# } else if (item.plattype && item.plattype == 4){ }}
+                    <div class="value price-ff">{{item.note_avg_read ? item.note_avg_read.toString().replace('万', 'w') : "0"}}</div>
+                    <div class="name">预计阅读量</div>
+                    {{# } else { }}
+                    <div class="value price-ff">{{item.predict_read_num ? item.predict_read_num.replace('万', 'w') : "0"}}</div>
+                    <div class="name">预计阅读量</div>
+                    {{# } }}
+                </div>
+                <div class="item">
+                    {{# if (item.plattype && item.plattype == 4){ }}
+                    <div class="value price-ff">{{item.note_avg_interactive}}</div>
+                    {{# } else if (item.plattype && item.plattype == 3) { }}
+                    <div class="value price-ff">{{item.avg_interact ? item.avg_interact.replace('万', 'w') : "-"}}</div>
+                    {{# } else { }}
+                    <div class="value price-ff">{{item.predict_interact_num}}</div>
+                    {{# } }}
+                    <div class="name">预计互动量</div>
+                </div>
+            </div>
+            {{# if (item.plattype && item.plattype == 3){ }}
+            <a href="/home/mediaaccount/douyin_detail.html?uid={{item.media_id}}&trackcode=180000" target="_blank"><div class="detail-btn">查看详情</div></a>
+            {{# } else if (item.plattype && item.plattype == 4){ }}
+            <a href="/owner/redbook/detail.html?media_id={{item.media_id}}&trackcode=180000" target="_blank"><div class="detail-btn">查看详情</div></a>
+            {{# } else { }}
+            <a href="/home/Mediaaccount/showweibo.html?platid={{item.account_uid}}&trackcode=180000" target="_blank"><div class="detail-btn">查看详情</div></a>
+            {{# } }}
+        </div>
+    </div>
+    {{#  }); }}
+</script>
+<script id='card-second' type="text/html">
+    {{#  layui.each(d.data, function(index, item){ }}
+    <div class="recommend-account-item-wrap">
+        <div class="recommend-account-item douyin">
+            <div class="capsule-wrap">
+                <a href="javascript:;" class="a-entry add-favor {{item.ad_followed == 1 ? 'active' : ''}}" data-plattype="{{item.plattype}}" data-id="{{item.media_id}}" data-uid="{{item.account_uid}}" data-type="{{item.ad_followed}}">
+                    <img class="icon-nor" src="/Public/publichead/images/public/icon_pentacle.png" alt="">
+                    <img class="icon-act" src="/Public/publichead/images/public/icon_pentacle_active.png" alt="">
+                </a>
+                <a href="javascript:;" class="a-entry add-cart" data-plattype="{{item.plattype}}" data-id="{{item.media_id}}">
+                    <img src="/Public/publichead/images/public/icon_cart.png" alt="">
+                </a>
+                <a href="javascript:;" class="a-entry" onclick="window.open(&apos;/owner/message/communicate.html?platid={{item.media_id}}&plattype=4&apos;,'msg')">
+                    <img src="/Public/publichead/images/public/icon_chat.png" alt="">
+                </a>
+    
+                <span class="open-icon">
+                    <img src="/Public/publichead/images/public/down_open.png" alt="">
+                </span>
+            </div>
+            <div class="a-info">
+                <span class="avatar-p">
+                    <img class="avatar" src="{{item.avatar}}" alt="">
+                    <img  class="plat-icon" src="/Public/publichead/images/public/icon_douyin2.png" alt="">
+                </span>
+                <div class="text-p">
+                    <p class="name single-line-ellipsis">{{item.account_name}}</p>
+                    {{#  if(item.account_class && item.account_class.length > 0){ }}
+                    <ul class="tags">
+                        <li class="tag">{{item.account_class.join('/')}}</li>
+                    </ul>
+                    {{# } }}
+                </div>
+            </div>
+            <div class="echarts-box" id="echarts_d{{index}}"></div>
+            <div class="desc-line">
+                <span>带货能力得分 </span>
+                <span class="heigh-light">{{Math.floor(item.seeding_index)}}</span>
+                <span> 超过 </span>
+                <span class="heigh-light">{{Math.floor(item.seeding_rate)}}%</span>
+                <span> 红人</span>
+                <span class="help-main" style="font-weight:normal; margin-left: 5px;">
+                    <i class="base-iconfont iconfont-mark help">&#xe66b;</i>
+                    <p class="account-info-fans-info black img-arrow" style="width:280px;white-space: normal;">
+                        <img class="triangle-down-icon" src="/Public/publichead/images/public/pic_sanjiao.png" alt="">
+                        带货能力根据自媒体发布内容中带货数量、带货内容互动量等指数综合得出。
+                    </p>
+                </span>
+            </div>
+            <div class="count-line">
+                <div class="item">
+                    <div class="value price-ff">{{item.account_followers ? item.account_followers.replace('万', 'w') : "0"}}</div>
+                    <div class="name">粉丝量</div>
+                </div>
+                <div class="item">
+                    <div class="value price-ff">{{item.avg_play_num ? item.avg_play_num.replace('万', 'w') : "0"}}</div>
+                    <div class="name">预计播放量</div>
+                </div>
+                <div class="item">
+                    <div class="value price-ff">{{item.avg_interact ? item.avg_interact.replace('万', 'w') : "0"}}</div>
+                    <div class="name">预计互动量</div>
+                </div>
+            </div>
+            <a href="/home/mediaaccount/douyin_detail.html?uid={{item.media_id}}&trackcode=180000" target="_blank">
+                <div class="detail-btn">查看详情</div>
+            </a>
+        </div>
+    </div>
+    {{#  }); }}
+</script>
+<script id='bar' type="text/html">
+    {{#  layui.each(d.data, function(index, item){ }}
+        <li class="{{index == 0 ? 'active' : ''}}" data-type="{{item.id}}" onclick="switchBar(this, {{item.id}})">{{item.name}}</li>
+    {{#  }); }}
+</script>
+<script id='list' type="text/html">
+    {{#  layui.each(d.data, function(index, item){ }}
+    <a href="/home/index/newsdetail.html?id={{item.id}}" target="_blank">
+        <div class="news-item">
+            <div class="banner-wrap">
+                <img class="banner" src="{{item.cover_url}}" alt="">
+            </div>
+            <div class="text-wrap">
+                <p class="name single-line-ellipsis">{{item.title}}</p>
+                <div class="tag-line">
+                    {{#  layui.each(item.label.split(','), function(index1, item1){ }}
+                        {{# if (item1) { }}
+                            <span>{{item1}}</span>
+                        {{# } }}
+                    {{#  }); }}
+                    <div class="time">{{item.pubtime}}</div>
+                </div>
+                <p class="desc two-line-ellipsis">{{item.summary}}</p>
+            </div>
+        </div>
+    </a>
+    {{#  }); }}
+</script>
+<script>
+    var evaluate = "/owner/index/evaluate_fade.html",
+        setHideTodayUrl = "/owner//index/set_hide_today.html", // 微信价格认证上线提醒 今日不再显示
+        douyinAccount = "/owner/index/douyin_account.html",
+        weiboAccount = "/owner/index/weibo_account.html",
+        getContentUrl = "/home/marketing/get_article_list.html",
+        getBarUrl = "/home/marketing/get_category.html", // 营销学院分类
+        readBookAccount = "/owner/index/redbook_account.html",
+        receiveBonus = "/owner/index/receiveBonus.html",
+        evaluateGivingRedPacket = "/owner/Index/evaluategivingredpacket.html",
+        mediauserUrl = "/owner/wechat/mediauser.html",
+        agreementYesUrl = "/owner/index/agreement_yes.html", // 用户同意协议弹窗
+        qinglangYesUrl = "/owner/index/qinglang_yes.html", // 清朗行动弹窗
+        popupYesUrl = "/owner/index/popup_yes.html" //弹窗管理确认接口 请求参数：user_type: 1广告主2代理商3自媒体主 popup_id:弹窗ID today_show_status 1:今日不展示
+        dataType = 1,
+        msg_list_loading = false,
+        flag = false,
+        page = 1;
+    // 展示微信价格认证上线提醒
+    var is_show = "0";
+    if (is_show == 1) {
+        $('body').css('overflow-y', 'hidden')
+    }
+    var is_show_agree = "0"; // 是否展示协议 1显示0不显示
+    var is_show_qinglang = "0"; // 是否展示协议 1显示0不显示
+    var new_order_process = "0"; // 是否外部代理商
+    var is_show_identity = "0"; // 是否显示服务商 & 私人顾问 弹窗
+    var is_show_popup = "0"; // 是否展示自定义弹窗 1显示0不显示
+    var countDown = 5;
+    var black_agent = 0; // 代理商黑名单 1是 0否  G类
+
+    var weibo_checkbox = "/owner/newweibo/checkbox.html";
+    var weibo_mediauser = "/owner/newweibo/mediauser.html";
+    var weibo_enshrineurl = "/owner/wechat/enshrine.html";
+    var weibo_noenshrineurl = "/owner/wechat/noenshrine.html";
+    
+    var douyin_checkbox = "/owner/douyin/checkbox.html";
+    var douyin_mediauser = "/owner/douyin/mediauser.html";
+    var douyin_enshrineurl = "/owner/douyin/enshrine.html";
+    
+    var redbook_checkbox = "/owner/redbook/checkbox.html";
+    var redbook_mediauser = "/owner/redbook/media.html";
+    var redbook_enshrineurl = "/owner/redbook/enshrine.html";
+
+    var banner_data_count = "1";
+</script>
+<script src="/Public/owner/js/index/qingLang.js?v=1.2" type="text/javascript"></script>
+<script src="/Public/owner/js/index/redPacket.js?v=3.2.9" type="text/javascript"></script>
+<script src="/Public/home/js/index/indexNew2.js?v=1.0.4" type="text/javascript"></script>
+<!-- 弹窗公共js -->
+<!-- <script type="text/javascript" src="/Public/js/dialog_queue.js"></script> -->
+</html>
