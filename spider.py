@@ -1,167 +1,157 @@
-import os
-import re
-import asyncio
+import sys, os, re, asyncio, random, json
+import urllib.parse
+import httpx
 from playwright.async_api import async_playwright
 
 class MasterSpiderEngine:
     def __init__(self):
-        self.playwright = None
-        self.browser = None
-        self.context_weibo = None
-        self.context_weiq = None
+        self.playwright = self.browser = self.context_weiq = None
+        self.lock = asyncio.Semaphore(1) 
+
+    def _get_auth_path(self, filename):
+        return os.path.join(os.path.dirname(sys.executable) if getattr(sys, 'frozen', False) else os.path.abspath("."), filename)
 
     async def start(self):
         self.playwright = await async_playwright().start()
-        # 注入真实 User-Agent，防止被识别为空壳爬虫
         self.browser = await self.playwright.chromium.launch(
-            headless=True,
-            args=[
-                "--disable-blink-features=AutomationControlled",
-                "--disable-images",
-                "--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
-            ]
+            channel="msedge", headless=True, 
+            args=["--disable-blink-features=AutomationControlled"]
         )
-        
-        weibo_state = "weibo_auth_state.json"
-        if os.path.exists(weibo_state):
-            self.context_weibo = await self.browser.new_context(storage_state=weibo_state)
-        else:
-            self.context_weibo = await self.browser.new_context()
-            
-        weiq_state = "weiq_auth_state.json"
-        if os.path.exists(weiq_state):
-            self.context_weiq = await self.browser.new_context(storage_state=weiq_state)
-        else:
-            self.context_weiq = await self.browser.new_context()
+        s2 = self._get_auth_path("weiq_auth_state.json")
+        pc_ua = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
+        self.context_weiq = await self.browser.new_context(user_agent=pc_ua, storage_state=s2 if os.path.exists(s2) else None)
 
     async def close(self):
-        if self.browser:
-            await self.browser.close()
-        if self.playwright:
-            await self.playwright.stop()
+        if self.browser: await self.browser.close()
+        if self.playwright: await self.playwright.stop()
 
-    async def collect_and_store(self, target: str):
-        page = await self.context_weibo.new_page()
+    async def trigger_manual_login(self):
+        await self.close()
+        p = await async_playwright().start()
+        b = await p.chromium.launch(channel="msedge", headless=False)
+        
+        s2 = self._get_auth_path("weiq_auth_state.json")
+        ctx = await b.new_context(storage_state=s2 if os.path.exists(s2) else None)
+        
+        page = await ctx.new_page()
+        await page.goto("https://weiq.com/")
+        
+        while len(ctx.pages) > 0:
+            await asyncio.sleep(2)
+            with open(self._get_auth_path("weiq_auth_state.json"), "w") as j: 
+                json.dump(await ctx.storage_state(), j)
+        await p.stop()
+        await self.start()
+
+    async def resolve_uid(self, target: str) -> str:
+        clean_target = target.split('?')[0].split('#')[0].strip('/').strip()
+        if clean_target.isdigit() and 8 <= len(clean_target) <= 14: return clean_target
+        m_container = re.search(r'/p/10\d{4}(\d{8,14})', clean_target)
+        if m_container: return m_container.group(1)
+        m_standard = re.search(r'(?:weibo\.com|m\.weibo\.cn|weibo\.cn)/(?:u/|profile/|n/)?(\d{8,14})', clean_target)
+        if m_standard: return m_standard.group(1)
+        
+        keyword = clean_target.split('/')[-1]
         try:
-            if target.startswith("http"):
-                url = target
-            elif target.isdigit():
-                url = f"https://weibo.com/u/{target}"
-            else:
-                url = f"https://s.weibo.com/weibo?q={target}"
-                
-            await page.goto(url, timeout=60000)
-            
-            # 【深度修复1】：智能等待核心元素渲染，过滤无效的空页面
-            try:
-                await page.wait_for_selector('text="粉丝"', timeout=15000)
-            except:
-                await page.wait_for_timeout(3000)
+            headers = {"User-Agent": "Mozilla/5.0 (compatible; Baiduspider/2.0; +http://www.baidu.com/search/spider.html)"}
+            async with httpx.AsyncClient(verify=False, timeout=8.0) as client:
+                resp = await client.get(f"https://s.weibo.com/weibo?q={urllib.parse.quote(keyword)}", headers=headers)
+                m_search = re.search(r'weibo\.com/(?:u/|n/|profile/)?(\d{8,14})', resp.text) or re.search(r'uid=(\d{8,14})', resp.text)
+                if m_search: return m_search.group(1)
+        except: pass
+        return ""
 
-            page_text = await page.evaluate("document.body.innerText")
-            title = await page.title()
-            
-            current_url = page.url
-            uid_match = re.search(r'(?:weibo\.com/u/|weibo\.com/)(\d+)', current_url)
-            uid = uid_match.group(1) if uid_match else (target if target.isdigit() else "未知UID")
+    # 【专业格式化算法】将所有凌乱的数字统一换算为清爽的“万”
+    def format_to_wan(self, val_str):
+        if not val_str: return "0"
+        val_str = str(val_str).replace(',', '').replace('w', '万').replace('W', '万').strip()
+        if '万' in val_str: return val_str
+        try:
+            num = float(val_str)
+            if num >= 10000:
+                return f"{num/10000:.1f}万".replace('.0万', '万')
+            return str(int(num))
+        except:
+            return val_str
 
-            nickname = title.replace("的微博_微博", "").replace(" - 微博搜索", "").replace("个人主页 - 微博", "").strip()
-            if not nickname or nickname == "微博":
-                nickname = target
-                
-            followers_count = 0
-            statuses_count = 0
-            
-            # 【深度修复2】：严格正则，过滤类似 "88VIP" 的噪音数据
-            fans_match = re.search(r'(?:粉丝)\s*([\d.]+万?)', page_text) or re.search(r'([\d.]+万?)\s*(?:粉丝)', page_text)
-            if fans_match:
-                fans_str = fans_match.group(1).replace('万', '0000')
+    async def collect_all(self, target: str):
+        async with self.lock:
+            uid = await self.resolve_uid(target)
+            if not uid: raise Exception("ID_NOT_FOUND")
+
+            max_retries = 2
+            for attempt in range(max_retries):
+                page = await self.context_weiq.new_page()
                 try:
-                    followers_count = int(float(fans_str))
-                except:
-                    pass
+                    await page.goto(f"https://weiq.com/client/product/weibo/detail?account_uid={uid}", timeout=45000)
+                    await page.wait_for_timeout(2500)
                     
-            posts_match = re.search(r'(?:微博)\s*([\d,]+)', page_text) or re.search(r'([\d,]+)\s*(?:微博)', page_text)
-            if posts_match:
-                try:
-                    statuses_count = int(posts_match.group(1).replace(',', ''))
-                except:
-                    pass
+                    title = await page.title()
+                    if "登录" in title: raise Exception("AUTH_EXPIRED")
+                    
+                    text = await page.evaluate("document.body.innerText")
+                    
+                    if "安全验证" in text or "滑块" in text or "验证码" in text or "向右滑动" in text:
+                        raise Exception("WEIQ_VERIFY_BLOCKED")
 
-            return {
-                "uid": uid,
-                "nickname": nickname,
-                "followers_count": followers_count,
-                "statuses_count": statuses_count
-            }
-        except Exception as e:
-            raise Exception(f"微博数据初步解析阻塞: {str(e)}")
-        finally:
-            await page.close()
+                    if "原创图文" not in text and "直发CPM" not in text:
+                        raise Exception("WEIQ_NO_DATA")
 
-    async def collect_commercial_data(self, uid: str, nickname: str):
-        page = await self.context_weiq.new_page()
-        try:
-            url = f"https://www.weiq.com/client/product/weibo/detail?account_uid={uid}"
-            await page.goto(url, timeout=60000)
-            
-            # 【深度修复3】：强制等待 WEIQ 核心商业数据渲染完成
-            try:
-                await page.wait_for_selector('text="直发CPM"', timeout=15000)
-            except:
-                await page.wait_for_timeout(4000)
-            
-            page_text = await page.evaluate("document.body.innerText")
-            
-            cpm = 0.0
-            original_price = 0
-            repost_price = 0
-            weiq_followers = 0
-            weiq_posts = 0
-            weiq_nickname = nickname
+                    def get_val(reg, t): 
+                        m = re.search(reg, t)
+                        return m.group(1).replace(',', '') if m else None
 
-            # 【核心架构跃升】：直接从 WEIQ 页面反向提取粉丝数和发文量，双保险！
-            name_match = re.search(r'([^\n]+)\s*UID[：:]', page_text)
-            if name_match:
-                weiq_nickname = name_match.group(1).strip()
+                    # 核心报价
+                    price_str = get_val(r'原创图文[^\d]*?([\d,]+)', text)
+                    if not price_str: raise Exception("WEIQ_NO_DATA")
+                    price = int(price_str)
+                    cpm = float(get_val(r'直发CPM[^\d]*?([\d.]+)', text) or 0)
 
-            fans_match = re.search(r'粉丝数[^\d]*?([\d.]+万?)', page_text)
-            if fans_match:
-                fans_str = fans_match.group(1).replace('万', '0000')
-                try:
-                    weiq_followers = int(float(fans_str))
-                except:
-                    pass
+                    # 【多维度数据扩充】提取粉丝、平均阅读、平均互动
+                    followers_raw = get_val(r'粉丝数[^\d]*?([\d.]+万?)', text)
+                    avg_read_raw = get_val(r'(?:平均|预期)阅读[数量]?[^\d]*?([\d.]+万?)', text)
+                    avg_interact_raw = get_val(r'(?:平均)?互动[数量]?[^\d]*?([\d.]+万?)', text)
 
-            posts_match = re.search(r'博文总数[^\d]*?([\d,]+)', page_text)
-            if posts_match:
-                try:
-                    weiq_posts = int(posts_match.group(1).replace(',', ''))
-                except:
-                    pass
+                    # 【获取绝对真实的昵称，拒绝 UID】
+                    nickname = ""
+                    try:
+                        nickname = await page.evaluate("() => { let el = document.querySelector('.account-name, .name, .user-name, h1'); return el ? el.innerText.trim() : ''; }")
+                    except: pass
+                    
+                    if not nickname: nickname = title.split("的微博报价")[0].strip() if "的微博报价" in title else ""
+                    
+                    # 【双重兜底】如果依然是数字(说明WEIQ没抓到)，利用搜索引擎级爬虫强抓微博源站的真实名字
+                    if not nickname or nickname.isdigit() or nickname == uid:
+                        try:
+                            headers = {"User-Agent": "Mozilla/5.0 (compatible; Baiduspider/2.0; +http://www.baidu.com/search/spider.html)"}
+                            async with httpx.AsyncClient(verify=False, timeout=5.0) as client:
+                                resp = await client.get(f"https://m.weibo.cn/u/{uid}", headers=headers)
+                                m_title = re.search(r'<title>(.*?)的微博.*?</title>', resp.text)
+                                if m_title: nickname = m_title.group(1).strip()
+                        except: pass
+                    
+                    # 最后极度兜底，实在查不到才给 未知
+                    if nickname.isdigit() or not nickname: nickname = "未知昵称"
 
-            # 【深度修复4】：超级非贪婪正则，无视一切换行和排版直接锁定数字
-            cpm_match = re.search(r'直发CPM[^\d]*?([\d.]+)', page_text)
-            if cpm_match:
-                cpm = float(cpm_match.group(1))
-                
-            orig_match = re.search(r'原创图文[^\d]*?([\d,]+)', page_text)
-            if orig_match:
-                original_price = int(orig_match.group(1).replace(',', ''))
-                
-            repost_match = re.search(r'供稿转发[^\d]*?([\d,]+)', page_text)
-            if repost_match:
-                repost_price = int(repost_match.group(1).replace(',', ''))
-                
-            return {
-                "weiq_nickname": weiq_nickname,
-                "weiq_followers": weiq_followers,
-                "weiq_posts": weiq_posts,
-                "cpm": cpm,
-                "original_price": original_price,
-                "repost_price": repost_price
-            }
-        except Exception as e:
-            raise Exception(f"WEIQ 商业底库解析失败: {str(e)}")
-        finally:
-            await page.close()
+                    return {
+                        "uid": uid,
+                        "nickname": nickname,
+                        "followers": self.format_to_wan(followers_raw),
+                        "avg_read": self.format_to_wan(avg_read_raw),
+                        "avg_interact": self.format_to_wan(avg_interact_raw),
+                        "commercial": {
+                            "cpm": cpm,
+                            "original_price": price
+                        }
+                    }
+                except Exception as e:
+                    err_str = str(e)
+                    if "AUTH_EXPIRED" in err_str or "WEIQ_VERIFY_BLOCKED" in err_str or "WEIQ_NO_DATA" in err_str:
+                        raise e
+                    if attempt == max_retries - 1:
+                        if "Execution context was destroyed" in err_str or "Target closed" in err_str:
+                            raise Exception("NETWORK_ERROR")
+                        raise e
+                    await asyncio.sleep(2)
+                finally:
+                    await page.close()

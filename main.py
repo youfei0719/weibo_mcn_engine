@@ -1,68 +1,85 @@
-from contextlib import asynccontextmanager
-from fastapi import FastAPI, HTTPException
-from fastapi.responses import FileResponse
-from pydantic import BaseModel, Field
-from database import init_db
-from spider import MasterSpiderEngine
-import logging
-import os
+import sys, traceback
 
-logger = logging.getLogger("FastAPI")
-engine = MasterSpiderEngine()
+try:
+    import os, multiprocessing, subprocess
+    from contextlib import asynccontextmanager
+    from fastapi import FastAPI, HTTPException
+    from fastapi.responses import FileResponse
+    from pydantic import BaseModel, Field
+    
+    from database import init_db
+    from spider import MasterSpiderEngine
 
-@asynccontextmanager
-async def lifespan(app: FastAPI):
-    await init_db()
-    await engine.start()
-    yield
-    await engine.close()
+    def release_port(port):
+        try:
+            result = subprocess.run(['netstat', '-ano'], capture_output=True, text=True)
+            for line in result.stdout.splitlines():
+                if f":{port}" in line and 'LISTENING' in line:
+                    pid = line.strip().split()[-1]
+                    subprocess.run(['taskkill', '/F', '/PID', pid], capture_output=True, creationflags=subprocess.CREATE_NO_WINDOW)
+        except: pass
 
-app = FastAPI(title="Weibo MCN Data Engine", lifespan=lifespan)
+    engine = MasterSpiderEngine()
 
-class CollectRequest(BaseModel):
-    target: str = Field(..., description="微博主页链接 / UID / 博主昵称")
+    def get_resource_path(relative_path):
+        return os.path.join(sys._MEIPASS if hasattr(sys, '_MEIPASS') else os.path.abspath("."), relative_path)
 
-@app.get("/", summary="MCN 商业雷达面板")
-async def get_index():
-    ui_file = "index.html"
-    if os.path.exists(ui_file):
-        return FileResponse(ui_file)
-    return {"error": "UI 文件 index.html 不存在，请确保文件已放置在同级目录。"}
+    @asynccontextmanager
+    async def lifespan(app: FastAPI):
+        await init_db()
+        await engine.start()
+        yield
+        await engine.close()
 
-@app.post("/api/v1/collect")
-async def collect_data(request: CollectRequest):
-    try:
-        # 1. 获取微博基础结构
-        basic_data = await engine.collect_and_store(request.target)
-        uid = basic_data["uid"]
-        nickname = basic_data["nickname"]
-        
-        # 2. 从 WEIQ 黄金接口拉取全量底库数据
-        commercial_data = await engine.collect_commercial_data(uid, nickname)
+    app = FastAPI(title="Weibo MCN Batch Engine", lifespan=lifespan)
 
-        # 【核心数据融合】：如果微博主站被防爬虫屏蔽(导致抓取0或88)，强制用 WEIQ 的真实底库数据覆盖！
-        final_nickname = commercial_data["weiq_nickname"] if commercial_data["weiq_nickname"] and commercial_data["weiq_nickname"] != nickname else nickname
-        final_followers = commercial_data["weiq_followers"] if commercial_data["weiq_followers"] > 0 else basic_data["followers_count"]
-        final_posts = commercial_data["weiq_posts"] if commercial_data["weiq_posts"] > 0 else basic_data["statuses_count"]
+    class CollectRequest(BaseModel):
+        target: str = Field(...)
 
-        return {
-            "status": "success",
-            "message": "全量数据抓取并交叉验证成功",
-            "data": {
-                "uid": uid,
-                "nickname": final_nickname,
-                "followers": final_followers,
-                "posts": final_posts,
-                "commercial": {
-                    "cpm": commercial_data["cpm"],
-                    "original_price": commercial_data["original_price"],
-                    "repost_price": commercial_data["repost_price"]
-                }
-            }
-        }
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"抓取链路阻断: {str(e)}")
+    @app.get("/")
+    async def get_index():
+        return FileResponse(get_resource_path("index.html"))
 
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    @app.post("/api/v1/login")
+    async def trigger_auth():
+        await engine.trigger_manual_login()
+        return {"status": "success"}
+
+    @app.post("/api/v1/collect")
+    async def collect_data(request: CollectRequest):
+        try:
+            data = await engine.collect_all(request.target)
+            return {"status": "success", "data": data}
+            
+        except Exception as e:
+            err_msg = str(e)
+            print(f"\n⚠️ [追踪] 目标 '{request.target}' 异常: {err_msg}")
+            
+            if "AUTH_EXPIRED" in err_msg:
+                raise HTTPException(status_code=401, detail="WEIQ授权已失效，需重新扫码登录")
+            elif "WEIQ_VERIFY_BLOCKED" in err_msg:
+                raise HTTPException(status_code=403, detail="WEIQ触发防爬滑块验证码，需人工滑动")
+            elif "NETWORK_ERROR" in err_msg:
+                raise HTTPException(status_code=429, detail="服务器网络动荡或请求被重置")
+            elif "WEIQ_NO_DATA" in err_msg:
+                return {"status": "failed", "detail": "WEIQ未收录该账号报价"}
+            elif "ID_NOT_FOUND" in err_msg:
+                return {"status": "failed", "detail": "解析不到UID或查无此人"}
+            else:
+                traceback.print_exc()
+                raise HTTPException(status_code=500, detail=f"底层代码崩溃: {type(e).__name__}")
+
+    if __name__ == "__main__":
+        multiprocessing.freeze_support()
+        os.environ["PLAYWRIGHT_BROWSERS_PATH"] = "0"
+        release_port(8000)
+        import uvicorn
+        uvicorn.run(app, host="127.0.0.1", port=8000, workers=1)
+
+except Exception as e:
+    print("\n" + "!" * 60)
+    print("🚨 致命报错拦截成功：")
+    traceback.print_exc()
+    print("!" * 60 + "\n")
+    input("请截图发给我，按回车键退出...")
+    sys.exit(1)

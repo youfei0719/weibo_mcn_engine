@@ -1,51 +1,47 @@
+import sqlite3
 import os
-from datetime import date
-from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_sessionmaker
-from sqlalchemy.orm import declarative_base, Mapped, mapped_column
-from sqlalchemy import String, Integer, BigInteger, Date, Text, Float
-from sqlalchemy.dialects.postgresql import insert
+import asyncio
 
-DB_HOST = os.getenv("DB_HOST", "127.0.0.1")
-DB_USER = os.getenv("DB_USER", "postgres")
-DB_PASS = os.getenv("DB_PASS", "password")
-DB_NAME = os.getenv("DB_NAME", "weibo_mcn")
-DB_PORT = os.getenv("DB_PORT", "5432")
-
-DATABASE_URL = f"postgresql+asyncpg://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
-
-engine = create_async_engine(DATABASE_URL, echo=False, pool_size=10, max_overflow=20)
-AsyncSessionLocal = async_sessionmaker(engine, class_=AsyncSession, expire_on_commit=False)
-Base = declarative_base()
-
-class Account(Base):
-    __tablename__ = "accounts"
-    uid: Mapped[str] = mapped_column(String(50), primary_key=True, comment="微博UID")
-    nickname: Mapped[str] = mapped_column(String(100), nullable=False)
-    avatar: Mapped[str] = mapped_column(Text, nullable=True)
-    description: Mapped[str] = mapped_column(Text, nullable=True)
-    gender: Mapped[str] = mapped_column(String(10), nullable=True)
-    location: Mapped[str] = mapped_column(String(100), nullable=True)
-    verified_reason: Mapped[str] = mapped_column(Text, nullable=True)
-
-class AccountDailyStat(Base):
-    __tablename__ = "account_daily_stats"
-    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
-    uid: Mapped[str] = mapped_column(String(50), index=True, nullable=False)
-    record_date: Mapped[date] = mapped_column(Date, default=date.today)
-    followers_count: Mapped[int] = mapped_column(BigInteger, default=0)
-    friends_count: Mapped[int] = mapped_column(BigInteger, default=0)
-    statuses_count: Mapped[int] = mapped_column(BigInteger, default=0)
-
-class AccountCommercialStat(Base):
-    __tablename__ = "account_commercial_stats"
-    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
-    uid: Mapped[str] = mapped_column(String(50), index=True, nullable=False)
-    record_date: Mapped[date] = mapped_column(Date, default=date.today)
-    cpm: Mapped[float] = mapped_column(Float, default=0.0)
-    original_price: Mapped[float] = mapped_column(Float, default=0.0)
-    repost_price: Mapped[float] = mapped_column(Float, default=0.0)
-    expected_reads: Mapped[int] = mapped_column(Integer, default=0)
+# 零安装的本地数据库引擎
+DB_FILE = "mcn_local_data.db"
 
 async def init_db():
-    async with engine.begin() as conn:
-        await conn.run_sync(Base.metadata.create_all)
+    """
+    初始化本地单机数据库。
+    不需要 Docker，不需要 PostgreSQL 服务，直接在本地生成文件。
+    """
+    # SQLite 在初始化建表时极快，此处简单封装以兼容现有的 async 调用
+    conn = sqlite3.connect(DB_FILE)
+    cursor = conn.cursor()
+    
+    # 建立本地数据保险箱
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS weibo_mcn_radar (
+            uid TEXT PRIMARY KEY,
+            nickname TEXT,
+            followers INTEGER,
+            posts INTEGER,
+            cpm REAL,
+            original_price INTEGER,
+            repost_price INTEGER,
+            update_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )
+    ''')
+    conn.commit()
+    conn.close()
+    print("✅ 本地单机数据库引擎 (SQLite) 已就绪，零依赖模式启动。")
+
+# 预留给爬虫存数据的同步接口 (方便后续迭代)
+def save_data(data: dict):
+    conn = sqlite3.connect(DB_FILE)
+    cursor = conn.cursor()
+    cursor.execute('''
+        INSERT OR REPLACE INTO weibo_mcn_radar 
+        (uid, nickname, followers, posts, cpm, original_price, repost_price)
+        VALUES (?, ?, ?, ?, ?, ?, ?)
+    ''', (
+        data['uid'], data['nickname'], data['followers'], data['posts'],
+        data['commercial']['cpm'], data['commercial']['original_price'], data['commercial']['repost_price']
+    ))
+    conn.commit()
+    conn.close()
